@@ -10,8 +10,8 @@ package edu.co.sena.pruebagit2.pruebagit2;
  * @author ColsutecR
  */
 public class Daniel {
+    //Esta Line La Hizo Juancho
     //Esta linea esta inscrita por daniel
-    
     // Esta linea la hizo Nicolas
     //esta linea la hizo el profesor hernando
     //esta linea la hizo Johana y Maicol
