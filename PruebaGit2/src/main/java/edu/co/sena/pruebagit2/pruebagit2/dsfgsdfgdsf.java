@@ -10,6 +10,6 @@ package edu.co.sena.pruebagit2.pruebagit2;
  * @author Enrique
  */
 public class dsfgsdfgdsf {
-    //dsfaskdfkasdjfkljasdf
     // aca escribio usuario 1
+    // aca escribio el usuario 2
 }
