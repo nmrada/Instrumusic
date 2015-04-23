@@ -12,5 +12,8 @@ package edu.co.sena.pruebagit2.pruebagit2;
 public class Daniel {
     
    // Esta linea la hizo jhon Alex
+    //esta linea la hizo el profesor hernando
+    //esta linea la hizo Johana y Maicol
+    
     
 }
