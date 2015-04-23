@@ -10,6 +10,7 @@ package edu.co.sena.pruebagit2.pruebagit2;
  * @author ColsutecR
  */
 public class Daniel {
+    //Esta linea la hizo Oscar Andres Romero Castañeda
     //Esta linea esta inscrita por daniel
     
     // Esta linea la hizo Nicolas
