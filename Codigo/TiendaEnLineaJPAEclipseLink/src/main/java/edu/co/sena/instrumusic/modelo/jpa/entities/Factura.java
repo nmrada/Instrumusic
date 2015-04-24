@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package edu.co.sena.instrumusic.modelo.jpa.entities;
 
 import java.io.Serializable;
@@ -12,6 +11,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Nicolas
+ * @author ColsutecR
  */
 @Entity
 @Table(name = "factura")
@@ -52,14 +52,14 @@ public class Factura implements Serializable {
     @Basic(optional = false)
     @Column(name = "total")
     private float total;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "factura")
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "factura", fetch = FetchType.EAGER)
     private Pago pago;
     @JoinColumns({
         @JoinColumn(name = "Cuenta_Tipo_Documento_tipoDocumento", referencedColumnName = "Tipo_Documento_tipoDocumento"),
         @JoinColumn(name = "Cuenta_numeroDocumento", referencedColumnName = "numeroDocumento")})
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Cuenta cuenta;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "factura")
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "factura", fetch = FetchType.EAGER)
     private Pedido pedido;
 
     public Factura() {

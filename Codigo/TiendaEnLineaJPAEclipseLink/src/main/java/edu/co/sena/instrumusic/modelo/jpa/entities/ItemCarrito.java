@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package edu.co.sena.instrumusic.modelo.jpa.entities;
 
 import java.io.Serializable;
@@ -11,6 +10,7 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -20,7 +20,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Nicolas
+ * @author ColsutecR
  */
 @Entity
 @Table(name = "item_carrito")
@@ -45,12 +45,12 @@ public class ItemCarrito implements Serializable {
     @Basic(optional = false)
     @Column(name = "costoTotal")
     private float costoTotal;
-    @JoinColumn(name = "Carrito_De_Compras_idCarritoDeCompras", referencedColumnName = "idCarritoDeCompras", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
-    private CarritoDeCompras carritoDeCompras;
     @JoinColumn(name = "Producto_idProducto", referencedColumnName = "idProducto", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Producto producto;
+    @JoinColumn(name = "Carrito_De_Compras_idCarritoDeCompras", referencedColumnName = "idCarritoDeCompras", insertable = false, updatable = false)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    private CarritoDeCompras carritoDeCompras;
 
     public ItemCarrito() {
     }
@@ -102,20 +102,20 @@ public class ItemCarrito implements Serializable {
         this.costoTotal = costoTotal;
     }
 
-    public CarritoDeCompras getCarritoDeCompras() {
-        return carritoDeCompras;
-    }
-
-    public void setCarritoDeCompras(CarritoDeCompras carritoDeCompras) {
-        this.carritoDeCompras = carritoDeCompras;
-    }
-
     public Producto getProducto() {
         return producto;
     }
 
     public void setProducto(Producto producto) {
         this.producto = producto;
+    }
+
+    public CarritoDeCompras getCarritoDeCompras() {
+        return carritoDeCompras;
+    }
+
+    public void setCarritoDeCompras(CarritoDeCompras carritoDeCompras) {
+        this.carritoDeCompras = carritoDeCompras;
     }
 
     @Override

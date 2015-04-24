@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package edu.co.sena.instrumusic.modelo.jpa.entities;
 
 import java.io.Serializable;
@@ -13,7 +12,7 @@ import javax.persistence.Embeddable;
 
 /**
  *
- * @author Nicolas
+ * @author ColsutecR
  */
 @Embeddable
 public class DomicilioCuentaPK implements Serializable {

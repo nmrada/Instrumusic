@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package edu.co.sena.instrumusic.modelo.jpa.entities;
 
 import java.io.Serializable;
@@ -12,6 +11,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Nicolas
+ * @author ColsutecR
  */
 @Entity
 @Table(name = "producto")
@@ -82,15 +82,15 @@ public class Producto implements Serializable {
     @Basic(optional = false)
     @Column(name = "descuento")
     private float descuento;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "producto")
-    private List<Item> itemList;
-    @JoinColumn(name = "Categoria_idCategoria", referencedColumnName = "idCategoria")
-    @ManyToOne(optional = false)
-    private Categoria categoriaidCategoria;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "producto")
-    private List<ItemCarrito> itemCarritoList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "producto")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "producto", fetch = FetchType.EAGER)
     private List<Inventario> inventarioList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "producto", fetch = FetchType.EAGER)
+    private List<Item> itemList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "producto", fetch = FetchType.EAGER)
+    private List<ItemCarrito> itemCarritoList;
+    @JoinColumn(name = "Categoria_idCategoria", referencedColumnName = "idCategoria")
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    private Categoria categoriaidCategoria;
 
     public Producto() {
     }
@@ -210,20 +210,21 @@ public class Producto implements Serializable {
     }
 
     @XmlTransient
+    public List<Inventario> getInventarioList() {
+        return inventarioList;
+    }
+
+    public void setInventarioList(List<Inventario> inventarioList) {
+        this.inventarioList = inventarioList;
+    }
+
+    @XmlTransient
     public List<Item> getItemList() {
         return itemList;
     }
 
     public void setItemList(List<Item> itemList) {
         this.itemList = itemList;
-    }
-
-    public Categoria getCategoriaidCategoria() {
-        return categoriaidCategoria;
-    }
-
-    public void setCategoriaidCategoria(Categoria categoriaidCategoria) {
-        this.categoriaidCategoria = categoriaidCategoria;
     }
 
     @XmlTransient
@@ -235,13 +236,12 @@ public class Producto implements Serializable {
         this.itemCarritoList = itemCarritoList;
     }
 
-    @XmlTransient
-    public List<Inventario> getInventarioList() {
-        return inventarioList;
+    public Categoria getCategoriaidCategoria() {
+        return categoriaidCategoria;
     }
 
-    public void setInventarioList(List<Inventario> inventarioList) {
-        this.inventarioList = inventarioList;
+    public void setCategoriaidCategoria(Categoria categoriaidCategoria) {
+        this.categoriaidCategoria = categoriaidCategoria;
     }
 
     @Override

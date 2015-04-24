@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package edu.co.sena.instrumusic.modelo.jpa.entities;
 
 import java.io.Serializable;
@@ -13,6 +12,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Nicolas
+ * @author ColsutecR
  */
 @Entity
 @Table(name = "proveedor")
@@ -46,13 +46,13 @@ public class Proveedor implements Serializable {
     @Basic(optional = false)
     @Column(name = "email")
     private String email;
-    @JoinColumn(name = "Tipo_Documento_tipoDocumento", referencedColumnName = "tipoDocumento", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
-    private TipoDocumento tipoDocumento;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "proveedor")
-    private List<Inventario> inventarioList;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "proveedor")
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "proveedor", fetch = FetchType.EAGER)
     private DomicilioProveedor domicilioProveedor;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "proveedor", fetch = FetchType.EAGER)
+    private List<Inventario> inventarioList;
+    @JoinColumn(name = "Tipo_Documento_tipoDocumento", referencedColumnName = "tipoDocumento", insertable = false, updatable = false)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    private TipoDocumento tipoDocumento;
 
     public Proveedor() {
     }
@@ -95,12 +95,12 @@ public class Proveedor implements Serializable {
         this.email = email;
     }
 
-    public TipoDocumento getTipoDocumento() {
-        return tipoDocumento;
+    public DomicilioProveedor getDomicilioProveedor() {
+        return domicilioProveedor;
     }
 
-    public void setTipoDocumento(TipoDocumento tipoDocumento) {
-        this.tipoDocumento = tipoDocumento;
+    public void setDomicilioProveedor(DomicilioProveedor domicilioProveedor) {
+        this.domicilioProveedor = domicilioProveedor;
     }
 
     @XmlTransient
@@ -112,12 +112,12 @@ public class Proveedor implements Serializable {
         this.inventarioList = inventarioList;
     }
 
-    public DomicilioProveedor getDomicilioProveedor() {
-        return domicilioProveedor;
+    public TipoDocumento getTipoDocumento() {
+        return tipoDocumento;
     }
 
-    public void setDomicilioProveedor(DomicilioProveedor domicilioProveedor) {
-        this.domicilioProveedor = domicilioProveedor;
+    public void setTipoDocumento(TipoDocumento tipoDocumento) {
+        this.tipoDocumento = tipoDocumento;
     }
 
     @Override

@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package edu.co.sena.instrumusic.modelo.jpa.entities;
 
 import java.io.Serializable;
@@ -13,6 +12,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Nicolas
+ * @author ColsutecR
  */
 @Entity
 @Table(name = "cuenta")
@@ -52,16 +52,16 @@ public class Cuenta implements Serializable {
     private String primerApellido;
     @Column(name = "segundoApellido")
     private String segundoApellido;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cuenta")
-    private List<Factura> facturaList;
-    @JoinColumn(name = "Tipo_Documento_tipoDocumento", referencedColumnName = "tipoDocumento", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
-    private TipoDocumento tipoDocumento;
-    @JoinColumn(name = "Usuario_idUsuario", referencedColumnName = "idUsuario")
-    @ManyToOne(optional = false)
-    private Usuario usuarioidUsuario;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "cuenta")
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "cuenta", fetch = FetchType.EAGER)
     private DomicilioCuenta domicilioCuenta;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cuenta", fetch = FetchType.EAGER)
+    private List<Factura> facturaList;
+    @JoinColumn(name = "Usuario_idUsuario", referencedColumnName = "idUsuario")
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    private Usuario usuarioidUsuario;
+    @JoinColumn(name = "Tipo_Documento_tipoDocumento", referencedColumnName = "tipoDocumento", insertable = false, updatable = false)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    private TipoDocumento tipoDocumento;
 
     public Cuenta() {
     }
@@ -120,6 +120,14 @@ public class Cuenta implements Serializable {
         this.segundoApellido = segundoApellido;
     }
 
+    public DomicilioCuenta getDomicilioCuenta() {
+        return domicilioCuenta;
+    }
+
+    public void setDomicilioCuenta(DomicilioCuenta domicilioCuenta) {
+        this.domicilioCuenta = domicilioCuenta;
+    }
+
     @XmlTransient
     public List<Factura> getFacturaList() {
         return facturaList;
@@ -127,14 +135,6 @@ public class Cuenta implements Serializable {
 
     public void setFacturaList(List<Factura> facturaList) {
         this.facturaList = facturaList;
-    }
-
-    public TipoDocumento getTipoDocumento() {
-        return tipoDocumento;
-    }
-
-    public void setTipoDocumento(TipoDocumento tipoDocumento) {
-        this.tipoDocumento = tipoDocumento;
     }
 
     public Usuario getUsuarioidUsuario() {
@@ -145,12 +145,12 @@ public class Cuenta implements Serializable {
         this.usuarioidUsuario = usuarioidUsuario;
     }
 
-    public DomicilioCuenta getDomicilioCuenta() {
-        return domicilioCuenta;
+    public TipoDocumento getTipoDocumento() {
+        return tipoDocumento;
     }
 
-    public void setDomicilioCuenta(DomicilioCuenta domicilioCuenta) {
-        this.domicilioCuenta = domicilioCuenta;
+    public void setTipoDocumento(TipoDocumento tipoDocumento) {
+        this.tipoDocumento = tipoDocumento;
     }
 
     @Override
