@@ -20,13 +20,13 @@ public interface CategoriaDAO {
 
     public void delete(Categoria entity);
     
-    public Categoria findByIdCategoria(int idCategoria);
+    public Categoria findByIdCategoria(Integer idCategoria);
     
     public List<Categoria> findAll();
     
     public List<Categoria> findByNombreCategoria(String nombreCategoria);
     
-    public List<Categoria> findByActiva (boolean activa);
+    public List<Categoria> findByActiva (Boolean activa);
     
      
     
