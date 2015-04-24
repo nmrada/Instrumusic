@@ -20,7 +20,7 @@ import static org.junit.Assert.*;
  */
 public class CategoriaDAOImplTest {
 
-    Categoria entity = new Categoria();
+    public Categoria entity;
 
     public CategoriaDAOImplTest() {
     }
@@ -35,8 +35,11 @@ public class CategoriaDAOImplTest {
 
     @Before
     public void setUp() {
-        entity.setNombreCategoria("Categoria");
-        entity.setActiva(true);
+        entity = new Categoria();
+        entity.setNombreCategoria("Categoria2");
+        entity.setActiva(Boolean.TRUE);
+     
+        
         
     }
 
@@ -53,10 +56,15 @@ public class CategoriaDAOImplTest {
     @Test
     public void testInsert() {
         System.out.println("insert");
+        
         CategoriaDAOImpl instance = new CategoriaDAOImpl();
+        Categoria categoriaPadre = instance.findByIdCategoria(1);
+        System.out.println(categoriaPadre.getNombreCategoria());
+        entity.setCategoriaidCategoria(categoriaPadre);
         instance.insert(entity);
     }
 
+    
     // Prueba del metodo update, de la clase CategoriaDAOImpl.
     @Test
     public void testUpdate() {

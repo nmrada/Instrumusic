@@ -19,6 +19,10 @@ import javax.persistence.Query;
  */
 public class CategoriaDAOImpl implements CategoriaDAO {
 
+    private EntityManager getEntityManager() {
+        return EntityManagerHelper.getEntityManager();
+    }
+    public static final String IDCATEGORIA = "idCategoria";
     public static final String NOMBRECATEGORIA = "nombreCategoria";
     public static final String ACTIVA = "activa";
 
@@ -73,21 +77,21 @@ public class CategoriaDAOImpl implements CategoriaDAO {
         }
     }
 
-    @Override
-    public Categoria findByIdCategoria(int idCategoria) {
-        EntityManager em = getEntityManager();
-        Categoria categoriaTemp = null;
-        try {
-            categoriaTemp = em.find(Categoria.class, idCategoria);
-        } catch (RuntimeException re) {
-            System.out.println("erorrr:-------------" + re.getMessage());
-        } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
-        }
-        return categoriaTemp;
-    }
+//    @Override
+//    public Categoria findByIdCategoria(int idCategoria) {
+//        EntityManager em = getEntityManager();
+//        Categoria categoriaTemp = null;
+//        try {
+//            categoriaTemp = em.find(Categoria.class, idCategoria);
+//        } catch (RuntimeException re) {
+//            System.out.println("erorrr:-------------" + re.getMessage());
+//        } finally {
+//            if (em != null) {
+//                EntityManagerHelper.closeEntityManager();
+//            }
+//        }
+//        return categoriaTemp;
+ //   }
 
     @Override
     public List<Categoria> findAll() {
@@ -120,8 +124,40 @@ public class CategoriaDAOImpl implements CategoriaDAO {
         return categoriaTemp;
     }
 
+//    @Override
+//    public List<Categoria> findByActiva(boolean activa) {
+//        EntityManager em = getEntityManager();
+//        List<Categoria> categoriaTemp = null;
+//        try {
+//            Query query = em.createNamedQuery("Categoria.findByActiva");
+//            query.setParameter(CategoriaDAOImpl.ACTIVA, activa);
+//            categoriaTemp = query.getResultList();
+//        } catch (RuntimeException re) {
+//            System.out.println("erorrr:-------------" + re.getMessage());
+//        } finally {
+//            EntityManagerHelper.closeEntityManager();
+//        }
+//        return categoriaTemp;
+//
+//    }
     @Override
-    public List<Categoria> findByActiva(boolean activa) {
+    public Categoria findByIdCategoria(Integer idCategoria) {
+        EntityManager em = getEntityManager();
+        Categoria categoriaTemp = null;
+        try {
+            categoriaTemp = em.find(Categoria.class, idCategoria);
+        } catch (RuntimeException re) {
+            System.out.println("erorrr:-------------" + re.getMessage());
+        } finally {
+            if (em != null) {
+                EntityManagerHelper.closeEntityManager();
+            }
+        }
+        return categoriaTemp;
+    }
+
+    @Override
+    public List<Categoria> findByActiva(Boolean activa) {
         EntityManager em = getEntityManager();
         List<Categoria> categoriaTemp = null;
         try {
@@ -134,7 +170,6 @@ public class CategoriaDAOImpl implements CategoriaDAO {
             EntityManagerHelper.closeEntityManager();
         }
         return categoriaTemp;
-
     }
 
 }
