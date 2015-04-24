@@ -20,11 +20,11 @@ public interface CarritoDeComprasDAO {
 
     public void delete(CarritoDeCompras entity);
 
-    public CarritoDeCompras findByIdCarrito();
+    public CarritoDeCompras findByIdCarrito(String idCarrito);
 
     public List<CarritoDeCompras> findByAll();
-    public List<CarritoDeCompras> findByTotal(Object total);
-    public List<CarritoDeCompras> findBySubtotal(Object subtotal);
-    public List<CarritoDeCompras> findByImpuestos(Object impuesto);
+    public List<CarritoDeCompras> findByTotal(double total);
+    public List<CarritoDeCompras> findBySubtotal(double subtotal);
+    public List<CarritoDeCompras> findByImpuestos(double impuesto);
 
 }
