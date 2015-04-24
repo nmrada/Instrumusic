@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
-  <persistence-unit name="edu.co.sena_TiendaEnLineaJPAEclipseLink_jar_1.0-SNAPSHOTPU" transaction-type="RESOURCE_LOCAL">
+  <persistence-unit name="edu.co.sena.InstruMusicPersistence" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <class>edu.co.sena.tiendaenlineajpaeclipselink.integracion.jpa.entities.Pago</class>
-    <class>edu.co.sena.tiendaenlineajpaeclipselink.integracion.jpa.entities.DomicilioCuenta</class>
-    <class>edu.co.sena.tiendaenlineajpaeclipselink.integracion.jpa.entities.Catalogo</class>
-    <class>edu.co.sena.tiendaenlineajpaeclipselink.integracion.jpa.entities.Carritodecompras</class>
-    <class>edu.co.sena.tiendaenlineajpaeclipselink.integracion.jpa.entities.Categoria</class>
-    <class>edu.co.sena.tiendaenlineajpaeclipselink.integracion.jpa.entities.Pedido</class>
-    <class>edu.co.sena.tiendaenlineajpaeclipselink.integracion.jpa.entities.Departamento</class>
-    <class>edu.co.sena.tiendaenlineajpaeclipselink.integracion.jpa.entities.Inventario</class>
-    <class>edu.co.sena.tiendaenlineajpaeclipselink.integracion.jpa.entities.Producto</class>
-    <class>edu.co.sena.tiendaenlineajpaeclipselink.integracion.jpa.entities.Item</class>
-    <class>edu.co.sena.tiendaenlineajpaeclipselink.integracion.jpa.entities.Municipio</class>
-    <class>edu.co.sena.tiendaenlineajpaeclipselink.integracion.jpa.entities.Cuenta</class>
-    <class>edu.co.sena.tiendaenlineajpaeclipselink.integracion.jpa.entities.Usuario</class>
-    <class>edu.co.sena.tiendaenlineajpaeclipselink.integracion.jpa.entities.Factura</class>
-    <class>edu.co.sena.tiendaenlineajpaeclipselink.integracion.jpa.entities.Proveedor</class>
-    <class>edu.co.sena.tiendaenlineajpaeclipselink.integracion.jpa.entities.ItemCarrito</class>
-    <class>edu.co.sena.tiendaenlineajpaeclipselink.integracion.jpa.entities.DomicilioProveedor</class>
+    <class>edu.co.sena.instrumusic.modelo.jpa.entities.CarritoDeCompras</class>
+    <class>edu.co.sena.instrumusic.modelo.jpa.entities.Categoria</class>
+    <class>edu.co.sena.instrumusic.modelo.jpa.entities.Cuenta</class>
+    <class>edu.co.sena.instrumusic.modelo.jpa.entities.Departamento</class>
+    <class>edu.co.sena.instrumusic.modelo.jpa.entities.DomicilioCuenta</class>
+    <class>edu.co.sena.instrumusic.modelo.jpa.entities.DomicilioProveedor</class>
+    <class>edu.co.sena.instrumusic.modelo.jpa.entities.Factura</class>
+    <class>edu.co.sena.instrumusic.modelo.jpa.entities.Inventario</class>
+    <class>edu.co.sena.instrumusic.modelo.jpa.entities.Item</class>
+    <class>edu.co.sena.instrumusic.modelo.jpa.entities.ItemCarrito</class>
+    <class>edu.co.sena.instrumusic.modelo.jpa.entities.Municipio</class>
+    <class>edu.co.sena.instrumusic.modelo.jpa.entities.Pago</class>
+    <class>edu.co.sena.instrumusic.modelo.jpa.entities.Pedido</class>
+    <class>edu.co.sena.instrumusic.modelo.jpa.entities.Producto</class>
+    <class>edu.co.sena.instrumusic.modelo.jpa.entities.Proveedor</class>
+    <class>edu.co.sena.instrumusic.modelo.jpa.entities.TipoDocumento</class>
+    <class>edu.co.sena.instrumusic.modelo.jpa.entities.Usuario</class>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:4306/tiendaenlinea?zeroDateTimeBehavior=convertToNull"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:4306/instrumusic?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.password" value="123456789"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
