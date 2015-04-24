@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package edu.co.sena.instrumusic.modelo.jpa.entities;
 
 import java.io.Serializable;
@@ -12,6 +11,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Nicolas
+ * @author ColsutecR
  */
 @Entity
 @Table(name = "tipo_documento")
@@ -44,9 +44,9 @@ public class TipoDocumento implements Serializable {
     @Basic(optional = false)
     @Column(name = "activo")
     private boolean activo;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoDocumento")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoDocumento", fetch = FetchType.EAGER)
     private List<Cuenta> cuentaList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoDocumento")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoDocumento", fetch = FetchType.EAGER)
     private List<Proveedor> proveedorList;
 
     public TipoDocumento() {

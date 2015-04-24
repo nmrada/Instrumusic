@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package edu.co.sena.instrumusic.modelo.jpa.entities;
 
 import java.io.Serializable;
@@ -27,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Nicolas
+ * @author ColsutecR
  */
 @Entity
 @Table(name = "categoria")
@@ -50,12 +49,12 @@ public class Categoria implements Serializable {
     @Basic(optional = false)
     @Column(name = "activa")
     private boolean activa;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoriaidCategoria",fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoriaidCategoria", fetch = FetchType.EAGER)
     private List<Categoria> categoriaList;
     @JoinColumn(name = "Categoria_idCategoria", referencedColumnName = "idCategoria")
-    @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Categoria categoriaidCategoria;
-    @OneToMany(cascade = CascadeType.MERGE, mappedBy = "categoriaidCategoria", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoriaidCategoria", fetch = FetchType.EAGER)
     private List<Producto> productoList;
 
     public Categoria() {

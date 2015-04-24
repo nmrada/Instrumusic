@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package edu.co.sena.instrumusic.modelo.jpa.entities;
 
 import java.io.Serializable;
@@ -11,6 +10,7 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Nicolas
+ * @author ColsutecR
  */
 @Entity
 @Table(name = "domicilio_proveedor")
@@ -50,14 +50,14 @@ public class DomicilioProveedor implements Serializable {
     private String barrio;
     @Column(name = "localidad")
     private String localidad;
-    @JoinColumn(name = "Municipio_idMunicipio", referencedColumnName = "idMunicipio")
-    @ManyToOne(optional = false)
-    private Municipio municipioidMunicipio;
     @JoinColumns({
         @JoinColumn(name = "Proveedor_Tipo_Documento_tipoDocumento", referencedColumnName = "Tipo_Documento_tipoDocumento", insertable = false, updatable = false),
         @JoinColumn(name = "Proveedor_numeroDocumento", referencedColumnName = "numeroDocumento", insertable = false, updatable = false)})
-    @OneToOne(optional = false)
+    @OneToOne(optional = false, fetch = FetchType.EAGER)
     private Proveedor proveedor;
+    @JoinColumn(name = "Municipio_idMunicipio", referencedColumnName = "idMunicipio")
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    private Municipio municipioidMunicipio;
 
     public DomicilioProveedor() {
     }
@@ -117,20 +117,20 @@ public class DomicilioProveedor implements Serializable {
         this.localidad = localidad;
     }
 
-    public Municipio getMunicipioidMunicipio() {
-        return municipioidMunicipio;
-    }
-
-    public void setMunicipioidMunicipio(Municipio municipioidMunicipio) {
-        this.municipioidMunicipio = municipioidMunicipio;
-    }
-
     public Proveedor getProveedor() {
         return proveedor;
     }
 
     public void setProveedor(Proveedor proveedor) {
         this.proveedor = proveedor;
+    }
+
+    public Municipio getMunicipioidMunicipio() {
+        return municipioidMunicipio;
+    }
+
+    public void setMunicipioidMunicipio(Municipio municipioidMunicipio) {
+        this.municipioidMunicipio = municipioidMunicipio;
     }
 
     @Override

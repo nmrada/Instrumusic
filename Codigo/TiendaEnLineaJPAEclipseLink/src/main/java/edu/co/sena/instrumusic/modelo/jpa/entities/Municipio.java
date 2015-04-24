@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package edu.co.sena.instrumusic.modelo.jpa.entities;
 
 import java.io.Serializable;
@@ -12,6 +11,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Nicolas
+ * @author ColsutecR
  */
 @Entity
 @Table(name = "municipio")
@@ -42,13 +42,13 @@ public class Municipio implements Serializable {
     @Basic(optional = false)
     @Column(name = "nombre")
     private String nombre;
-    @JoinColumn(name = "Departamento_idDepartamento", referencedColumnName = "idDepartamento")
-    @ManyToOne(optional = false)
-    private Departamento departamentoidDepartamento;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "municipioidMunicipio")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "municipioidMunicipio", fetch = FetchType.EAGER)
     private List<DomicilioCuenta> domicilioCuentaList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "municipioidMunicipio")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "municipioidMunicipio", fetch = FetchType.EAGER)
     private List<DomicilioProveedor> domicilioProveedorList;
+    @JoinColumn(name = "Departamento_idDepartamento", referencedColumnName = "idDepartamento")
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    private Departamento departamentoidDepartamento;
 
     public Municipio() {
     }
@@ -78,14 +78,6 @@ public class Municipio implements Serializable {
         this.nombre = nombre;
     }
 
-    public Departamento getDepartamentoidDepartamento() {
-        return departamentoidDepartamento;
-    }
-
-    public void setDepartamentoidDepartamento(Departamento departamentoidDepartamento) {
-        this.departamentoidDepartamento = departamentoidDepartamento;
-    }
-
     @XmlTransient
     public List<DomicilioCuenta> getDomicilioCuentaList() {
         return domicilioCuentaList;
@@ -102,6 +94,14 @@ public class Municipio implements Serializable {
 
     public void setDomicilioProveedorList(List<DomicilioProveedor> domicilioProveedorList) {
         this.domicilioProveedorList = domicilioProveedorList;
+    }
+
+    public Departamento getDepartamentoidDepartamento() {
+        return departamentoidDepartamento;
+    }
+
+    public void setDepartamentoidDepartamento(Departamento departamentoidDepartamento) {
+        this.departamentoidDepartamento = departamentoidDepartamento;
     }
 
     @Override

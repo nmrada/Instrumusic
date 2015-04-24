@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package edu.co.sena.instrumusic.modelo.jpa.entities;
 
 import java.io.Serializable;
@@ -23,7 +22,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Nicolas
+ * @author ColsutecR
  */
 @Entity
 @Table(name = "carrito_de_compras")
@@ -49,7 +48,7 @@ public class CarritoDeCompras implements Serializable {
     @Basic(optional = false)
     @Column(name = "impuestos")
     private float impuestos;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "carritoDeCompras",fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "carritoDeCompras", fetch = FetchType.EAGER)
     private List<ItemCarrito> itemCarritoList;
 
     public CarritoDeCompras() {
