@@ -6,6 +6,7 @@
 package edu.co.sena.instrumusic.modelo.jpa.dao.interfaces;
 
 import edu.co.sena.instrumusic.modelo.jpa.entities.Cuenta;
+import edu.co.sena.instrumusic.modelo.jpa.entities.CuentaPK;
 import java.util.List;
 
 /**
@@ -20,9 +21,11 @@ public interface CuentaDAO {
 
     public void delete(Cuenta entity);
     
+     public Cuenta findByIdCuenta(CuentaPK cuentaPk);
+    
     public List<Cuenta> findByAll();
-    public List<Cuenta> findByPrimerNombre(Object primerNombre);
-    public List<Cuenta> findBySegundoNombre(Object segundoNombre);
-    public List<Cuenta> findByPrimerApellido(Object primerApellido);
-    public List<Cuenta> findBySegundoApellido(Object segundoApellido);;
+    public List<Cuenta> findByPrimerNombre(String primerNombre);
+    public List<Cuenta> findBySegundoNombre(String segundoNombre);
+    public List<Cuenta> findByPrimerApellido(String primerApellido);
+    public List<Cuenta> findBySegundoApellido(String segundoApellido);;
 }

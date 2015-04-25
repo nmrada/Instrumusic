@@ -9,6 +9,7 @@ import edu.co.sena.instrumusic.modelo.jpa.util.EntityManagerHelper;
 import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.CuentaDAO;
 import static edu.co.sena.instrumusic.modelo.jpa.util.EntityManagerHelper.getEntityManager;
 import edu.co.sena.instrumusic.modelo.jpa.entities.Cuenta;
+import edu.co.sena.instrumusic.modelo.jpa.entities.CuentaPK;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -26,14 +27,17 @@ public class CuentaDAOImpl implements CuentaDAO{
 
     @Override
     public void insert(Cuenta entity) {
-       try {
-            EntityManager em = EntityManagerHelper.getEntityManager();
+      EntityManager em = EntityManagerHelper.getEntityManager();
+        try {
             EntityManagerHelper.beginTransaction();
             em.persist(entity);
             EntityManagerHelper.commit();
-            EntityManagerHelper.closeEntityManager();
-        } catch (RuntimeException er) {
-            System.err.println("error: ---" + er.getMessage());
+        } catch (RuntimeException re) {
+            System.out.println("erorrr:----------------" + re.getMessage());
+        } finally {
+            if (em != null) {
+                EntityManagerHelper.closeEntityManager();
+            }
         }
     }
 
@@ -52,17 +56,19 @@ public class CuentaDAOImpl implements CuentaDAO{
 
     @Override
     public void delete(Cuenta entity) {
+         EntityManager em = EntityManagerHelper.getEntityManager();
         try {
-            EntityManager em = EntityManagerHelper.getEntityManager();
             EntityManagerHelper.beginTransaction();
-            em.remove(entity);
+            em.remove(em.find(Cuenta.class, entity.getCuentaPK()));
             EntityManagerHelper.commit();
-            EntityManagerHelper.closeEntityManager();
-        } catch (RuntimeException er) {
-            System.err.println("error: ---" + er.getMessage());
+        } catch (RuntimeException re) {
+            System.out.println("Error : " + re.getMessage());
+        } finally {
+            if (em != null) {
+                EntityManagerHelper.closeEntityManager();
+    }
         }
     }
-
     
     @Override
     public List<Cuenta> findByAll() {
@@ -80,7 +86,7 @@ public class CuentaDAOImpl implements CuentaDAO{
     }
 
     @Override
-    public List<Cuenta> findByPrimerNombre(Object primerNombre) {
+    public List<Cuenta> findByPrimerNombre(String primerNombre) {
         EntityManager em = getEntityManager();
         List<Cuenta> cuTemporal = null;
 
@@ -97,7 +103,7 @@ public class CuentaDAOImpl implements CuentaDAO{
     }
 
     @Override
-    public List<Cuenta> findBySegundoNombre(Object segundoNombre) {
+    public List<Cuenta> findBySegundoNombre(String segundoNombre) {
         EntityManager em = getEntityManager();
         List<Cuenta> cuTemporal = null;
 
@@ -114,7 +120,7 @@ public class CuentaDAOImpl implements CuentaDAO{
     }
 
     @Override
-    public List<Cuenta> findByPrimerApellido(Object primerApellido) {
+    public List<Cuenta> findByPrimerApellido(String primerApellido) {
         EntityManager em = getEntityManager();
         List<Cuenta> cuTemporal = null;
 
@@ -131,7 +137,7 @@ public class CuentaDAOImpl implements CuentaDAO{
     }
 
     @Override
-    public List<Cuenta> findBySegundoApellido(Object segundoApellido) {
+    public List<Cuenta> findBySegundoApellido(String segundoApellido) {
         EntityManager em = getEntityManager();
         List<Cuenta> cuTemporal = null;
 
@@ -146,4 +152,25 @@ public class CuentaDAOImpl implements CuentaDAO{
         }
         return cuTemporal;
     }
+
+    @Override
+    public Cuenta findByIdCuenta(CuentaPK cuentaPk) {
+    
+        Cuenta cuentaTemporal = null;
+        EntityManager em = EntityManagerHelper.getEntityManager();
+        try {
+
+            cuentaTemporal = em.find(Cuenta.class, cuentaPk);
+
+        } catch (RuntimeException re) {
+            System.out.println("erorrr:----------------" + re.getMessage());
+        } finally {
+            if (em != null) {
+                EntityManagerHelper.closeEntityManager();
+            }
+        }
+        return cuentaTemporal;
+    }
+
+    
 }
