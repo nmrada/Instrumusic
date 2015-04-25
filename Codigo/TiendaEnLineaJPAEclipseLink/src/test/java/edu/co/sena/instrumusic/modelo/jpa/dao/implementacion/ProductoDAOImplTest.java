@@ -46,7 +46,7 @@ public class ProductoDAOImplTest {
         entity.setActivo(true);
         entity.setPrecioUnitario(800000);
         entity.setDescuento(0);
-        entity.setCategoriaidCategoria( new Categoria(1));
+        entity.setCategoriaidCategoria( new Categoria(2));
         
     }
     
