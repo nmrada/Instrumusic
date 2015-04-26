@@ -5,7 +5,7 @@
  */
 package edu.co.sena.instrumusic.modelo.jpa.dao.implementacion;
 
-import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.ProductoDAO;
+import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.IProductoDAO;
 import edu.co.sena.instrumusic.modelo.jpa.entities.Producto;
 import edu.co.sena.instrumusic.modelo.jpa.util.EntityManagerHelper;
 import static edu.co.sena.instrumusic.modelo.jpa.util.EntityManagerHelper.getEntityManager;
@@ -17,7 +17,7 @@ import javax.persistence.Query;
  *
  * @author BERNATE
  */
-public class ProductoDAOImpl implements ProductoDAO {
+public class ProductoDAOImpl implements IProductoDAO {
 
     public static final String NOMBRE = "nombre";
     public static final String MARCA = "marca";

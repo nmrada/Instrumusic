@@ -5,7 +5,7 @@
  */
 package edu.co.sena.instrumusic.modelo.jpa.dao.implementacion;
 
-import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.ProveedorDAO;
+import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.IProveedorDAO;
 import edu.co.sena.instrumusic.modelo.jpa.entities.Proveedor;
 import edu.co.sena.instrumusic.modelo.jpa.entities.ProveedorPK;
 import edu.co.sena.instrumusic.modelo.jpa.util.EntityManagerHelper;
@@ -17,7 +17,7 @@ import javax.persistence.Query;
  *
  * @author ColsutecR
  */
-public class ProveedorDAOImpl implements ProveedorDAO {
+public class ProveedorDAOImpl implements IProveedorDAO {
 
     private EntityManager getEntityManager() {
         return EntityManagerHelper.getEntityManager();
@@ -109,7 +109,7 @@ public class ProveedorDAOImpl implements ProveedorDAO {
         EntityManager em = getEntityManager();
         List<Proveedor> proveedorTemporal = null;
         Query query = em.createNamedQuery("Proveedor.findByNombre");
-        query.setParameter(ProveedorDAO.NOMBRE, nombre);
+        query.setParameter(IProveedorDAO.NOMBRE, nombre);
         try {
             proveedorTemporal = query.getResultList();
         } catch (RuntimeException re) {
@@ -125,7 +125,7 @@ public class ProveedorDAOImpl implements ProveedorDAO {
      EntityManager em = getEntityManager();
         List<Proveedor> proveedorTemporal = null;
         Query query = em.createNamedQuery("Proveedor.findByEmail");
-        query.setParameter(ProveedorDAO.EMAIL, email);
+        query.setParameter(IProveedorDAO.EMAIL, email);
         try {
             proveedorTemporal = query.getResultList();
         } catch (RuntimeException re) {

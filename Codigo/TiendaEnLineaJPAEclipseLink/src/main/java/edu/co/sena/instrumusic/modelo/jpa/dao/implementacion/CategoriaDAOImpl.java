@@ -5,7 +5,7 @@
  */
 package edu.co.sena.instrumusic.modelo.jpa.dao.implementacion;
 
-import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.CategoriaDAO;
+import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.ICategoriaDAO;
 import edu.co.sena.instrumusic.modelo.jpa.entities.Categoria;
 import edu.co.sena.instrumusic.modelo.jpa.util.EntityManagerHelper;
 import static edu.co.sena.instrumusic.modelo.jpa.util.EntityManagerHelper.getEntityManager;
@@ -17,7 +17,7 @@ import javax.persistence.Query;
  *
  * @author BERNATE
  */
-public class CategoriaDAOImpl implements CategoriaDAO {
+public class CategoriaDAOImpl implements ICategoriaDAO {
 
     private EntityManager getEntityManager() {
         return EntityManagerHelper.getEntityManager();
