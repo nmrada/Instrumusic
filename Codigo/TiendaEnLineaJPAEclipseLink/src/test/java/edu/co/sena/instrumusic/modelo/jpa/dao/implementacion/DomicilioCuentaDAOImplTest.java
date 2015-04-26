@@ -107,7 +107,7 @@ public class DomicilioCuentaDAOImplTest {
         System.out.println("findByTelefono");
         String telefono = "4521678";
         DomicilioCuentaDAOImpl instance = new DomicilioCuentaDAOImpl();
-        List<DomicilioCuenta> result = instance.findByBario(telefono);
+        List<DomicilioCuenta> result = instance.findByTelefono(telefono);
         for (DomicilioCuenta result1 : result) {
             System.out.println(result1.toString());
         }
@@ -118,7 +118,7 @@ public class DomicilioCuentaDAOImplTest {
         System.out.println("findByDireccion");
         String direccion = "Calle 84 C # 45-12";
         DomicilioCuentaDAOImpl instance = new DomicilioCuentaDAOImpl();
-        List<DomicilioCuenta> result = instance.findByBario(direccion);
+        List<DomicilioCuenta> result = instance.findByDireccion(direccion);
         for (DomicilioCuenta result1 : result) {
             System.out.println(result1.toString());
         }
@@ -140,7 +140,7 @@ public class DomicilioCuentaDAOImplTest {
         System.out.println("findByLocalidad");
         String localidad = "Usme";
         DomicilioCuentaDAOImpl instance = new DomicilioCuentaDAOImpl();
-        List<DomicilioCuenta> result = instance.findByBario(localidad);
+        List<DomicilioCuenta> result = instance.findByLocalidad(localidad);
         for (DomicilioCuenta result1 : result) {
             System.out.println(result1.toString());
         }
