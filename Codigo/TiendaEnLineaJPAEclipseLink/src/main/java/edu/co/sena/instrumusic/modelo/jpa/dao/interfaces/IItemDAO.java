@@ -21,14 +21,14 @@ public interface IItemDAO {
 
     public void delete(Item entity);
 
-    public Item findByIdItem(Integer idFactura);
+    public Item findByIdItem(int idFactura);
 
     public List<Item> findByAll();
-    public List<Item> findByProductoidProducto(Integer idProducto);
-    public List<Item> findByPedidoFacturaidFactura(Integer idFactura);
-    public List<Item> findByCantidad(Integer cantidad);
-    public List<Item> findByCostoUnitario(Integer costoUnitario);
-    public List<Item> findByCostoTotal(Integer costoTotal);
+    public List<Item> findByProductoidProducto(String idProducto);
+    public List<Item> findByPedidoFacturaidFactura(int idFactura);
+    public List<Item> findByCantidad(int cantidad);
+    public List<Item> findByCostoUnitario(double costoUnitario);
+    public List<Item> findByCostoTotal(double costoTotal);
     
     
 }

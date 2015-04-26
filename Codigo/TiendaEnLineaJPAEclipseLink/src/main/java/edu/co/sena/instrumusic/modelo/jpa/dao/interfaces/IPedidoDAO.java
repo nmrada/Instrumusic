@@ -21,12 +21,12 @@ public interface IPedidoDAO {
 
     public void delete(Pedido entity);
 
-    public Pedido findByIdPedido(Integer idFactura);
+    public Pedido findByIdPedido(int idFactura);
 
     public List<Pedido> findByAll();
-    public List<Pedido> findByFacturaidFactura(Integer idFactura);
-    public List<Pedido> findByTotal(Integer total);
-    public List<Pedido> findBySubtotal(Integer subtotal);
-    public List<Pedido> findByImpuestos(Integer impuestos);
+    public List<Pedido> findByFacturaidFactura(int idFactura);
+    public List<Pedido> findByTotal(double total);
+    public List<Pedido> findBySubtotal(double subtotal);
+    public List<Pedido> findByImpuestos(double impuestos);
     
 }

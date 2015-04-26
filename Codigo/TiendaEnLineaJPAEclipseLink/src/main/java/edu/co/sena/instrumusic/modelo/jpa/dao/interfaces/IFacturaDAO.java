@@ -7,6 +7,7 @@
 package edu.co.sena.instrumusic.modelo.jpa.dao.interfaces;
 
 import edu.co.sena.instrumusic.modelo.jpa.entities.Factura;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -21,10 +22,10 @@ public interface IFacturaDAO {
 
     public void delete(Factura entity);
 
-    public Factura findByIdFactura(Integer idFactura);
+    public Factura findByIdFactura(int idFactura);
     
     public List<Factura> findByAll();
-    public List<Factura> findByFecha(Integer fecha);
-    public List<Factura> findByTotal(Integer total);
+    public List<Factura> findByFecha(Date fecha);
+    public List<Factura> findByTotal(double total);
     
 }

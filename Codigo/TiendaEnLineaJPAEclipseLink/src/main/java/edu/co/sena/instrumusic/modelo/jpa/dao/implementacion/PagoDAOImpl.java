@@ -70,7 +70,7 @@ public class PagoDAOImpl implements IPagoDAO{
     }
 
     @Override
-    public Pago findByIdPago(Integer idFactura) {
+    public Pago findByIdPago(int idFactura) {
         
         EntityManager em = getEntityManager();
         Pago pagoT = null;
@@ -105,7 +105,7 @@ public class PagoDAOImpl implements IPagoDAO{
     }
 
     @Override
-    public List<Pago> findByFacturaidFactura(Integer idFactura) {
+    public List<Pago> findByFacturaidFactura(int idFactura) {
         
         EntityManager em = getEntityManager();
         List<Pago> pagoT = null;

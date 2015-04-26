@@ -40,8 +40,8 @@ public class ItemDAOImplTest {
         
         entity = new Item();
         ItemPK itemPK = new ItemPK();
-        itemPK.setPedidoFacturaidFactura(1);
-        itemPK.setProductoidProducto("001");
+        itemPK.setPedidoFacturaidFactura(4);
+        itemPK.setProductoidProducto("DA123");
         entity.setItemPK(itemPK);
         entity.setCantidad(2);
         entity.setCostoUnitario(270000);
@@ -88,15 +88,15 @@ public class ItemDAOImplTest {
     /**
      * Test of findByIdItem method, of class ItemDAOImpl.
      */
-    @Test
-    public void testFindByIdItem() {
-        System.out.println("findByIdItem");
-        Item item;
-        Integer idFactura = 1;
-        ItemDAOImpl instance = new ItemDAOImpl();
-        item = instance.findByIdItem(idFactura);
-        System.out.println(item.getItemPK());
-    }
+//    @Test
+//    public void testFindByIdItem() {
+//        System.out.println("findByIdItem");
+//        int idFactura = 4;
+//        String idProducto = "DA123";
+//        ItemDAOImpl instance = new ItemDAOImpl();
+//        Item item = instance.findByIdItem(idFactura);
+//        System.out.println(item.getItemPK());
+//    }
 
     /**
      * Test of findByAll method, of class ItemDAOImpl.
@@ -118,9 +118,9 @@ public class ItemDAOImplTest {
     @Test
     public void testFindByProductoidProducto() {
         System.out.println("findByProductoidProducto");
-        String idProducto = "001";
+        String idProducto = "DA123";
         ItemDAOImpl instance = new ItemDAOImpl();
-        List<Item> result = instance.findByAll();
+        List<Item> result = instance.findByProductoidProducto(idProducto);
         for (Item result1 : result) {
             System.out.println(result1.getItemPK());
         }
@@ -132,9 +132,9 @@ public class ItemDAOImplTest {
     @Test
     public void testFindByPedidoFacturaidFactura() {
         System.out.println("findByPedidoFacturaidFactura");
-        Integer idFacura = 1;
+        int idFacura = 1;
         ItemDAOImpl instance = new ItemDAOImpl();
-        List<Item> result = instance.findByAll();
+        List<Item> result = instance.findByPedidoFacturaidFactura(idFacura);
         for (Item result1 : result) {
             System.out.println(result1.getItemPK());
         }
@@ -146,9 +146,9 @@ public class ItemDAOImplTest {
     @Test
     public void testFindByCantidad() {
         System.out.println("findByCantidad");
-        Integer cantidad = 2;
+        int cantidad = 2;
         ItemDAOImpl instance = new ItemDAOImpl();
-        List<Item> result = instance.findByAll();
+        List<Item> result = instance.findByCantidad(cantidad);
         for (Item result1 : result) {
             System.out.println(result1.getItemPK());
         }
@@ -160,9 +160,9 @@ public class ItemDAOImplTest {
     @Test
     public void testFindByCostoUnitario() {
         System.out.println("findByCostoUnitario");
-        Float costoUnitario = 270000f;
+        double costoUnitario = 270000;
         ItemDAOImpl instance = new ItemDAOImpl();
-        List<Item> result = instance.findByAll();
+        List<Item> result = instance.findByCostoUnitario(costoUnitario);
         for (Item result1 : result) {
             System.out.println(result1.getItemPK());
         }
@@ -174,9 +174,9 @@ public class ItemDAOImplTest {
     @Test
     public void testFindByCostoTotal() {
         System.out.println("findByCostoTotal");
-        Float costoTotal = 540000f;
+        double costoTotal = 540000;
         ItemDAOImpl instance = new ItemDAOImpl();
-        List<Item> result = instance.findByAll();
+        List<Item> result = instance.findByCostoTotal(costoTotal);
         for (Item result1 : result) {
             System.out.println(result1.getItemPK());
         }

@@ -84,7 +84,7 @@ public class PagoDAOImplTest {
     @Test
     public void testFindByIdPago() {
         System.out.println("findByIdPago");
-        Integer idFactura = 1;
+        int idFactura = 1;
         PagoDAOImpl instance = new PagoDAOImpl();
         Pago result = instance.findByIdPago(idFactura);
         System.out.println(result.getFacturaidFactura());
@@ -109,7 +109,7 @@ public class PagoDAOImplTest {
     @Test
     public void testFindByFacturaidFactura() {
         System.out.println("findByFacturaidFactura");
-        Integer idFactura = 1;
+        int idFactura = 1;
         PagoDAOImpl instance = new PagoDAOImpl();
         List<Pago> result = instance.findByFacturaidFactura(idFactura);
         for (Pago result1 : result) {

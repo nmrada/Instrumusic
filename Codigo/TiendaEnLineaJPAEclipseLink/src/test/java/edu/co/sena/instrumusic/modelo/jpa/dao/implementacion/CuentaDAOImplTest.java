@@ -42,7 +42,7 @@ public class CuentaDAOImplTest {
 
     @Before
     public void setUp() {
-        entity.setCuentaPK(new CuentaPK("C.C", "1023006468"));
+        entity.setCuentaPK(new CuentaPK("CC", "1023006468"));
         entity.setPrimerNombre("Maicol");
         entity.setSegundoNombre("Steven");
         entity.setPrimerApellido("Chunza");

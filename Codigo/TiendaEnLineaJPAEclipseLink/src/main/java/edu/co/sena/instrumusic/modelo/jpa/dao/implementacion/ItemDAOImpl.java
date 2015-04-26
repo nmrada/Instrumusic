@@ -79,7 +79,7 @@ public class ItemDAOImpl implements IItemDAO{
     }
 
     @Override
-    public Item findByIdItem(Integer idFactura) {
+    public Item findByIdItem(int idFactura) {
         
         EntityManager em = getEntityManager();
         Item itemT = null;
@@ -116,7 +116,7 @@ public class ItemDAOImpl implements IItemDAO{
     }
 
     @Override
-    public List<Item> findByProductoidProducto(Integer idProducto) {
+    public List<Item> findByProductoidProducto(String idProducto) {
         EntityManager em = getEntityManager();
         List<Item> temT = null;
         try {
@@ -134,12 +134,12 @@ public class ItemDAOImpl implements IItemDAO{
     }
 
     @Override
-    public List<Item> findByPedidoFacturaidFactura(Integer idFactura) {
+    public List<Item> findByPedidoFacturaidFactura(int idFactura) {
         
         EntityManager em = getEntityManager();
         List<Item> temT = null;
         try {
-            Query query = em.createNamedQuery("Item.findByProductoidProducto");
+            Query query = em.createNamedQuery("Item.findByPedidoFacturaidFactura");
             query.setParameter(ItemDAOImpl.IDFACTURA, idFactura);
             temT = query.getResultList();
         } catch (RuntimeException re) {
@@ -153,7 +153,7 @@ public class ItemDAOImpl implements IItemDAO{
     }
 
     @Override
-    public List<Item> findByCantidad(Integer cantidad) {
+    public List<Item> findByCantidad(int cantidad) {
          
         EntityManager em = getEntityManager();
         List<Item> temT = null;
@@ -173,12 +173,12 @@ public class ItemDAOImpl implements IItemDAO{
     }
     
     @Override
-    public List<Item> findByCostoUnitario(Integer costoUnitario) {
+    public List<Item> findByCostoUnitario(double costoUnitario) {
          
         EntityManager em = getEntityManager();
         List<Item> temT = null;
         try {
-            Query query = em.createNamedQuery("Item.costoUnitario");
+            Query query = em.createNamedQuery("Item.findByCostoUnitario");
             query.setParameter(ItemDAOImpl.COSTOUNITARIO, costoUnitario);
             temT = query.getResultList();
         } catch (RuntimeException re) {
@@ -193,12 +193,12 @@ public class ItemDAOImpl implements IItemDAO{
     }
 
     @Override
-    public List<Item> findByCostoTotal(Integer costoTotal) {
+    public List<Item> findByCostoTotal(double costoTotal) {
          
         EntityManager em = getEntityManager();
         List<Item> temT = null;
         try {
-            Query query = em.createNamedQuery("Item.costoUnitario");
+            Query query = em.createNamedQuery("Item.findByCostoTotal");
             query.setParameter(ItemDAOImpl.COSTOTOTAL, costoTotal);
             temT = query.getResultList();
         } catch (RuntimeException re) {

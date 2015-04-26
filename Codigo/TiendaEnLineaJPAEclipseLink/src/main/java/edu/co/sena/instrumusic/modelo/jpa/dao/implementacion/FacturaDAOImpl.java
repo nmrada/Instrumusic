@@ -10,6 +10,7 @@ import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.IFacturaDAO;
 import edu.co.sena.instrumusic.modelo.jpa.entities.Factura;
 import edu.co.sena.instrumusic.modelo.jpa.entities.Item;
 import edu.co.sena.instrumusic.modelo.jpa.util.EntityManagerHelper;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -77,7 +78,7 @@ public class FacturaDAOImpl implements IFacturaDAO{
     }
 
     @Override
-    public Factura findByIdFactura(Integer idFactura) {
+    public Factura findByIdFactura(int idFactura) {
 
         EntityManager em = getEntityManager();
         Factura facturaT = null;
@@ -114,7 +115,7 @@ public class FacturaDAOImpl implements IFacturaDAO{
     }
 
     @Override
-    public List<Factura> findByFecha(Integer fecha) {
+    public List<Factura> findByFecha(Date fecha) {
 
         EntityManager em = getEntityManager();
         List<Factura> facturaT = null;
@@ -133,7 +134,7 @@ public class FacturaDAOImpl implements IFacturaDAO{
     }
 
     @Override
-    public List<Factura> findByTotal(Integer total) {
+    public List<Factura> findByTotal(double total) {
         
         EntityManager em = getEntityManager();
         List<Factura> facturaT = null;

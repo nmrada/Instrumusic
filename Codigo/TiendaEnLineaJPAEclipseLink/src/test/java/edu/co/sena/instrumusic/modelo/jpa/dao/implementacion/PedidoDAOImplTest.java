@@ -62,7 +62,7 @@ public class PedidoDAOImplTest {
     @Test
     public void testUpdate() {
         System.out.println("update");
-        entity.setImpuestos(300000f);
+        entity.setImpuestos(300000);
         PedidoDAOImpl instance = new PedidoDAOImpl();
         instance.update(entity);
     }
@@ -86,7 +86,7 @@ public class PedidoDAOImplTest {
     public void testFindByIdPedido() {
         System.out.println("findByIdPedido");
         Pedido pedido;
-        Integer idFactura = 1;
+        int idFactura = 1;
         PedidoDAOImpl instance = new PedidoDAOImpl();
         pedido = instance.findByIdPedido(idFactura);
         System.out.println(pedido.getFacturaidFactura());
@@ -111,7 +111,7 @@ public class PedidoDAOImplTest {
     @Test
     public void testFindByFacturaidFactura() {
         System.out.println("findByFacturaidFactura");
-        Integer idFactura = 1;
+        int idFactura = 1;
         PedidoDAOImpl instance = new PedidoDAOImpl();
         List<Pedido> result = instance.findByFacturaidFactura(idFactura);
         for (Pedido result1 : result) {
@@ -125,9 +125,9 @@ public class PedidoDAOImplTest {
     @Test
     public void testFindByTotal() {
         System.out.println("findByTotal");
-        Integer total = 600000;
+        double total = 600000;
         PedidoDAOImpl instance = new PedidoDAOImpl();
-        List<Pedido> result = instance.findByFacturaidFactura(total);
+        List<Pedido> result = instance.findByTotal(total);
         for (Pedido result1 : result) {
             System.out.println(result1.getFacturaidFactura());
         }
@@ -139,7 +139,7 @@ public class PedidoDAOImplTest {
     @Test
     public void testFindBySubtotal() {
         System.out.println("findBySubtotal");
-        Integer subtotal = 540000;
+        double subtotal = 540000;
         PedidoDAOImpl instance = new PedidoDAOImpl();
         List<Pedido> result = instance.findBySubtotal(subtotal);
         for (Pedido result1 : result) {
@@ -153,7 +153,7 @@ public class PedidoDAOImplTest {
     @Test
     public void testFindByImpuestos() {
         System.out.println("findByImpuestos");
-        Integer impuestos = 60000;
+        double impuestos = 60000;
         PedidoDAOImpl instance = new PedidoDAOImpl();
         List<Pedido> result = instance.findByImpuestos(impuestos);
         for (Pedido result1 : result) {

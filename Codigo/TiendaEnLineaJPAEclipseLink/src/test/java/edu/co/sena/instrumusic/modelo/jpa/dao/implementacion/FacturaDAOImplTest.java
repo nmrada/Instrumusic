@@ -47,7 +47,7 @@ public class FacturaDAOImplTest {
         Date fechaActual = calendario.getTime();
         entity.setFecha(fechaActual);
         entity.setTotal(600000);
-        entity.setCuenta(new Cuenta("CC", "55889663"));
+        entity.setCuenta(new Cuenta("CC", "1023006468"));
         
     }
     
@@ -71,7 +71,7 @@ public class FacturaDAOImplTest {
     @Test
     public void testUpdate() {
         System.out.println("update");
-        entity.setTotal(1000000);
+        entity.setTotal(100);
         FacturaDAOImpl instance = new FacturaDAOImpl();
         instance.update(entity);
     }
@@ -82,7 +82,6 @@ public class FacturaDAOImplTest {
     @Test
     public void testDelete() {
         System.out.println("delete");
-        Factura entity = null;
         FacturaDAOImpl instance = new FacturaDAOImpl();
         Factura fac = instance.findByIdFactura(1);
         instance.delete(fac);
@@ -94,10 +93,9 @@ public class FacturaDAOImplTest {
     @Test
     public void testFindByIdFactura() {
         System.out.println("findByIdFactura");
-        Factura fac;
-        Integer idFactura = 1;
+        int idFactura = 4;
         FacturaDAOImpl factura = new FacturaDAOImpl();
-        fac = factura.findByIdFactura(idFactura);
+        Factura fac = factura.findByIdFactura(idFactura);
         System.out.println(fac.getIdFactura());
     }
 
@@ -120,9 +118,10 @@ public class FacturaDAOImplTest {
     @Test
     public void testFindByFecha() {
         System.out.println("findByAll");
-        Date fecha = new Date("12/12/12");
+        Calendar calendario = Calendar.getInstance(TimeZone.getTimeZone("GMT-5"));
+        Date fecha = calendario.getTime();
         FacturaDAOImpl instance = new FacturaDAOImpl();
-        List<Factura> result = instance.findByAll();
+        List<Factura> result = instance.findByFecha(fecha);
         for (Factura result1 : result) {
             System.out.println(result1.getIdFactura());
         }
@@ -134,13 +133,12 @@ public class FacturaDAOImplTest {
     @Test
     public void testFindByTotal() {
         System.out.println("findByTotal");
-        Integer total = null;
+        int total = 600000;
         FacturaDAOImpl instance = new FacturaDAOImpl();
-        List<Factura> expResult = null;
         List<Factura> result = instance.findByTotal(total);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        for (Factura result1 : result) {
+            System.out.println(result1.getIdFactura());
+        }
     }
     
 }

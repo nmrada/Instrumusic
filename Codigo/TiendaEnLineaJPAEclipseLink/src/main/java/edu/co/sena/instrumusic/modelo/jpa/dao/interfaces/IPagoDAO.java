@@ -21,10 +21,10 @@ public interface IPagoDAO {
 
     public void delete(Pago entity);
 
-    public Pago findByIdPago(Integer idFactura);
+    public Pago findByIdPago(int idFactura);
 
     public List<Pago> findByAll();
-    public List<Pago> findByFacturaidFactura(Integer idFactura);
+    public List<Pago> findByFacturaidFactura(int idFactura);
     public List<Pago> findByNumTarCredito(String numTarjetaCredito);
     public List<Pago> findByBanco(String banco);
     public List<Pago> findByTipoCuentaTar(String tipoCuetaTar);
