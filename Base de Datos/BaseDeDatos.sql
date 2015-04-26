@@ -409,6 +409,16 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 -- -----------------------------------------------------
+-- Data for table `instrumusic`.`Categoria`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `instrumusic`;
+INSERT INTO `instrumusic`.`Categoria` (`idCategoria`, `nombreCategoria`, `activa`, `Categoria_idCategoria`) VALUES (DEFAULT, 'Categorias', 1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `instrumusic`.`Departamento`
 -- -----------------------------------------------------
 START TRANSACTION;
