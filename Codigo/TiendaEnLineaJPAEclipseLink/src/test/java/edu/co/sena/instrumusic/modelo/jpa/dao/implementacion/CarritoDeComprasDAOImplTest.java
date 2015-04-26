@@ -96,7 +96,7 @@ public class CarritoDeComprasDAOImplTest {
     @Test
     public void testFindByPrecioTotal() {
         System.out.println("FindByPrecioTotal");
-        double total = 15000;
+        float total = 15000;
         CarritoDeComprasDAOImpl instance = new CarritoDeComprasDAOImpl();
         List<CarritoDeCompras> result = instance.findByTotal(total);
         for (CarritoDeCompras result1 : result) {
@@ -107,7 +107,7 @@ public class CarritoDeComprasDAOImplTest {
     @Test
     public void testFindBySubtotal() {
         System.out.println("FindBySubtotal");
-        double subtotal = 10000;
+        float subtotal = 10000;
         CarritoDeComprasDAOImpl instance = new CarritoDeComprasDAOImpl();
         List<CarritoDeCompras> result = instance.findBySubtotal(subtotal);
          for (CarritoDeCompras result1 : result) {
@@ -118,7 +118,7 @@ public class CarritoDeComprasDAOImplTest {
     @Test
     public void testFindByImpuestos() {
         System.out.println("FindByImpuestos");
-        double impuestos = 6000;
+        float impuestos = 6000;
         CarritoDeComprasDAOImpl instance = new CarritoDeComprasDAOImpl();
         List<CarritoDeCompras> result = instance.findByImpuestos(impuestos);
          for (CarritoDeCompras result1 : result) {

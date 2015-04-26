@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author ColsutecR
  */
-public interface CarritoDeComprasDAO {
+public interface ICarritoDeComprasDAO {
 
     public void insert(CarritoDeCompras entity);
 
@@ -23,8 +23,8 @@ public interface CarritoDeComprasDAO {
     public CarritoDeCompras findByIdCarrito(String idCarrito);
 
     public List<CarritoDeCompras> findByAll();
-    public List<CarritoDeCompras> findByTotal(double total);
-    public List<CarritoDeCompras> findBySubtotal(double subtotal);
-    public List<CarritoDeCompras> findByImpuestos(double impuesto);
+    public List<CarritoDeCompras> findByTotal(float total);
+    public List<CarritoDeCompras> findBySubtotal(float subtotal);
+    public List<CarritoDeCompras> findByImpuestos(float impuesto);
 
 }

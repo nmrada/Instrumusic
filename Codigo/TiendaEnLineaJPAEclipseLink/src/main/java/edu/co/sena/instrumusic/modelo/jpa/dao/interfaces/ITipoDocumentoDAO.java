@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author Nicolas
  */
-public interface TipoDocumentoDAO {
+public interface ITipoDocumentoDAO {
     public void insert(TipoDocumento entity);
 
     public void update(TipoDocumento entity);

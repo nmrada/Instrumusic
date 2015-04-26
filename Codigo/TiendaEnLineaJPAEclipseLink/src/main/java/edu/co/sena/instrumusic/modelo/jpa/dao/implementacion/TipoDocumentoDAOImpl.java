@@ -5,7 +5,7 @@
  */
 package edu.co.sena.instrumusic.modelo.jpa.dao.implementacion;
 
-import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.TipoDocumentoDAO;
+import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.ITipoDocumentoDAO;
 import edu.co.sena.instrumusic.modelo.jpa.entities.TipoDocumento;
 import edu.co.sena.instrumusic.modelo.jpa.util.EntityManagerHelper;
 import java.util.List;
@@ -16,7 +16,7 @@ import javax.persistence.Query;
  *
  * @author Nicolas
  */
-public class TipoDocumentoDAOImpl implements TipoDocumentoDAO {
+public class TipoDocumentoDAOImpl implements ITipoDocumentoDAO {
 
     public static final String DESCRIPCION = "descripcion";
     public static final String ACTIVO = "activo";

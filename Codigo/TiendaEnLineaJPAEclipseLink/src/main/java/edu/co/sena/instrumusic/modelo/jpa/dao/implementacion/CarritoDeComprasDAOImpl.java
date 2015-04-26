@@ -5,7 +5,7 @@
  */
 package edu.co.sena.instrumusic.modelo.jpa.dao.implementacion;
 
-import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.CarritoDeComprasDAO;
+import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.ICarritoDeComprasDAO;
 import edu.co.sena.instrumusic.modelo.jpa.entities.CarritoDeCompras;
 import edu.co.sena.instrumusic.modelo.jpa.util.EntityManagerHelper;
 import java.util.List;
@@ -16,7 +16,7 @@ import javax.persistence.Query;
  *
  * @author ColsutecR
  */
-public class CarritoDeComprasDAOImpl implements CarritoDeComprasDAO {
+public class CarritoDeComprasDAOImpl implements ICarritoDeComprasDAO {
 
     public static final String TOTAL = "precioTotal";
     public static final String SUBTOTAL = "subtotal";
@@ -109,7 +109,7 @@ public class CarritoDeComprasDAOImpl implements CarritoDeComprasDAO {
     }
 
     @Override
-    public List<CarritoDeCompras> findByTotal(double total) {
+    public List<CarritoDeCompras> findByTotal(float total) {
         EntityManager em = getEntityManager();
         List<CarritoDeCompras> carritosComprasTemporal = null;
         try {
@@ -127,7 +127,7 @@ public class CarritoDeComprasDAOImpl implements CarritoDeComprasDAO {
     }
 
     @Override
-    public List<CarritoDeCompras> findBySubtotal(double subtotal) {
+    public List<CarritoDeCompras> findBySubtotal(float subtotal) {
         EntityManager em = getEntityManager();
         List<CarritoDeCompras> carritosComprasTemporal = null;
         try {
@@ -145,7 +145,7 @@ public class CarritoDeComprasDAOImpl implements CarritoDeComprasDAO {
     }
 
     @Override
-    public List<CarritoDeCompras> findByImpuestos(double impuesto) {
+    public List<CarritoDeCompras> findByImpuestos(float impuesto) {
         EntityManager em = getEntityManager();
         List<CarritoDeCompras> carritosComprasTemporal = null;
         try {

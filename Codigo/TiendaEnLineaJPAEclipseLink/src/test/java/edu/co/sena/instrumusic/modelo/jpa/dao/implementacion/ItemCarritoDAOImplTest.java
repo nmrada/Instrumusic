@@ -98,7 +98,7 @@ public class ItemCarritoDAOImplTest {
     @Test
     public void testFindByCostoUnitario(){
         System.out.println("FindByCostoUnitario");
-        double costoUnitario = 50000;
+        float costoUnitario = 50000;
         ItemCarritoDAOImpl instance = new ItemCarritoDAOImpl();
         List<ItemCarrito> result = instance.findByCostoUnitario(costoUnitario);
         for (ItemCarrito itemC : result) {
@@ -109,7 +109,7 @@ public class ItemCarritoDAOImplTest {
     @Test
     public void testFindByCostoTotal(){
         System.out.println("FindByCostoTotal");
-        double costoTotal = 250000;
+        float costoTotal = 250000;
         ItemCarritoDAOImpl instance = new ItemCarritoDAOImpl();
         List<ItemCarrito> result = instance.findByCostoTotal(costoTotal);
         for (ItemCarrito itemC : result) {
