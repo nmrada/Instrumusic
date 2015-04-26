@@ -5,7 +5,7 @@
  */
 package edu.co.sena.instrumusic.modelo.jpa.dao.implementacion;
 
-import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.ItemCarritoDAO;
+import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.IItemCarritoDAO;
 import edu.co.sena.instrumusic.modelo.jpa.entities.ItemCarrito;
 import edu.co.sena.instrumusic.modelo.jpa.entities.ItemCarritoPK;
 import edu.co.sena.instrumusic.modelo.jpa.util.EntityManagerHelper;
@@ -17,7 +17,7 @@ import javax.persistence.Query;
  *
  * @author ColsutecR
  */
-public class ItemCarritoDAOImpl implements ItemCarritoDAO {
+public class ItemCarritoDAOImpl implements IItemCarritoDAO {
 
     public static final String CANTIDAD = "cantidad";
     public static final String COSTO_UNITARIO = "costoUnitario";
@@ -112,7 +112,7 @@ public class ItemCarritoDAOImpl implements ItemCarritoDAO {
     }
 
     @Override
-    public List<ItemCarrito> findByCostoUnitario(double costoUnitario) {
+    public List<ItemCarrito> findByCostoUnitario(float costoUnitario) {
         EntityManager em = getEntityManager();
         List<ItemCarrito> itemsCarritoTemporal = null;
         try {
@@ -130,7 +130,7 @@ public class ItemCarritoDAOImpl implements ItemCarritoDAO {
     }
 
     @Override
-    public List<ItemCarrito> findByCostoTotal(double costoTotal) {
+    public List<ItemCarrito> findByCostoTotal(float costoTotal) {
         EntityManager em = getEntityManager();
         List<ItemCarrito> itemsCarritoTemporal = null;
         try {

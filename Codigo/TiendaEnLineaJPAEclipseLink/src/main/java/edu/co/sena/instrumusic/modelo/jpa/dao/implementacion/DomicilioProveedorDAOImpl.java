@@ -5,7 +5,7 @@
  */
 package edu.co.sena.instrumusic.modelo.jpa.dao.implementacion;
 
-import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.DomicilioProveedorDAO;
+import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.IDomicilioProveedorDAO;
 import edu.co.sena.instrumusic.modelo.jpa.entities.DomicilioProveedor;
 import edu.co.sena.instrumusic.modelo.jpa.entities.DomicilioProveedorPK;
 import edu.co.sena.instrumusic.modelo.jpa.util.EntityManagerHelper;
@@ -17,7 +17,7 @@ import javax.persistence.Query;
  *
  * @author ColsutecR
  */
-public class DomicilioProveedorDAOImpl implements DomicilioProveedorDAO {
+public class DomicilioProveedorDAOImpl implements IDomicilioProveedorDAO {
 
     public static final String TELEFONO = "telefono";
     public static final String DIRECCION = "direccion";

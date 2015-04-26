@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author ColsutecR
  */
-public interface DomicilioProveedorDAO {
+public interface IDomicilioProveedorDAO {
     public void insert(DomicilioProveedor entity);
 
     public void update(DomicilioProveedor entity);

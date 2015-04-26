@@ -15,7 +15,7 @@ import java.util.List;
  *
  * @author ColsutecR
  */
-public interface ItemCarritoDAO {
+public interface IItemCarritoDAO {
     public void insert(ItemCarrito entity);
 
     public void update(ItemCarrito entity);
@@ -26,6 +26,6 @@ public interface ItemCarritoDAO {
 
     public List<ItemCarrito> findByAll();
     public List<ItemCarrito> findByCantidad(int cantidad);
-    public List<ItemCarrito> findByCostoUnitario(double costoUnitario);
-    public List<ItemCarrito> findByCostoTotal(double costoTotal);
+    public List<ItemCarrito> findByCostoUnitario(float costoUnitario);
+    public List<ItemCarrito> findByCostoTotal(float costoTotal);
 }
