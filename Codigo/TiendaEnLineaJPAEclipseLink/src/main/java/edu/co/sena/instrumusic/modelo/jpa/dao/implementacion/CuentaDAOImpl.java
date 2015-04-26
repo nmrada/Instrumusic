@@ -6,7 +6,7 @@
 package edu.co.sena.instrumusic.modelo.jpa.dao.implementacion;
 
 import edu.co.sena.instrumusic.modelo.jpa.util.EntityManagerHelper;
-import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.CuentaDAO;
+import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.ICuentaDAO;
 import static edu.co.sena.instrumusic.modelo.jpa.util.EntityManagerHelper.getEntityManager;
 import edu.co.sena.instrumusic.modelo.jpa.entities.Cuenta;
 import edu.co.sena.instrumusic.modelo.jpa.entities.CuentaPK;
@@ -19,7 +19,7 @@ import javax.persistence.Query;
  *
  * @author admin
  */
-public class CuentaDAOImpl implements CuentaDAO{
+public class CuentaDAOImpl implements ICuentaDAO{
     
     public static final String PRIMERNOMBRE= "primerNombre";
     public static final String SEGUNDONOMBRE = "segundoNombre";

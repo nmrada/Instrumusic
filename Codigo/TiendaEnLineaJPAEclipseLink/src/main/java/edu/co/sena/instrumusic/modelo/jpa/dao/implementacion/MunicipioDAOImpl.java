@@ -6,7 +6,7 @@
 package edu.co.sena.instrumusic.modelo.jpa.dao.implementacion;
 
 import edu.co.sena.instrumusic.modelo.jpa.util.EntityManagerHelper;
-import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.MunicipioDAO;
+import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.IMunicipioDAO;
 import edu.co.sena.instrumusic.modelo.jpa.entities.Departamento;
 import edu.co.sena.instrumusic.modelo.jpa.entities.Municipio;
 import static edu.co.sena.instrumusic.modelo.jpa.util.EntityManagerHelper.getEntityManager;
@@ -18,7 +18,7 @@ import javax.persistence.Query;
  *
  * @author admin
  */
-public class MunicipioDAOImpl implements MunicipioDAO{
+public class MunicipioDAOImpl implements IMunicipioDAO{
     
       public static final String NOMBRE = "nombre";
     

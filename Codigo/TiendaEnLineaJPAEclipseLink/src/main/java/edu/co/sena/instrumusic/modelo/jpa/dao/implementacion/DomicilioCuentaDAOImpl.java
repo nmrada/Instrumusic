@@ -6,8 +6,7 @@
 package edu.co.sena.instrumusic.modelo.jpa.dao.implementacion;
 
 import edu.co.sena.instrumusic.modelo.jpa.util.EntityManagerHelper;
-import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.DomicilioCuentaDAO;
-import edu.co.sena.instrumusic.modelo.jpa.entities.Cuenta;
+import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.IDomicilioCuentaDAO;
 import edu.co.sena.instrumusic.modelo.jpa.entities.DomicilioCuenta;
 import edu.co.sena.instrumusic.modelo.jpa.entities.DomicilioCuentaPK;
 import static edu.co.sena.instrumusic.modelo.jpa.util.EntityManagerHelper.getEntityManager;
@@ -19,7 +18,7 @@ import javax.persistence.Query;
  *
  * @author admin
  */
-public class DomicilioCuentaDAOImpl implements DomicilioCuentaDAO {
+public class DomicilioCuentaDAOImpl implements IDomicilioCuentaDAO {
 
     public static final String TELEFONO = "telefono";
     public static final String DIRECCION = "direccion";

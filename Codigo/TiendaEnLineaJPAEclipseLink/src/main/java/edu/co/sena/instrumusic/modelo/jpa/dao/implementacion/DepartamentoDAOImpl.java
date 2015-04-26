@@ -6,8 +6,7 @@
 package edu.co.sena.instrumusic.modelo.jpa.dao.implementacion;
 
 import edu.co.sena.instrumusic.modelo.jpa.util.EntityManagerHelper;
-import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.DepartamentoDAO;
-import edu.co.sena.instrumusic.modelo.jpa.entities.CarritoDeCompras;
+import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.IDepartamentoDAO;
 import edu.co.sena.instrumusic.modelo.jpa.entities.Departamento;
 import static edu.co.sena.instrumusic.modelo.jpa.util.EntityManagerHelper.getEntityManager;
 import java.util.List;
@@ -18,7 +17,7 @@ import javax.persistence.Query;
  *
  * @author admin
  */
-public class DepartamentoDAOImpl implements DepartamentoDAO{
+public class DepartamentoDAOImpl implements IDepartamentoDAO{
 
      public static final String NOMBRE = "nombre";
     

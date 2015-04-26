@@ -42,11 +42,11 @@ public class CuentaDAOImplTest {
 
     @Before
     public void setUp() {
-        entity.setCuentaPK(new CuentaPK("CC", "1023006468"));
+        entity.setCuentaPK(new CuentaPK("C.C", "1023006468"));
         entity.setPrimerNombre("Maicol");
         entity.setSegundoNombre("Steven");
         entity.setPrimerApellido("Chunza");
-        entity.setSegundoApellido("Alfonso");
+        entity.setSegundoApellido("Alfonso");        
         entity.setUsuarioidUsuario(new Usuario("Usuario1"));
     }
 
@@ -61,15 +61,14 @@ public class CuentaDAOImplTest {
     // public void hello() {}
     @Test
     public void testInsert() {
-        System.out.println("insert");
+        System.out.println("Insert");
         CuentaDAOImpl instance = new CuentaDAOImpl();
         instance.insert(entity);
-
     }
 
     @Test
     public void testUpdate() {
-        System.out.println("update");
+        System.out.println("Update");
         entity.setSegundoApellido("Gonzales");
         CuentaDAOImpl instance = new CuentaDAOImpl();
         instance.update(entity);
@@ -77,7 +76,7 @@ public class CuentaDAOImplTest {
 
     @Test
     public void testDelete() {
-        System.out.println("delete");
+        System.out.println("Delete");
         CuentaDAOImpl instance = new CuentaDAOImpl();
         Cuenta ct = instance.findByIdCuenta(new CuentaPK("C.C", "1023006468"));
         instance.delete(ct);

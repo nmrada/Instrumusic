@@ -5,9 +5,9 @@
  */
 package edu.co.sena.instrumusic.modelo.factory;
 
-import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.CuentaDAO;
-import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.DepartamentoDAO;
-import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.DomicilioCuentaDAO;
+import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.ICuentaDAO;
+import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.IDepartamentoDAO;
+import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.IDomicilioCuentaDAO;
 import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.ICarritoDeComprasDAO;
 import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.ICategoriaDAO;
 import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.IDomicilioProveedorDAO;
@@ -20,8 +20,8 @@ import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.IPedidoDAO;
 import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.IProductoDAO;
 import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.IProveedorDAO;
 import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.ITipoDocumentoDAO;
-import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.MunicipioDAO;
-import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.UsuarioDAO;
+import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.IMunicipioDAO;
+import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.IUsuarioDAO;
 
 /**
  *
@@ -33,11 +33,11 @@ public interface DAOFactory {
 
     public ICategoriaDAO createCategoriaDAO();
     
-    public CuentaDAO createCuentaDAO();
+    public ICuentaDAO createCuentaDAO();
     
-    public DepartamentoDAO createDepartamentoDAO();
+    public IDepartamentoDAO createDepartamentoDAO();
     
-    public DomicilioCuentaDAO createDomicilioCuentaDAO();
+    public IDomicilioCuentaDAO createDomicilioCuentaDAO();
 
     public IDomicilioProveedorDAO createDomicilioProveedorDAO();
 
@@ -49,7 +49,7 @@ public interface DAOFactory {
     
     public IItemDAO createItemDAO();
     
-    public MunicipioDAO createMunicipioDAO();
+    public IMunicipioDAO createMunicipioDAO();
     
     public IPagoDAO createPagoDAO();
     
@@ -61,6 +61,6 @@ public interface DAOFactory {
 
     public ITipoDocumentoDAO createTipoDocumentoDAO();
     
-    public UsuarioDAO createUsuarioDAO();
+    public IUsuarioDAO createUsuarioDAO();
 
 }

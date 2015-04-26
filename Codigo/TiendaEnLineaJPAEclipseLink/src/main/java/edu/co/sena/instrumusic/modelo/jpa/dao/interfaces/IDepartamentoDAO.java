@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author admin
  */
-public interface DepartamentoDAO {
+public interface IDepartamentoDAO {
     
      public void insert(Departamento entity);
 

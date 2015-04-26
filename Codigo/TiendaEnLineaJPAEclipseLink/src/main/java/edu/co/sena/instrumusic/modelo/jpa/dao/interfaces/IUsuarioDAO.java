@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author admin
  */
-public interface UsuarioDAO {
+public interface IUsuarioDAO {
     
      public void insert(Usuario entity);
 

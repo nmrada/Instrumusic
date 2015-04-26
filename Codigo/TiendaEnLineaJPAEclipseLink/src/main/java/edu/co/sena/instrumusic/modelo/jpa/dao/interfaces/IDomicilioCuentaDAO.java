@@ -15,7 +15,7 @@ import java.util.List;
  *
  * @author admin
  */
-public interface DomicilioCuentaDAO {
+public interface IDomicilioCuentaDAO {
  
     public void insert(DomicilioCuenta entity);
     public void update(DomicilioCuenta entity);

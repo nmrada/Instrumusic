@@ -23,9 +23,9 @@ import edu.co.sena.instrumusic.modelo.jpa.dao.implementacion.ProductoDAOImpl;
 import edu.co.sena.instrumusic.modelo.jpa.dao.implementacion.ProveedorDAOImpl;
 import edu.co.sena.instrumusic.modelo.jpa.dao.implementacion.TipoDocumentoDAOImpl;
 import edu.co.sena.instrumusic.modelo.jpa.dao.implementacion.UsuarioDAOImpl;
-import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.CuentaDAO;
-import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.DepartamentoDAO;
-import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.DomicilioCuentaDAO;
+import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.ICuentaDAO;
+import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.IDepartamentoDAO;
+import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.IDomicilioCuentaDAO;
 import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.ICarritoDeComprasDAO;
 import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.ICategoriaDAO;
 import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.IDomicilioProveedorDAO;
@@ -38,8 +38,8 @@ import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.IPedidoDAO;
 import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.IProductoDAO;
 import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.IProveedorDAO;
 import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.ITipoDocumentoDAO;
-import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.MunicipioDAO;
-import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.UsuarioDAO;
+import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.IMunicipioDAO;
+import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.IUsuarioDAO;
 
 /**
  *
@@ -58,17 +58,17 @@ public class MysqlJPADAOFactory extends DAOAbstractFactory {
     }
     
     @Override
-    public CuentaDAO createCuentaDAO() {
+    public ICuentaDAO createCuentaDAO() {
         return new CuentaDAOImpl();
     }
 
     @Override
-    public DepartamentoDAO createDepartamentoDAO() {
+    public IDepartamentoDAO createDepartamentoDAO() {
         return new DepartamentoDAOImpl();
     }
 
     @Override
-    public DomicilioCuentaDAO createDomicilioCuentaDAO() {
+    public IDomicilioCuentaDAO createDomicilioCuentaDAO() {
         return new DomicilioCuentaDAOImpl();
     }
     
@@ -98,7 +98,7 @@ public class MysqlJPADAOFactory extends DAOAbstractFactory {
     }
 
     @Override
-    public MunicipioDAO createMunicipioDAO() {
+    public IMunicipioDAO createMunicipioDAO() {
         return new MunicipioDAOImpl();
     }
 
@@ -128,7 +128,7 @@ public class MysqlJPADAOFactory extends DAOAbstractFactory {
     }
 
     @Override
-    public UsuarioDAO createUsuarioDAO() {
+    public IUsuarioDAO createUsuarioDAO() {
         return new UsuarioDAOImpl();
     }
 

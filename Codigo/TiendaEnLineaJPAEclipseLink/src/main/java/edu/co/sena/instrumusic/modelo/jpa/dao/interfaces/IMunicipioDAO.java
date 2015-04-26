@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author admin
  */
-public interface MunicipioDAO {
+public interface IMunicipioDAO {
     
     
      public void insert(Municipio entity);

@@ -6,7 +6,7 @@
 package edu.co.sena.instrumusic.modelo.jpa.dao.implementacion;
 
 import edu.co.sena.instrumusic.modelo.jpa.util.EntityManagerHelper;
-import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.UsuarioDAO;
+import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.IUsuarioDAO;
 import edu.co.sena.instrumusic.modelo.jpa.entities.Municipio;
 import edu.co.sena.instrumusic.modelo.jpa.entities.Usuario;
 import static edu.co.sena.instrumusic.modelo.jpa.util.EntityManagerHelper.getEntityManager;
@@ -18,7 +18,7 @@ import javax.persistence.Query;
  *
  * @author admin
  */
-public class UsuarioDAOImpl implements UsuarioDAO {
+public class UsuarioDAOImpl implements IUsuarioDAO {
 
     public static final String CONTRASENA = "contrasena";
     public static final String ROL = "rol";
