@@ -10,6 +10,7 @@ import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.CuentaDAO;
 import static edu.co.sena.instrumusic.modelo.jpa.util.EntityManagerHelper.getEntityManager;
 import edu.co.sena.instrumusic.modelo.jpa.entities.Cuenta;
 import edu.co.sena.instrumusic.modelo.jpa.entities.CuentaPK;
+import edu.co.sena.instrumusic.modelo.jpa.entities.DomicilioCuenta;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -170,6 +171,10 @@ public class CuentaDAOImpl implements CuentaDAO{
             }
         }
         return cuentaTemporal;
+    }
+
+    void update(DomicilioCuenta entity) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     

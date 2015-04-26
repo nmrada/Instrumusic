@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 package edu.co.sena.instrumusic.modelo.jpa.dao.implementacion;
-
-import edu.co.sena.instrumusic.modelo.jpa.entities.CarritoDeCompras;
 import edu.co.sena.instrumusic.modelo.jpa.entities.Departamento;
 import java.util.List;
 import org.junit.After;
