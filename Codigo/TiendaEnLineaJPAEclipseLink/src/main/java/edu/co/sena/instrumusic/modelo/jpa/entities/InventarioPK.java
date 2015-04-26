@@ -38,6 +38,12 @@ public class InventarioPK implements Serializable {
         this.proveedorTipoDocumentotipoDocumento = proveedorTipoDocumentotipoDocumento;
         this.proveedornumeroDocumento = proveedornumeroDocumento;
     }
+    public InventarioPK( String productoidProducto, String proveedorTipoDocumentotipoDocumento, String proveedornumeroDocumento) {
+        
+        this.productoidProducto = productoidProducto;
+        this.proveedorTipoDocumentotipoDocumento = proveedorTipoDocumentotipoDocumento;
+        this.proveedornumeroDocumento = proveedornumeroDocumento;
+    }
 
     public int getIdInventario() {
         return idInventario;

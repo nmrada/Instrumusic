@@ -122,11 +122,12 @@ public class InventarioDAOImplTest {
       @Test
     public void testFindByFecha() {
         System.out.println("findByFecha");
-        int cantidad = 6;
+        Calendar calendario = Calendar.getInstance(TimeZone.getTimeZone("GMT-5"));
+        Date fechaActual = calendario.getTime();
         InventarioDAOImpl instance = new InventarioDAOImpl();
-        List<Inventario> result = instance.findByCantidad(cantidad);
+        List<Inventario> result = instance.findByFecha(fechaActual);
         for (Inventario result1 : result) {
-            System.out.println(result1.getCantidad());
+            System.out.println(result1.getFecha());
         }
     }
 }
