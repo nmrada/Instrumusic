@@ -133,7 +133,7 @@ public class PedidoDAOImpl implements IPedidoDAO{
     }
 
     @Override
-    public List<Pedido> findByTotal(double total) {
+    public List<Pedido> findByTotal(float total) {
         
         EntityManager em = getEntityManager();
         List<Pedido> pedidoT=  null;
@@ -153,7 +153,7 @@ public class PedidoDAOImpl implements IPedidoDAO{
     }
 
     @Override
-    public List<Pedido> findBySubtotal(double subtotal) {
+    public List<Pedido> findBySubtotal(float subtotal) {
         
         EntityManager em = getEntityManager();
         List<Pedido> pedidoT=  null;
@@ -173,7 +173,7 @@ public class PedidoDAOImpl implements IPedidoDAO{
     }
 
     @Override
-    public List<Pedido> findByImpuestos(double impuestos) {
+    public List<Pedido> findByImpuestos(float impuestos) {
         
         EntityManager em = getEntityManager();
         List<Pedido> pedidoT=  null;

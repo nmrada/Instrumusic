@@ -7,6 +7,7 @@
 package edu.co.sena.instrumusic.modelo.jpa.dao.interfaces;
 
 import edu.co.sena.instrumusic.modelo.jpa.entities.Item;
+import edu.co.sena.instrumusic.modelo.jpa.entities.ItemPK;
 import java.util.List;
 
 /**
@@ -21,14 +22,12 @@ public interface IItemDAO {
 
     public void delete(Item entity);
 
-    public Item findByIdItem(int idFactura);
+    public Item findByIdItem(ItemPK itemPk);
 
     public List<Item> findByAll();
-    public List<Item> findByProductoidProducto(String idProducto);
-    public List<Item> findByPedidoFacturaidFactura(int idFactura);
     public List<Item> findByCantidad(int cantidad);
-    public List<Item> findByCostoUnitario(double costoUnitario);
-    public List<Item> findByCostoTotal(double costoTotal);
+    public List<Item> findByCostoUnitario(float costoUnitario);
+    public List<Item> findByCostoTotal(float costoTotal);
     
     
 }

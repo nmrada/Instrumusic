@@ -133,7 +133,7 @@ public class FacturaDAOImplTest {
     @Test
     public void testFindByTotal() {
         System.out.println("findByTotal");
-        int total = 600000;
+        float total = 600000;
         FacturaDAOImpl instance = new FacturaDAOImpl();
         List<Factura> result = instance.findByTotal(total);
         for (Factura result1 : result) {

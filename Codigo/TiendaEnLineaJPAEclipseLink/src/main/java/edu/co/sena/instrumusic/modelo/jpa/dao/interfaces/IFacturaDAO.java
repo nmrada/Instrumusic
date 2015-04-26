@@ -26,6 +26,6 @@ public interface IFacturaDAO {
     
     public List<Factura> findByAll();
     public List<Factura> findByFecha(Date fecha);
-    public List<Factura> findByTotal(double total);
+    public List<Factura> findByTotal(float total);
     
 }

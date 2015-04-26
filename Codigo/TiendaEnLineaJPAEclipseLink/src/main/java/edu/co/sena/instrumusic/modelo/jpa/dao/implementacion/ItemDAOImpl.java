@@ -8,6 +8,7 @@ package edu.co.sena.instrumusic.modelo.jpa.dao.implementacion;
 
 import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.IItemDAO;
 import edu.co.sena.instrumusic.modelo.jpa.entities.Item;
+import edu.co.sena.instrumusic.modelo.jpa.entities.ItemPK;
 import edu.co.sena.instrumusic.modelo.jpa.util.EntityManagerHelper;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -79,12 +80,12 @@ public class ItemDAOImpl implements IItemDAO{
     }
 
     @Override
-    public Item findByIdItem(int idFactura) {
+    public Item findByIdItem(ItemPK itemPk) {
         
         EntityManager em = getEntityManager();
         Item itemT = null;
         try {
-            itemT = em.find(Item.class, idFactura);
+            itemT = em.find(Item.class, itemPk);
         } catch (RuntimeException er) {
             System.err.println("error: ---" + er.getMessage());
         } finally {
@@ -116,43 +117,6 @@ public class ItemDAOImpl implements IItemDAO{
     }
 
     @Override
-    public List<Item> findByProductoidProducto(String idProducto) {
-        EntityManager em = getEntityManager();
-        List<Item> temT = null;
-        try {
-            Query query = em.createNamedQuery("Item.findByProductoidProducto");
-            query.setParameter(ItemDAOImpl.IDPRODUCTO, idProducto);
-            temT = query.getResultList();
-        } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
-        } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
-        }
-        return temT;
-    }
-
-    @Override
-    public List<Item> findByPedidoFacturaidFactura(int idFactura) {
-        
-        EntityManager em = getEntityManager();
-        List<Item> temT = null;
-        try {
-            Query query = em.createNamedQuery("Item.findByPedidoFacturaidFactura");
-            query.setParameter(ItemDAOImpl.IDFACTURA, idFactura);
-            temT = query.getResultList();
-        } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
-        } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
-        }
-        return temT;
-    }
-
-    @Override
     public List<Item> findByCantidad(int cantidad) {
          
         EntityManager em = getEntityManager();
@@ -173,7 +137,7 @@ public class ItemDAOImpl implements IItemDAO{
     }
     
     @Override
-    public List<Item> findByCostoUnitario(double costoUnitario) {
+    public List<Item> findByCostoUnitario(float costoUnitario) {
          
         EntityManager em = getEntityManager();
         List<Item> temT = null;
@@ -193,7 +157,7 @@ public class ItemDAOImpl implements IItemDAO{
     }
 
     @Override
-    public List<Item> findByCostoTotal(double costoTotal) {
+    public List<Item> findByCostoTotal(float costoTotal) {
          
         EntityManager em = getEntityManager();
         List<Item> temT = null;

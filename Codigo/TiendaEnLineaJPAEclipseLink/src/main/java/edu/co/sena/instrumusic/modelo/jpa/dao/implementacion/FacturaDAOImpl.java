@@ -134,7 +134,7 @@ public class FacturaDAOImpl implements IFacturaDAO{
     }
 
     @Override
-    public List<Factura> findByTotal(double total) {
+    public List<Factura> findByTotal(float total) {
         
         EntityManager em = getEntityManager();
         List<Factura> facturaT = null;

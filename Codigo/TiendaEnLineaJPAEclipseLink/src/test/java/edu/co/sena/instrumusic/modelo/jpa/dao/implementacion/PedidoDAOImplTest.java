@@ -125,7 +125,7 @@ public class PedidoDAOImplTest {
     @Test
     public void testFindByTotal() {
         System.out.println("findByTotal");
-        double total = 600000;
+        float total = 600000;
         PedidoDAOImpl instance = new PedidoDAOImpl();
         List<Pedido> result = instance.findByTotal(total);
         for (Pedido result1 : result) {
@@ -139,7 +139,7 @@ public class PedidoDAOImplTest {
     @Test
     public void testFindBySubtotal() {
         System.out.println("findBySubtotal");
-        double subtotal = 540000;
+        float subtotal = 540000;
         PedidoDAOImpl instance = new PedidoDAOImpl();
         List<Pedido> result = instance.findBySubtotal(subtotal);
         for (Pedido result1 : result) {
@@ -153,7 +153,7 @@ public class PedidoDAOImplTest {
     @Test
     public void testFindByImpuestos() {
         System.out.println("findByImpuestos");
-        double impuestos = 60000;
+        float impuestos = 60000;
         PedidoDAOImpl instance = new PedidoDAOImpl();
         List<Pedido> result = instance.findByImpuestos(impuestos);
         for (Pedido result1 : result) {

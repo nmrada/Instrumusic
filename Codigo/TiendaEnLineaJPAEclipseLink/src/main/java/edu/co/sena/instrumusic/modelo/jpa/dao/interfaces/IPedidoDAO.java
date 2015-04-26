@@ -25,8 +25,8 @@ public interface IPedidoDAO {
 
     public List<Pedido> findByAll();
     public List<Pedido> findByFacturaidFactura(int idFactura);
-    public List<Pedido> findByTotal(double total);
-    public List<Pedido> findBySubtotal(double subtotal);
-    public List<Pedido> findByImpuestos(double impuestos);
+    public List<Pedido> findByTotal(float total);
+    public List<Pedido> findBySubtotal(float subtotal);
+    public List<Pedido> findByImpuestos(float impuestos);
     
 }
