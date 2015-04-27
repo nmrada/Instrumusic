@@ -41,7 +41,7 @@ public class DomicilioCuentaDAOImplTest {
 
     @Before
     public void setUp() {
-        entity.setDomicilioCuentaPK(new DomicilioCuentaPK("C.C", "1023006468"));
+        entity.setDomicilioCuentaPK(new DomicilioCuentaPK("CC", "1023006468"));
         entity.setTelefono("4521678");
         entity.setDireccion("Calle 84 C # 45-12");
         entity.setBarrio("santa librada");
@@ -78,7 +78,7 @@ public class DomicilioCuentaDAOImplTest {
     public void testDelete() {
         System.out.println("delete");
         DomicilioCuentaDAOImpl instance = new DomicilioCuentaDAOImpl();
-        DomicilioCuenta ct = instance.findByIdDomicilioCuenta(new DomicilioCuentaPK("C.C", "1023006468"));
+        DomicilioCuenta ct = instance.findByIdDomicilioCuenta(new DomicilioCuentaPK("CC", "1023006468"));
         instance.delete(ct);
     }
 
@@ -98,7 +98,7 @@ public class DomicilioCuentaDAOImplTest {
         String tipoDocumento = "C.C";
         String numeroDocumento = "1023006468";
         DomicilioCuentaDAOImpl instance = new DomicilioCuentaDAOImpl();
-        DomicilioCuenta it = instance.findByIdDomicilioCuenta(new DomicilioCuentaPK("C.C", "1023006468"));
+        DomicilioCuenta it = instance.findByIdDomicilioCuenta(new DomicilioCuentaPK("CC", "1023006468"));
         System.out.println(it.toString());
     }
     
