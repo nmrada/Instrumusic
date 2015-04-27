@@ -46,12 +46,12 @@ public class CuentaDAOTest {
     @Before
     public void setUp() {
 
-        entity.setCuentaPK(new CuentaPK("C.C", "1023006468"));
+        entity.setCuentaPK(new CuentaPK("CC", "1023006468"));
         entity.setPrimerNombre("Maicol");
         entity.setSegundoNombre("Steven");
         entity.setPrimerApellido("Chunza");
         entity.setSegundoApellido("Alfonso");
-        entity.setUsuarioidUsuario(new Usuario("Usuario1"));
+        entity.setUsuarioidUsuario(new Usuario("usuario1"));
     }
 
     @After
@@ -87,7 +87,7 @@ public class CuentaDAOTest {
         System.out.println("Delete");
         DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
         ICuentaDAO instance = fabrica.createCuentaDAO();
-        Cuenta ut = instance.findByIdCuenta(new CuentaPK("C.C", "1023006468"));
+        Cuenta ut = instance.findByIdCuenta(new CuentaPK("CC", "1023006468"));
         instance.delete(ut);
     }
     
@@ -106,7 +106,7 @@ public class CuentaDAOTest {
     public void testFindByIdCuenta() throws Exception{
         System.out.println("FindByIdCuenta");
         Cuenta cuenTem;
-        CuentaPK cu = new CuentaPK("C.C", "1023006468");
+        CuentaPK cu = new CuentaPK("CC", "1023006468");
         DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
         ICuentaDAO instance = fabrica.createCuentaDAO();
         cuenTem = instance.findByIdCuenta(cu);
