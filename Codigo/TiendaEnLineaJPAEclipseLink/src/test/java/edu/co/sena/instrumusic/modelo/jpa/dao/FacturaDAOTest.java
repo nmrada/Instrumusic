@@ -76,10 +76,11 @@ public class FacturaDAOTest {
     @Test
     public void testUpdate() throws Exception{
         System.out.println("update");
-        entity.setTotal(100);
         DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
         IFacturaDAO instance = fabrica.createFacturaDAO();
-        instance.update(entity);
+        Factura fac = instance.findByIdFactura(1);
+        fac.setTotal(100);
+        instance.update(fac);
     }
     
     @Test
@@ -122,12 +123,13 @@ public class FacturaDAOTest {
     public void testFindByFecha() throws Exception{
         System.out.println("findByAll");
         Calendar calendario = Calendar.getInstance(TimeZone.getTimeZone("GMT-5"));
+        calendario.set(2015, 3, 27);
         Date fecha = calendario.getTime();
         DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
         IFacturaDAO instance = fabrica.createFacturaDAO();
         List<Factura> result = instance.findByFecha(fecha);
         for (Factura result1 : result) {
-            System.out.println(result1.getIdFactura());
+            System.out.println(result1.getFecha());
         }
     }
 

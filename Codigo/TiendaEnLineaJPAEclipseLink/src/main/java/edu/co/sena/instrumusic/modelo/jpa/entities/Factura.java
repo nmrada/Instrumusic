@@ -47,7 +47,7 @@ public class Factura implements Serializable {
     private Integer idFactura;
     @Basic(optional = false)
     @Column(name = "fecha")
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date fecha;
     @Basic(optional = false)
     @Column(name = "total")

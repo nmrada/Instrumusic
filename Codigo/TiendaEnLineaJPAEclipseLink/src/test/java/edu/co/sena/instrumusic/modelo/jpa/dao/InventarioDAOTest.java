@@ -71,10 +71,11 @@ public class InventarioDAOTest {
     @Test
     public void testUpdate() throws Exception {
         System.out.println("update");
-        entity.setCantidad(6);
         DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
         IInventarioDAO instance = fabrica.createInventarioDAO();
-        instance.update(entity);
+        Inventario inv = instance.findByIdInventario(new InventarioPK(1, "DA123", "CC", "12334455"));
+        inv.setCantidad(6);
+        instance.update(inv);
     }
 
     @Test
@@ -82,7 +83,7 @@ public class InventarioDAOTest {
         System.out.println("delete");
         DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
         IInventarioDAO instance = fabrica.createInventarioDAO();
-        Inventario inv = instance.findByIdInventario(new InventarioPK(1, "CC", "12334455", "DA123"));
+        Inventario inv = instance.findByIdInventario(new InventarioPK(1, "DA123", "CC", "12334455"));
         instance.delete(inv);
 
     }
@@ -130,6 +131,7 @@ public class InventarioDAOTest {
     public void testFindByFecha() throws Exception {
         System.out.println("findByFecha");
         Calendar calendario = Calendar.getInstance(TimeZone.getTimeZone("GMT-5"));
+        calendario.set(2015, 3, 27);
         Date fechaActual = calendario.getTime();
         DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
         IInventarioDAO instance = fabrica.createInventarioDAO();
