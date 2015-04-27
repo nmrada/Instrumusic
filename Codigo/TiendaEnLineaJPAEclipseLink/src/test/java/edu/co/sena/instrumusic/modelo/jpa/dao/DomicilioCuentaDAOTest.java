@@ -43,7 +43,7 @@ public class DomicilioCuentaDAOTest {
     @Before
     public void setUp() {
 
-        entity.setDomicilioCuentaPK(new DomicilioCuentaPK("C.C", "1023006468"));
+        entity.setDomicilioCuentaPK(new DomicilioCuentaPK("CC", "1023006468"));
         entity.setTelefono("4521678");
         entity.setDireccion("Calle 84 C # 45-12");
         entity.setBarrio("santa librada");
@@ -84,7 +84,7 @@ public class DomicilioCuentaDAOTest {
         System.out.println("Delete");
         DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
         IDomicilioCuentaDAO instance = fabrica.createDomicilioCuentaDAO();
-        DomicilioCuenta ut = instance.findByIdDomicilioCuenta(new DomicilioCuentaPK("C.C", "1023006468"));
+        DomicilioCuenta ut = instance.findByIdDomicilioCuenta(new DomicilioCuentaPK("CC", "1023006468"));
         instance.delete(ut);
     }
     
@@ -93,7 +93,7 @@ public class DomicilioCuentaDAOTest {
     public void testFindByIdDomicilioCuenta() throws Exception{
         System.out.println("FindByIdDomicilioProveedor");
         DomicilioCuenta domicilioCuT;
-        DomicilioCuentaPK dc = new DomicilioCuentaPK("c.C", "1023006468");
+        DomicilioCuentaPK dc = new DomicilioCuentaPK("CC", "1023006468");
         DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
         IDomicilioCuentaDAO instance = fabrica.createDomicilioCuentaDAO();
         domicilioCuT = instance.findByIdDomicilioCuenta(dc);
