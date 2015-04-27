@@ -8,9 +8,7 @@ package edu.co.sena.instrumusic.modelo.jpa.dao;
 import edu.co.sena.instrumusic.modelo.factory.DAOAbstractFactory;
 import edu.co.sena.instrumusic.modelo.factory.DAOFactory;
 import edu.co.sena.instrumusic.modelo.factory.mysql.MysqlJPADAOFactory;
-import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.ICuentaDAO;
 import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.IDomicilioCuentaDAO;
-import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.IDomicilioProveedorDAO;
 import edu.co.sena.instrumusic.modelo.jpa.entities.DomicilioCuenta;
 import edu.co.sena.instrumusic.modelo.jpa.entities.DomicilioCuentaPK;
 import edu.co.sena.instrumusic.modelo.jpa.entities.Municipio;
@@ -104,12 +102,12 @@ public class DomicilioCuentaDAOTest {
     @Test
     public void testFindByTelefono() throws Exception {
         System.out.println("FindByTelefono");
-        String telefono = "4521678";
+        String telefono = "3125124832";
         DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
         IDomicilioCuentaDAO instance = fabrica.createDomicilioCuentaDAO();
         List<DomicilioCuenta> result = instance.findByTelefono(telefono);
         for (DomicilioCuenta result1 : result) {
-            System.out.println(result1.getTelefono());
+            System.out.println(result1.getDomicilioCuentaPK());
         }
     }   
     
@@ -121,7 +119,7 @@ public class DomicilioCuentaDAOTest {
         IDomicilioCuentaDAO instance = fabrica.createDomicilioCuentaDAO();
         List<DomicilioCuenta> result = instance.findByDireccion(direccion);
         for (DomicilioCuenta result1 : result) {
-            System.out.println(result1.getDireccion());
+            System.out.println(result1.getDomicilioCuentaPK());
         }
     }   
     
@@ -133,7 +131,7 @@ public class DomicilioCuentaDAOTest {
         IDomicilioCuentaDAO instance = fabrica.createDomicilioCuentaDAO();
         List<DomicilioCuenta> result = instance.findByBario(barrio);
         for (DomicilioCuenta result1 : result) {
-            System.out.println(result1.getBarrio());
+            System.out.println(result1.getDomicilioCuentaPK());
         }
     }   
     
@@ -145,7 +143,7 @@ public class DomicilioCuentaDAOTest {
         IDomicilioCuentaDAO instance = fabrica.createDomicilioCuentaDAO();
         List<DomicilioCuenta> result = instance.findByLocalidad(localidad);
         for (DomicilioCuenta result1 : result) {
-            System.out.println(result1.getLocalidad());
+            System.out.println(result1.getDomicilioCuentaPK());
         }
     }   
 }

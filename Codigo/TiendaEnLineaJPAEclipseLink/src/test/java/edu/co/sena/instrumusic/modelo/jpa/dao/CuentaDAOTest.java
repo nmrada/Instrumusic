@@ -122,19 +122,19 @@ public class CuentaDAOTest {
         ICuentaDAO instance = fabrica.createCuentaDAO();
         List<Cuenta> result = instance.findByPrimerNombre(primerNombre);
         for (Cuenta result1 : result) {
-            System.out.println(result1.getPrimerNombre());
+            System.out.println(result1.getCuentaPK());
         }
     }   
     
      @Test
     public void testFindBySegundoNombre() throws Exception {
         System.out.println("FindBySegundoNombre");
-        String segundoNombre = "Steven";
+        String segundoNombre = "Alberto";
         DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
         ICuentaDAO instance = fabrica.createCuentaDAO();
-        List<Cuenta> result = instance.findByPrimerNombre(segundoNombre);
+        List<Cuenta> result = instance.findBySegundoNombre(segundoNombre);
         for (Cuenta result1 : result) {
-            System.out.println(result1.getPrimerNombre());
+            System.out.println(result1.getCuentaPK());
         }
     }   
     
@@ -144,9 +144,9 @@ public class CuentaDAOTest {
         String primerApellido = "Chunza";
         DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
         ICuentaDAO instance = fabrica.createCuentaDAO();
-        List<Cuenta> result = instance.findByPrimerNombre(primerApellido);
+        List<Cuenta> result = instance.findByPrimerApellido(primerApellido);
         for (Cuenta result1 : result) {
-            System.out.println(result1.getPrimerNombre());
+            System.out.println(result1.getCuentaPK());
         }
     }   
     
@@ -156,9 +156,9 @@ public class CuentaDAOTest {
         String segundoApellido = "Alfonso";
         DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
         ICuentaDAO instance = fabrica.createCuentaDAO();
-        List<Cuenta> result = instance.findByPrimerNombre(segundoApellido);
+        List<Cuenta> result = instance.findBySegundoApellido(segundoApellido);
         for (Cuenta result1 : result) {
-            System.out.println(result1.getPrimerNombre());
+            System.out.println(result1.getCuentaPK());
         }
     }   
 }

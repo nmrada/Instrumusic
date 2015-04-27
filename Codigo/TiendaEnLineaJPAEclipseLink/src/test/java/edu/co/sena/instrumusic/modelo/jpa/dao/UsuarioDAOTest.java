@@ -146,7 +146,7 @@ public class UsuarioDAOTest {
         String email = "usuario1@gmail.com";
         DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
         IUsuarioDAO instance = fabrica.createUsuarioDAO();
-        List<Usuario> result = instance.findByEstado(email);
+        List<Usuario> result = instance.findByEmail(email);
          for (Usuario result1 : result) {
             System.out.println(result1.getIdUsuario());
         }

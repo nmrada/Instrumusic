@@ -95,7 +95,7 @@ public class DomicilioCuentaDAOImplTest {
     @Test
     public void testFindByIdDomicilioCuenta() {
 
-        String tipoDocumento = "C.C";
+        String tipoDocumento = "CC";
         String numeroDocumento = "1023006468";
         DomicilioCuentaDAOImpl instance = new DomicilioCuentaDAOImpl();
         DomicilioCuenta it = instance.findByIdDomicilioCuenta(new DomicilioCuentaPK("CC", "1023006468"));

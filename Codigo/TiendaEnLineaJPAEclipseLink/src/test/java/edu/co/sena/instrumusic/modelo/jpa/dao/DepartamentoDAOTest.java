@@ -104,7 +104,7 @@ public class DepartamentoDAOTest {
     @Test
     public void testFindByNombre() throws Exception {
         System.out.println("FindByNombre");
-        String nombre = "johana2";
+        String nombre = "Nicolas";
         DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
         IDepartamentoDAO instance = fabrica.createDepartamentoDAO();
         List<Departamento> result = instance.findByNombre(nombre);

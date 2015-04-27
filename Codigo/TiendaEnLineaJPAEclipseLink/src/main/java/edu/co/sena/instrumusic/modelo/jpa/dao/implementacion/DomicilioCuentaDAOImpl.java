@@ -53,14 +53,18 @@ public class DomicilioCuentaDAOImpl implements IDomicilioCuentaDAO {
 
     @Override
     public void delete(DomicilioCuenta entity) {
+        EntityManager em = getEntityManager();
         try {
-            EntityManager em = EntityManagerHelper.getEntityManager();
             EntityManagerHelper.beginTransaction();
+            entity = getEntityManager().getReference(DomicilioCuenta.class, entity.getDomicilioCuentaPK());
             em.remove(entity);
             EntityManagerHelper.commit();
-            EntityManagerHelper.closeEntityManager();
-        } catch (RuntimeException er) {
-            System.err.println("error: ---" + er.getMessage());
+        } catch (RuntimeException re) {
+            System.out.println("erorrr:----------------" + re.getMessage());
+        } finally {
+            if (em != null) {
+                EntityManagerHelper.closeEntityManager();
+            }
         }
     }
 
