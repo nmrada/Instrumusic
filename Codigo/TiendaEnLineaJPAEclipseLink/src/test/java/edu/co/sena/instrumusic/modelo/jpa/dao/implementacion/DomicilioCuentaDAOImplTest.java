@@ -70,7 +70,7 @@ public class DomicilioCuentaDAOImplTest {
     public void testUpdate() {
         System.out.println("update");
         entity.setDireccion("Calle 69 B # 3-40 sur");
-        CuentaDAOImpl instance = new CuentaDAOImpl();
+         DomicilioCuentaDAOImpl instance = new DomicilioCuentaDAOImpl();
         instance.update(entity);
     }
 

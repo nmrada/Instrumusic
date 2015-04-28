@@ -5,6 +5,7 @@
  */
 package edu.co.sena.instrumusic.modelo.jpa.dao.implementacion;
 
+import static edu.co.sena.instrumusic.modelo.jpa.dao.implementacion.DepartamentoDAOImpl.logger;
 import edu.co.sena.instrumusic.modelo.jpa.util.EntityManagerHelper;
 import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.IUsuarioDAO;
 import edu.co.sena.instrumusic.modelo.jpa.entities.Municipio;
@@ -13,13 +14,15 @@ import static edu.co.sena.instrumusic.modelo.jpa.util.EntityManagerHelper.getEnt
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import org.apache.log4j.Logger;
 
 /**
  *
  * @author admin
  */
-public class UsuarioDAOImpl implements IUsuarioDAO {
+public class UsuarioDAOImpl extends AbstractDAO implements IUsuarioDAO {
 
+    protected static final Logger logger = Logger.getLogger(UsuarioDAOImpl.class);
     public static final String CONTRASENA = "contrasena";
     public static final String ROL = "rol";
     public static final String ESTADO = "estado";
@@ -36,9 +39,11 @@ public class UsuarioDAOImpl implements IUsuarioDAO {
             EntityManagerHelper.beginTransaction();
             em.persist(entity);
             EntityManagerHelper.commit();
-            EntityManagerHelper.closeEntityManager();
-        } catch (RuntimeException er) {
-            System.err.println("error: ---" + er.getMessage());
+            logger.info("Se inserto el usuario" + entity.getIdUsuario());
+        } catch (RuntimeException re) {
+            logger.error("Exception: " + re.getMessage(), re);
+        }finally {
+              EntityManagerHelper.closeEntityManager();
         }
     }
 
@@ -49,9 +54,11 @@ public class UsuarioDAOImpl implements IUsuarioDAO {
             EntityManagerHelper.beginTransaction();
             em.merge(entity);
             EntityManagerHelper.commit();
-            EntityManagerHelper.closeEntityManager();
-        } catch (RuntimeException er) {
-            System.err.println("error: ---" + er.getMessage());
+            logger.info("Se actualizo el usuario " + entity.getIdUsuario());
+        } catch (RuntimeException re) {
+            logger.error("Exception: " + re.getMessage(), re);
+        }finally {
+              EntityManagerHelper.closeEntityManager();
         }
     }
 
@@ -63,12 +70,12 @@ public class UsuarioDAOImpl implements IUsuarioDAO {
             entity = getEntityManager().getReference(Usuario.class, entity.getIdUsuario());
             em.remove(entity);
             EntityManagerHelper.commit();
-        } catch (RuntimeException er) {
-            System.err.println("error: ---" + er.getMessage());
+            logger.info("Se elimino el usuario" + entity.getIdUsuario());
+        } catch (RuntimeException re) {
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+             EntityManagerHelper.closeEntityManager();
+            
         }
     }
 
@@ -79,11 +86,9 @@ public class UsuarioDAOImpl implements IUsuarioDAO {
         try {
             usuarioTemporal = em.find(Usuario.class, idUsuario);
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+              EntityManagerHelper.closeEntityManager();
         }
         return usuarioTemporal;
 
@@ -97,7 +102,7 @@ public class UsuarioDAOImpl implements IUsuarioDAO {
         try {
             usuarioTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -114,7 +119,7 @@ public class UsuarioDAOImpl implements IUsuarioDAO {
             query.setParameter(UsuarioDAOImpl.CONTRASENA, contrasena);
             usuarioTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -131,7 +136,7 @@ public class UsuarioDAOImpl implements IUsuarioDAO {
             query.setParameter(UsuarioDAOImpl.ROL, rol);
             usuarioTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -148,7 +153,7 @@ public class UsuarioDAOImpl implements IUsuarioDAO {
             query.setParameter(UsuarioDAOImpl.ESTADO, estado);
             usuarioTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -163,8 +168,9 @@ public class UsuarioDAOImpl implements IUsuarioDAO {
             Query query = em.createNamedQuery("Usuario.findByEmail");
             query.setParameter(UsuarioDAOImpl.EMAIL, email);
             usuarioTemporal = query.getResultList();
+            
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }

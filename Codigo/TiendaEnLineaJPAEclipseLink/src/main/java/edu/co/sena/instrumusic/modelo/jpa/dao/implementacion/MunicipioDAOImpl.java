@@ -5,21 +5,23 @@
  */
 package edu.co.sena.instrumusic.modelo.jpa.dao.implementacion;
 
+
 import edu.co.sena.instrumusic.modelo.jpa.util.EntityManagerHelper;
 import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.IMunicipioDAO;
-import edu.co.sena.instrumusic.modelo.jpa.entities.Departamento;
 import edu.co.sena.instrumusic.modelo.jpa.entities.Municipio;
 import static edu.co.sena.instrumusic.modelo.jpa.util.EntityManagerHelper.getEntityManager;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import org.apache.log4j.Logger;
 
 /**
  *
  * @author admin
  */
-public class MunicipioDAOImpl implements IMunicipioDAO{
+public class MunicipioDAOImpl extends AbstractDAO implements IMunicipioDAO{
     
+    protected static final Logger logger = Logger.getLogger(MunicipioDAOImpl.class);
       public static final String NOMBRE = "nombre";
     
     @Override
@@ -29,9 +31,13 @@ public class MunicipioDAOImpl implements IMunicipioDAO{
             EntityManagerHelper.beginTransaction();
             em.persist(entity);
             EntityManagerHelper.commit();
-            EntityManagerHelper.closeEntityManager();
+            logger.info("Se inserto el municipio " + entity.getIdMunicipio());
         } catch (RuntimeException er) {
-            System.err.println("error: ---"+er.getMessage());
+            logger.error("Exception: " + er.getMessage(), er);
+        } finally {
+           
+                EntityManagerHelper.closeEntityManager();
+            
         }
     }
 
@@ -42,9 +48,13 @@ public class MunicipioDAOImpl implements IMunicipioDAO{
             EntityManagerHelper.beginTransaction();
             em.merge(entity);
             EntityManagerHelper.commit();
-            EntityManagerHelper.closeEntityManager();
+            logger.info("Se actualizo el municipio " + entity.getIdMunicipio());
         } catch (RuntimeException er) {
-            System.err.println("error: ---"+er.getMessage());
+            logger.error("Exception: " + er.getMessage(), er);
+        } finally {
+           
+                EntityManagerHelper.closeEntityManager();
+            
         }
     }
 
@@ -56,12 +66,13 @@ public class MunicipioDAOImpl implements IMunicipioDAO{
             entity = getEntityManager().getReference(Municipio.class, entity.getIdMunicipio());
             em.remove(entity);
             EntityManagerHelper.commit();
+            logger.info("Se elimino el municipio " + entity.getIdMunicipio());
         } catch (RuntimeException er) {
-            System.err.println("error: ---" + er.getMessage());
+            logger.error("Exception: " + er.getMessage(), er);
         } finally {
-            if (em != null) {
+           
                 EntityManagerHelper.closeEntityManager();
-            }
+            
         }
     }
 
@@ -72,7 +83,7 @@ public class MunicipioDAOImpl implements IMunicipioDAO{
         try {
             munTemporal = em.find(Municipio.class, idMunicipio);
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+           logger.error("Exception: " + re.getMessage(), re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -89,7 +100,7 @@ public class MunicipioDAOImpl implements IMunicipioDAO{
         try {
             munTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -106,7 +117,7 @@ public class MunicipioDAOImpl implements IMunicipioDAO{
             query.setParameter(MunicipioDAOImpl.NOMBRE, nombre);
             munTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }

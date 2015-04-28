@@ -5,22 +5,24 @@
  */
 package edu.co.sena.instrumusic.modelo.jpa.dao.implementacion;
 
+
 import edu.co.sena.instrumusic.modelo.jpa.util.EntityManagerHelper;
 import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.ICuentaDAO;
 import static edu.co.sena.instrumusic.modelo.jpa.util.EntityManagerHelper.getEntityManager;
 import edu.co.sena.instrumusic.modelo.jpa.entities.Cuenta;
 import edu.co.sena.instrumusic.modelo.jpa.entities.CuentaPK;
-import edu.co.sena.instrumusic.modelo.jpa.entities.DomicilioCuenta;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import org.apache.log4j.Logger;
 
 /**
  *
  * @author admin
  */
-public class CuentaDAOImpl implements ICuentaDAO{
+public class CuentaDAOImpl extends AbstractDAO implements ICuentaDAO{
     
+    protected static final Logger logger = Logger.getLogger(CuentaDAOImpl.class);
     public static final String PRIMERNOMBRE= "primerNombre";
     public static final String SEGUNDONOMBRE = "segundoNombre";
     public static final String PRIMERAPELLIDO = "primerApellido";
@@ -33,8 +35,9 @@ public class CuentaDAOImpl implements ICuentaDAO{
             EntityManagerHelper.beginTransaction();
             em.persist(entity);
             EntityManagerHelper.commit();
-        } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.info("Se inserto la cuenta "+entity.getCuentaPK());
+        } catch (RuntimeException re) {            
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -49,9 +52,10 @@ public class CuentaDAOImpl implements ICuentaDAO{
             EntityManagerHelper.beginTransaction();
             em.merge(entity);
             EntityManagerHelper.commit();
+            logger.info("Se actualizo la cuenta "+entity.getCuentaPK());
             EntityManagerHelper.closeEntityManager();
-        } catch (RuntimeException er) {
-            System.err.println("error: ---" + er.getMessage());
+        } catch (Exception re) {
+            logger.error("Exception: " + re.getMessage(), re);
         }
     }
 
@@ -62,8 +66,9 @@ public class CuentaDAOImpl implements ICuentaDAO{
             EntityManagerHelper.beginTransaction();
             em.remove(em.find(Cuenta.class, entity.getCuentaPK()));
             EntityManagerHelper.commit();
-        } catch (RuntimeException re) {
-            System.out.println("Error : " + re.getMessage());
+            logger.info("Se elimino la cuenta "+entity.getCuentaPK());
+        } catch (Exception re) {
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -79,7 +84,7 @@ public class CuentaDAOImpl implements ICuentaDAO{
         try {
            cuTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -96,7 +101,7 @@ public class CuentaDAOImpl implements ICuentaDAO{
             query.setParameter(CuentaDAOImpl.PRIMERNOMBRE, primerNombre);
             cuTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -113,7 +118,7 @@ public class CuentaDAOImpl implements ICuentaDAO{
             query.setParameter(CuentaDAOImpl.SEGUNDONOMBRE, segundoNombre);
             cuTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -130,7 +135,7 @@ public class CuentaDAOImpl implements ICuentaDAO{
             query.setParameter(CuentaDAOImpl.PRIMERAPELLIDO, primerApellido);
             cuTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -147,7 +152,7 @@ public class CuentaDAOImpl implements ICuentaDAO{
             query.setParameter(CuentaDAOImpl.SEGUNDOAPELLIDO, segundoApellido);
             cuTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -164,18 +169,14 @@ public class CuentaDAOImpl implements ICuentaDAO{
             cuentaTemporal = em.find(Cuenta.class, cuentaPk);
 
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
             }
         }
         return cuentaTemporal;
-    }
-
-    void update(DomicilioCuenta entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    }   
 
     
 }

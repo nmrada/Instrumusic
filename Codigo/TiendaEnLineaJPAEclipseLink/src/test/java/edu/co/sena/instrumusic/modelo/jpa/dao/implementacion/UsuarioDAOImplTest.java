@@ -5,7 +5,6 @@
  */
 package edu.co.sena.instrumusic.modelo.jpa.dao.implementacion;
 
-import edu.co.sena.instrumusic.modelo.jpa.entities.Departamento;
 import edu.co.sena.instrumusic.modelo.jpa.entities.Usuario;
 import java.util.List;
 import org.junit.After;

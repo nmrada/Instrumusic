@@ -5,6 +5,7 @@
  */
 package edu.co.sena.instrumusic.modelo.jpa.dao.implementacion;
 
+import static edu.co.sena.instrumusic.modelo.jpa.dao.implementacion.MunicipioDAOImpl.logger;
 import edu.co.sena.instrumusic.modelo.jpa.util.EntityManagerHelper;
 import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.IDomicilioCuentaDAO;
 import edu.co.sena.instrumusic.modelo.jpa.entities.DomicilioCuenta;
@@ -13,13 +14,15 @@ import static edu.co.sena.instrumusic.modelo.jpa.util.EntityManagerHelper.getEnt
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import org.apache.log4j.Logger;
 
 /**
  *
  * @author admin
  */
-public class DomicilioCuentaDAOImpl implements IDomicilioCuentaDAO {
+public class DomicilioCuentaDAOImpl extends AbstractDAO implements IDomicilioCuentaDAO {
 
+    protected static final Logger logger = Logger.getLogger(DomicilioCuentaDAOImpl.class);
     public static final String TELEFONO = "telefono";
     public static final String DIRECCION = "direccion";
     public static final String BARRIO = "barrio";
@@ -32,9 +35,12 @@ public class DomicilioCuentaDAOImpl implements IDomicilioCuentaDAO {
             EntityManagerHelper.beginTransaction();
             em.persist(entity);
             EntityManagerHelper.commit();
-            EntityManagerHelper.closeEntityManager();
+            logger.info("Se inserto el domicilio cuenta" + entity.getDomicilioCuentaPK());
         } catch (RuntimeException er) {
-            System.err.println("error: ---" + er.getMessage());
+            logger.error("Exception: " + er.getMessage(), er);
+        } finally {
+
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
@@ -45,9 +51,12 @@ public class DomicilioCuentaDAOImpl implements IDomicilioCuentaDAO {
             EntityManagerHelper.beginTransaction();
             em.merge(entity);
             EntityManagerHelper.commit();
-            EntityManagerHelper.closeEntityManager();
+            logger.info("Se actualizo el domicilio cuenta" + entity.getDomicilioCuentaPK());
         } catch (RuntimeException er) {
-            System.err.println("error: ---" + er.getMessage());
+            logger.error("Exception: " + er.getMessage(), er);
+        } finally {
+
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
@@ -59,12 +68,13 @@ public class DomicilioCuentaDAOImpl implements IDomicilioCuentaDAO {
             entity = getEntityManager().getReference(DomicilioCuenta.class, entity.getDomicilioCuentaPK());
             em.remove(entity);
             EntityManagerHelper.commit();
-        } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.info("Se elimino el domicilio cuenta" + entity.getDomicilioCuentaPK());
+        } catch (RuntimeException er) {
+            logger.error("Exception: " + er.getMessage(), er);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+
+            EntityManagerHelper.closeEntityManager();
+
         }
     }
 
@@ -76,7 +86,7 @@ public class DomicilioCuentaDAOImpl implements IDomicilioCuentaDAO {
         try {
             domCuTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -91,7 +101,7 @@ public class DomicilioCuentaDAOImpl implements IDomicilioCuentaDAO {
         try {
             domicilioCueTemporal = em.find(DomicilioCuenta.class, domiciliocuentaPk);
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -109,8 +119,8 @@ public class DomicilioCuentaDAOImpl implements IDomicilioCuentaDAO {
             Query query = em.createNamedQuery("DomicilioCuenta.findByTelefono");
             query.setParameter(DomicilioCuentaDAOImpl.TELEFONO, telefono);
             domCuTemporal = query.getResultList();
-        } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+        } catch (RuntimeException er) {
+            logger.error("Exception: " + er.getMessage(), er);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -127,7 +137,7 @@ public class DomicilioCuentaDAOImpl implements IDomicilioCuentaDAO {
             query.setParameter(DomicilioCuentaDAOImpl.DIRECCION, direccion);
             domCuTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -144,7 +154,7 @@ public class DomicilioCuentaDAOImpl implements IDomicilioCuentaDAO {
             query.setParameter(DomicilioCuentaDAOImpl.BARRIO, barrio);
             domCuTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -160,8 +170,8 @@ public class DomicilioCuentaDAOImpl implements IDomicilioCuentaDAO {
             Query query = em.createNamedQuery("DomicilioCuenta.findByLocalidad");
             query.setParameter(DomicilioCuentaDAOImpl.LOCALIDAD, localidad);
             domCuTemporal = query.getResultList();
-        } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+        } catch (RuntimeException er) {
+            logger.error("Exception: " + er.getMessage(), er);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
