@@ -5,19 +5,23 @@
  */
 package edu.co.sena.instrumusic.modelo.jpa.dao.implementacion;
 
+
 import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.ICarritoDeComprasDAO;
 import edu.co.sena.instrumusic.modelo.jpa.entities.CarritoDeCompras;
 import edu.co.sena.instrumusic.modelo.jpa.util.EntityManagerHelper;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import org.apache.log4j.Logger;
+
 
 /**
  *
  * @author ColsutecR
  */
-public class CarritoDeComprasDAOImpl implements ICarritoDeComprasDAO {
+public class CarritoDeComprasDAOImpl extends AbstractDAO implements ICarritoDeComprasDAO {
 
+    protected static final Logger logger = Logger.getLogger(CarritoDeComprasDAOImpl.class);
     public static final String TOTAL = "precioTotal";
     public static final String SUBTOTAL = "subtotal";
     public static final String IMPUESTOS = "impuestos";
@@ -33,8 +37,9 @@ public class CarritoDeComprasDAOImpl implements ICarritoDeComprasDAO {
             EntityManagerHelper.beginTransaction();
             em.persist(entity);
             EntityManagerHelper.commit();
+            logger.info("Se inserto un Carrito de Compras "+entity.getIdCarritoDeCompras());
         } catch (RuntimeException er) {
-            System.err.println("error: ---" + er.getMessage());
+            logger.error("Exception: " + er.getMessage(), er);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -49,8 +54,9 @@ public class CarritoDeComprasDAOImpl implements ICarritoDeComprasDAO {
             EntityManagerHelper.beginTransaction();
             em.merge(entity);
             EntityManagerHelper.commit();
+            logger.info("Se actualizo el Carrito de Compras "+entity.getIdCarritoDeCompras());
         } catch (RuntimeException er) {
-            System.err.println("error: ---" + er.getMessage());
+            logger.error("Exception: " + er.getMessage(), er);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -66,8 +72,9 @@ public class CarritoDeComprasDAOImpl implements ICarritoDeComprasDAO {
             entity = getEntityManager().getReference(CarritoDeCompras.class, entity.getIdCarritoDeCompras());
             em.remove(entity);
             EntityManagerHelper.commit();
+            logger.info("Se elimino el Carrito de Compras "+entity.getIdCarritoDeCompras());
         } catch (RuntimeException er) {
-            System.err.println("error: ---" + er.getMessage());
+            logger.error("Exception: " + er.getMessage(), er);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -83,7 +90,7 @@ public class CarritoDeComprasDAOImpl implements ICarritoDeComprasDAO {
         try {
             carritosComprasTemporal = query.getResultList();
         } catch (RuntimeException er) {
-            System.err.println("error: ---" + er.getMessage());
+            logger.error("Exception: " + er.getMessage(), er);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -99,7 +106,7 @@ public class CarritoDeComprasDAOImpl implements ICarritoDeComprasDAO {
         try {
             carritoComprasTemporal = em.find(CarritoDeCompras.class, idCarrito);
         } catch (RuntimeException er) {
-            System.err.println("error: ---" + er.getMessage());
+            logger.error("Exception: " + er.getMessage(), er);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -117,7 +124,7 @@ public class CarritoDeComprasDAOImpl implements ICarritoDeComprasDAO {
             query.setParameter(CarritoDeComprasDAOImpl.TOTAL, total);
             carritosComprasTemporal = query.getResultList();
         } catch (RuntimeException er) {
-            System.err.println("error: ---" + er.getMessage());
+            logger.error("Exception: " + er.getMessage(), er);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -135,7 +142,7 @@ public class CarritoDeComprasDAOImpl implements ICarritoDeComprasDAO {
             query.setParameter(CarritoDeComprasDAOImpl.SUBTOTAL, subtotal);
             carritosComprasTemporal = query.getResultList();
         } catch (RuntimeException er) {
-            System.err.println("error: ---" + er.getMessage());
+            logger.error("Exception: " + er.getMessage(), er);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -153,7 +160,7 @@ public class CarritoDeComprasDAOImpl implements ICarritoDeComprasDAO {
             query.setParameter(CarritoDeComprasDAOImpl.IMPUESTOS, impuesto);
             carritosComprasTemporal = query.getResultList();
         } catch (RuntimeException er) {
-            System.err.println("error: ---" + er.getMessage());
+            logger.error("Exception: " + er.getMessage(), er);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
