@@ -12,13 +12,15 @@ import edu.co.sena.instrumusic.modelo.jpa.util.EntityManagerHelper;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import org.apache.log4j.Logger;
 
 /**
  *
  * @author My PC
  */
-public class PedidoDAOImpl implements IPedidoDAO{
+public class PedidoDAOImpl extends AbstractDAO implements IPedidoDAO{
     
+    protected static final Logger logger = Logger.getLogger(PedidoDAOImpl.class);
     public static final String FACTURA = "facturaidFactura";
     public static final String TOTAL = "total";
     public static final String SUBTOTAL = "subtotal";
@@ -36,8 +38,9 @@ public class PedidoDAOImpl implements IPedidoDAO{
             EntityManagerHelper.beginTransaction();
             em.persist(entity);
             EntityManagerHelper.commit();
+            logger.info("Se inserto el Pedido "+ entity.getFacturaidFactura());
         } catch (RuntimeException er) {
-            System.err.println("error: ---" + er.getMessage());
+            logger.error("Exception: " + er.getMessage(), er);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -52,8 +55,9 @@ public class PedidoDAOImpl implements IPedidoDAO{
             EntityManagerHelper.beginTransaction();
             em.merge(entity);
             EntityManagerHelper.commit();
+            logger.info("Se actualizo el Pedido "+ entity.getFacturaidFactura());
         } catch (RuntimeException er) {
-            System.err.println("error: ---" + er.getMessage());
+            logger.error("Exception: " + er.getMessage(), er);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -69,8 +73,9 @@ public class PedidoDAOImpl implements IPedidoDAO{
             entity = getEntityManager().getReference(Pedido.class, entity.getFacturaidFactura());
             em.remove(entity);
             EntityManagerHelper.commit();
+            logger.info("Se elimino el Pedido "+ entity.getFacturaidFactura());
         } catch (RuntimeException er) {
-            System.err.println("error: ---" + er.getMessage());
+            logger.error("Exception: " + er.getMessage(), er);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -85,7 +90,7 @@ public class PedidoDAOImpl implements IPedidoDAO{
         try {
             pedidoT = em.find(Pedido.class, idFactura);
         } catch (RuntimeException er) {
-            System.err.println("error: ---" + er.getMessage());
+            logger.error("Exception: " + er.getMessage(), er);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -103,7 +108,7 @@ public class PedidoDAOImpl implements IPedidoDAO{
         try {
             pedidoT = query.getResultList();
         } catch (RuntimeException er) {
-            System.err.println("error: ---" + er.getMessage());
+            logger.error("Exception: " + er.getMessage(), er);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -122,7 +127,7 @@ public class PedidoDAOImpl implements IPedidoDAO{
             query.setParameter(PedidoDAOImpl.FACTURA, idFactura);
             pedidoT = query.getResultList();
         } catch (RuntimeException er) {
-            System.err.println("error: ---" + er.getMessage());
+            logger.error("Exception: " + er.getMessage(), er);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -142,7 +147,7 @@ public class PedidoDAOImpl implements IPedidoDAO{
             query.setParameter(PedidoDAOImpl.TOTAL, total);
             pedidoT = query.getResultList();
         } catch (RuntimeException er) {
-            System.err.println("error: ---" + er.getMessage());
+            logger.error("Exception: " + er.getMessage(), er);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -162,7 +167,7 @@ public class PedidoDAOImpl implements IPedidoDAO{
             query.setParameter(PedidoDAOImpl.SUBTOTAL, subtotal);
             pedidoT = query.getResultList();
         } catch (RuntimeException er) {
-            System.err.println("error: ---" + er.getMessage());
+            logger.error("Exception: " + er.getMessage(), er);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -182,7 +187,7 @@ public class PedidoDAOImpl implements IPedidoDAO{
             query.setParameter(PedidoDAOImpl.IMPUESTOS, impuestos);
             pedidoT = query.getResultList();
         } catch (RuntimeException er) {
-            System.err.println("error: ---" + er.getMessage());
+            logger.error("Exception: " + er.getMessage(), er);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();

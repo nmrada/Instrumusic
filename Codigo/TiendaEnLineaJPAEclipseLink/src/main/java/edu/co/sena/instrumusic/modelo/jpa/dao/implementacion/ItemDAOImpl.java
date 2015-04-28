@@ -13,13 +13,15 @@ import edu.co.sena.instrumusic.modelo.jpa.util.EntityManagerHelper;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import org.apache.log4j.Logger;
 
 /**
  *
  * @author My PC
  */
-public class ItemDAOImpl implements IItemDAO{
+public class ItemDAOImpl extends AbstractDAO implements IItemDAO{
     
+    protected static final Logger logger = Logger.getLogger(ItemDAOImpl.class);
     public static final String IDPRODUCTO = "productoidProducto";
     public static final String IDFACTURA = "pedidoFacturaidFactura";
     public static final String CANTIDAD = "cantidad";
@@ -37,8 +39,9 @@ public class ItemDAOImpl implements IItemDAO{
             EntityManagerHelper.beginTransaction();
             em.persist(entity);
             EntityManagerHelper.commit();
+            logger.info("Se inserto el Item "+ entity.getItemPK());
         } catch (RuntimeException er) {
-            System.err.println("error: ---" + er.getMessage());
+            logger.error("Exception: " + er.getMessage(), er);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -53,8 +56,9 @@ public class ItemDAOImpl implements IItemDAO{
             EntityManagerHelper.beginTransaction();
             em.merge(entity);
             EntityManagerHelper.commit();
+            logger.info("Se actualizo el Item "+ entity.getItemPK());
         } catch (RuntimeException er) {
-            System.err.println("error: ---" + er.getMessage());
+            logger.error("Exception: " + er.getMessage(), er);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -70,8 +74,9 @@ public class ItemDAOImpl implements IItemDAO{
             entity = getEntityManager().getReference(Item.class, entity.getItemPK());
             em.remove(entity);
             EntityManagerHelper.commit();
+            logger.info("Se elimino el Item "+ entity.getItemPK());
         } catch (RuntimeException er) {
-            System.err.println("error: ---" + er.getMessage());
+            logger.error("Exception: " + er.getMessage(), er);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -87,7 +92,7 @@ public class ItemDAOImpl implements IItemDAO{
         try {
             itemT = em.find(Item.class, itemPk);
         } catch (RuntimeException er) {
-            System.err.println("error: ---" + er.getMessage());
+            logger.error("Exception: " + er.getMessage(), er);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -106,7 +111,7 @@ public class ItemDAOImpl implements IItemDAO{
         try {
             itemT = query.getResultList();
         } catch (RuntimeException er) {
-            System.err.println("error: ---" + er.getMessage());
+            logger.error("Exception: " + er.getMessage(), er);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -125,8 +130,8 @@ public class ItemDAOImpl implements IItemDAO{
             Query query = em.createNamedQuery("Item.findByCantidad");
             query.setParameter(ItemDAOImpl.CANTIDAD, cantidad);
             temT = query.getResultList();
-        } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+        } catch (RuntimeException er) {
+            logger.error("Exception: " + er.getMessage(), er);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -145,8 +150,8 @@ public class ItemDAOImpl implements IItemDAO{
             Query query = em.createNamedQuery("Item.findByCostoUnitario");
             query.setParameter(ItemDAOImpl.COSTOUNITARIO, costoUnitario);
             temT = query.getResultList();
-        } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+        } catch (RuntimeException er) {
+            logger.error("Exception: " + er.getMessage(), er);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -165,8 +170,8 @@ public class ItemDAOImpl implements IItemDAO{
             Query query = em.createNamedQuery("Item.findByCostoTotal");
             query.setParameter(ItemDAOImpl.COSTOTOTAL, costoTotal);
             temT = query.getResultList();
-        } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+        } catch (RuntimeException er) {
+            logger.error("Exception: " + er.getMessage(), er);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
