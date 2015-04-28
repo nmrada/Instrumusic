@@ -85,7 +85,7 @@ DROP TABLE IF EXISTS `instrumusic`.`Factura` ;
 SHOW WARNINGS;
 CREATE TABLE IF NOT EXISTS `instrumusic`.`Factura` (
   `idFactura` INT NOT NULL AUTO_INCREMENT COMMENT 'Llave primaria de la factura',
-  `fecha` DATETIME NOT NULL COMMENT 'Fecha y Hora de la factura',
+  `fecha` DATE NOT NULL COMMENT 'Fecha y Hora de la factura',
   `total` FLOAT NOT NULL COMMENT 'Total de la factura',
   `Cuenta_Tipo_Documento_tipoDocumento` VARCHAR(40) NOT NULL,
   `Cuenta_numeroDocumento` VARCHAR(45) NOT NULL,
@@ -400,6 +400,21 @@ CREATE TABLE IF NOT EXISTS `instrumusic`.`Domicilio_Proveedor` (
     REFERENCES `instrumusic`.`Proveedor` (`Tipo_Documento_tipoDocumento` , `numeroDocumento`)
     ON DELETE NO ACTION
     ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+SHOW WARNINGS;
+
+-- -----------------------------------------------------
+-- Table `instrumusic`.`Logs`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `instrumusic`.`Logs` ;
+
+SHOW WARNINGS;
+CREATE TABLE IF NOT EXISTS `instrumusic`.`Logs` (
+  `nivel` VARCHAR(10) NOT NULL,
+  `fecha` DATETIME NOT NULL,
+  `clase` VARCHAR(500) NOT NULL,
+  `mensaje` VARCHAR(1000) NOT NULL)
 ENGINE = InnoDB;
 
 SHOW WARNINGS;
