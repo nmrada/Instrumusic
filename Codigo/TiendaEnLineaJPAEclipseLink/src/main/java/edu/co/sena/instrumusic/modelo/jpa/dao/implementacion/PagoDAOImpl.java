@@ -7,21 +7,20 @@
 package edu.co.sena.instrumusic.modelo.jpa.dao.implementacion;
 
 import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.IPagoDAO;
-import edu.co.sena.instrumusic.modelo.jpa.entities.DomicilioCuenta;
 import edu.co.sena.instrumusic.modelo.jpa.entities.Pago;
 import edu.co.sena.instrumusic.modelo.jpa.util.EntityManagerHelper;
-import static edu.co.sena.instrumusic.modelo.jpa.util.EntityManagerHelper.getEntityManager;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import javax.swing.JOptionPane;
+import org.apache.log4j.Logger;
 
 /**
  *
  * @author My PC
  */
-public class PagoDAOImpl implements IPagoDAO{
+public class PagoDAOImpl extends AbstractDAO implements IPagoDAO{
     
+    protected static final Logger logger = Logger.getLogger(PagoDAOImpl.class);
     public static final String NUMTARCREDITO = "numTarCredito";
     public static final String BANCO = "banco";
     public static final String TIPOCUENTATAR = "tipoCuentaTar";
@@ -34,28 +33,39 @@ public class PagoDAOImpl implements IPagoDAO{
 
     @Override
     public void insert(Pago entity) {
+        EntityManager em = EntityManagerHelper.getEntityManager();
         try {
-            EntityManager em = EntityManagerHelper.getEntityManager();
             EntityManagerHelper.beginTransaction();
             em.persist(entity);
             EntityManagerHelper.commit();
             EntityManagerHelper.closeEntityManager();
+            logger.info("Se inserto el Pago "+ entity.getFacturaidFactura());
         } catch (RuntimeException er) {
-            System.err.println("error: ---"+er.getMessage());
+            logger.error("Exception: " + er.getMessage(), er);
+        } finally {
+            if (em != null) {
+                EntityManagerHelper.closeEntityManager();
+            }
         }
     }
 
     @Override
     public void update(Pago entity) {
+        EntityManager em = EntityManagerHelper.getEntityManager();
         try {
-            EntityManager em = EntityManagerHelper.getEntityManager();
             EntityManagerHelper.beginTransaction();
             em.merge(entity);
             EntityManagerHelper.commit();
             EntityManagerHelper.closeEntityManager();
+            logger.info("Se actualizo el Pago "+ entity.getFacturaidFactura());
         } catch (RuntimeException er) {
-            System.err.println("error: ---"+er.getMessage());
+            logger.error("Exception: " + er.getMessage(), er);
+        } finally {
+            if (em != null) {
+                EntityManagerHelper.closeEntityManager();
+            }
         }
+        
     }
 
     @Override
@@ -66,8 +76,9 @@ public class PagoDAOImpl implements IPagoDAO{
             entity = getEntityManager().getReference(Pago.class, entity.getFacturaidFactura());
             em.remove(entity);
             EntityManagerHelper.commit();
-        } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.info("Se actualizo el Pago "+ entity.getFacturaidFactura());
+        } catch (RuntimeException er) {
+            logger.error("Exception: " + er.getMessage(), er);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -83,7 +94,7 @@ public class PagoDAOImpl implements IPagoDAO{
         try {
             pagoT = em.find(Pago.class, idFactura);
         } catch (RuntimeException er) {
-            System.err.println("error: ---" + er.getMessage());
+            logger.error("Exception: " + er.getMessage(), er);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -101,7 +112,7 @@ public class PagoDAOImpl implements IPagoDAO{
         try {
             pagoT = query.getResultList();
         } catch (RuntimeException er) {
-            System.err.println("error: ---" + er.getMessage());
+            logger.error("Exception: " + er.getMessage(), er);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -120,7 +131,7 @@ public class PagoDAOImpl implements IPagoDAO{
             query.setParameter(PagoDAOImpl.FACTURA, idFactura);
             pagoT = query.getResultList();
         } catch (RuntimeException er) {
-            System.err.println("error: ---" + er.getMessage());
+            logger.error("Exception: " + er.getMessage(), er);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -140,7 +151,7 @@ public class PagoDAOImpl implements IPagoDAO{
             query.setParameter(PagoDAOImpl.NUMTARCREDITO, numTarjetaCredito);
             pagoT = query.getResultList();
         } catch (RuntimeException er) {
-            System.err.println("error: ---" + er.getMessage());
+            logger.error("Exception: " + er.getMessage(), er);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -160,7 +171,7 @@ public class PagoDAOImpl implements IPagoDAO{
             query.setParameter(PagoDAOImpl.BANCO, banco);
             pagoT = query.getResultList();
         } catch (RuntimeException er) {
-            System.err.println("error: ---" + er.getMessage());
+            logger.error("Exception: " + er.getMessage(), er);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -180,7 +191,7 @@ public class PagoDAOImpl implements IPagoDAO{
             query.setParameter(PagoDAOImpl.TIPOCUENTATAR, tipoCuetaTar);
             pagoT = query.getResultList();
         } catch (RuntimeException er) {
-            System.err.println("error: ---" + er.getMessage());
+            logger.error("Exception: " + er.getMessage(), er);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -200,7 +211,7 @@ public class PagoDAOImpl implements IPagoDAO{
             query.setParameter(PagoDAOImpl.TIPOTRANSACCION, tipoTransaccion);
             pagoT = query.getResultList();
         } catch (RuntimeException er) {
-            System.err.println("error: ---" + er.getMessage());
+            logger.error("Exception: " + er.getMessage(), er);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();

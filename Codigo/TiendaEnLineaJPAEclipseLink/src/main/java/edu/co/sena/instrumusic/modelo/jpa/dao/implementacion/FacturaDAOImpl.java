@@ -8,19 +8,20 @@ package edu.co.sena.instrumusic.modelo.jpa.dao.implementacion;
 
 import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.IFacturaDAO;
 import edu.co.sena.instrumusic.modelo.jpa.entities.Factura;
-import edu.co.sena.instrumusic.modelo.jpa.entities.Item;
 import edu.co.sena.instrumusic.modelo.jpa.util.EntityManagerHelper;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import org.apache.log4j.Logger;
 
 /**
  *
  * @author My PC
  */
-public class FacturaDAOImpl implements IFacturaDAO{
+public class FacturaDAOImpl extends AbstractDAO implements IFacturaDAO{
     
+    protected static final Logger logger = Logger.getLogger(FacturaDAOImpl.class);
     public static final String FECHA = "fecha";
     public static final String TOTAL = "total";
     
@@ -35,8 +36,9 @@ public class FacturaDAOImpl implements IFacturaDAO{
             EntityManagerHelper.beginTransaction();
             em.persist(entity);
             EntityManagerHelper.commit();
+            logger.info("Se inserto la factura "+ entity.getIdFactura());
         } catch (RuntimeException er) {
-            System.err.println("error: ---" + er.getMessage());
+            logger.error("Exception: " + er.getMessage(), er);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -51,8 +53,9 @@ public class FacturaDAOImpl implements IFacturaDAO{
             EntityManagerHelper.beginTransaction();
             em.merge(entity);
             EntityManagerHelper.commit();
+            logger.info("Se actualizo la factura "+ entity.getIdFactura());
         } catch (RuntimeException er) {
-            System.err.println("error: ---" + er.getMessage());
+            logger.error("Exception: " + er.getMessage(), er);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -68,8 +71,9 @@ public class FacturaDAOImpl implements IFacturaDAO{
             entity = getEntityManager().getReference(Factura.class, entity.getIdFactura());
             em.remove(entity);
             EntityManagerHelper.commit();
+            logger.info("Se elimino la factura "+ entity.getIdFactura());
         } catch (RuntimeException er) {
-            System.err.println("error: ---" + er.getMessage());
+            logger.error("Exception: " + er.getMessage(), er);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -85,7 +89,7 @@ public class FacturaDAOImpl implements IFacturaDAO{
         try {
             facturaT = em.find(Factura.class, idFactura);
         } catch (RuntimeException er) {
-            System.err.println("error: ---" + er.getMessage());
+            logger.error("Exception: " + er.getMessage(), er);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -104,7 +108,7 @@ public class FacturaDAOImpl implements IFacturaDAO{
         try {
             facturaT = query.getResultList();
         } catch (RuntimeException er) {
-            System.err.println("error: ---" + er.getMessage());
+            logger.error("Exception: " + er.getMessage(), er);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -123,8 +127,8 @@ public class FacturaDAOImpl implements IFacturaDAO{
             Query query = em.createNamedQuery("Factura.findByFecha");
             query.setParameter(FacturaDAOImpl.FECHA, fecha);
             facturaT = query.getResultList();
-        } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+        } catch (RuntimeException er) {
+            logger.error("Exception: " + er.getMessage(), er);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -142,8 +146,8 @@ public class FacturaDAOImpl implements IFacturaDAO{
             Query query = em.createNamedQuery("Factura.findByTotal");
             query.setParameter(FacturaDAOImpl.TOTAL, total);
             facturaT = query.getResultList();
-        } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+        } catch (RuntimeException er) {
+            logger.error("Exception: " + er.getMessage(), er);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
