@@ -53,8 +53,9 @@ public class CategoriaDAOImpl extends AbstractDAO implements ICategoriaDAO {
             EntityManagerHelper.beginTransaction();
             em.merge(entity);
             EntityManagerHelper.commit();
+            logger.info("Se actualizo la Categoria " + entity.getIdCategoria());
         } catch (RuntimeException re) {
-            System.out.println("error:--------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -71,9 +72,9 @@ public class CategoriaDAOImpl extends AbstractDAO implements ICategoriaDAO {
             entity = getEntityManager().getReference(Categoria.class, entity.getIdCategoria());
             em.remove(entity);
             EntityManagerHelper.commit();
-
+            logger.info("Se elimino la Categoria " + entity.getIdCategoria());
         } catch (RuntimeException re) {
-            System.out.println("erorrr:-------------" + re.getMessage());
+           logger.error("Exception: " + re.getMessage(), re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -81,21 +82,7 @@ public class CategoriaDAOImpl extends AbstractDAO implements ICategoriaDAO {
         }
     }
 
-//    @Override
-//    public Categoria findByIdCategoria(int idCategoria) {
-//        EntityManager em = getEntityManager();
-//        Categoria categoriaTemp = null;
-//        try {
-//            categoriaTemp = em.find(Categoria.class, idCategoria);
-//        } catch (RuntimeException re) {
-//            System.out.println("erorrr:-------------" + re.getMessage());
-//        } finally {
-//            if (em != null) {
-//                EntityManagerHelper.closeEntityManager();
-//            }
-//        }
-//        return categoriaTemp;
-    //   }
+
     @Override
     public List<Categoria> findAll() {
         EntityManager em = getEntityManager();
@@ -104,7 +91,7 @@ public class CategoriaDAOImpl extends AbstractDAO implements ICategoriaDAO {
         try {
             categoriaTemp = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:---------" + re.getMessage());
+           logger.error("Exception: " + re.getMessage(), re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -120,29 +107,14 @@ public class CategoriaDAOImpl extends AbstractDAO implements ICategoriaDAO {
             query.setParameter(CategoriaDAOImpl.NOMBRECATEGORIA, nombreCategoria);
             categoriaTemp = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:-------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
         return categoriaTemp;
     }
 
-//    @Override
-//    public List<Categoria> findByActiva(boolean activa) {
-//        EntityManager em = getEntityManager();
-//        List<Categoria> categoriaTemp = null;
-//        try {
-//            Query query = em.createNamedQuery("Categoria.findByActiva");
-//            query.setParameter(CategoriaDAOImpl.ACTIVA, activa);
-//            categoriaTemp = query.getResultList();
-//        } catch (RuntimeException re) {
-//            System.out.println("erorrr:-------------" + re.getMessage());
-//        } finally {
-//            EntityManagerHelper.closeEntityManager();
-//        }
-//        return categoriaTemp;
-//
-//    }
+
     @Override
     public Categoria findByIdCategoria(Integer idCategoria) {
         EntityManager em = getEntityManager();
@@ -150,7 +122,7 @@ public class CategoriaDAOImpl extends AbstractDAO implements ICategoriaDAO {
         try {
             categoriaTemp = em.find(Categoria.class, idCategoria);
         } catch (RuntimeException re) {
-            System.out.println("erorrr:-------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -168,7 +140,7 @@ public class CategoriaDAOImpl extends AbstractDAO implements ICategoriaDAO {
             query.setParameter(CategoriaDAOImpl.ACTIVA, activa);
             categoriaTemp = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:-------------" + re.getMessage());
+             logger.error("Exception: " + re.getMessage(), re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }

@@ -13,13 +13,15 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import org.apache.log4j.Logger;
 
 /**
  *
  * @author ColsutecR
  */
-public class InventarioDAOImpl implements IInventarioDAO {
+public class InventarioDAOImpl extends AbstractDAO implements IInventarioDAO {
 
+    protected static final Logger logger = Logger.getLogger(InventarioDAOImpl.class);
     public static final String FECHA = "fecha";
     public static final String CANTIDAD = "cantidad";
 
@@ -34,8 +36,9 @@ public class InventarioDAOImpl implements IInventarioDAO {
             EntityManagerHelper.beginTransaction();
             em.persist(entity);
             EntityManagerHelper.commit();
+            logger.info("Se inserto el inventario " + entity.getInventarioPK());
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -51,8 +54,9 @@ public class InventarioDAOImpl implements IInventarioDAO {
             EntityManagerHelper.beginTransaction();
             em.merge(entity);
             EntityManagerHelper.commit();
+            logger.info("Se actualizo el invetario " + entity.getInventarioPK());
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -68,8 +72,9 @@ public class InventarioDAOImpl implements IInventarioDAO {
             entity = getEntityManager().getReference(Inventario.class, entity.getInventarioPK());
             em.remove(entity);
             EntityManagerHelper.commit();
+            logger.info("Se elimino el inventario " + entity.getInventarioPK());
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -84,7 +89,7 @@ public class InventarioDAOImpl implements IInventarioDAO {
         try {
             inventarioTemporal = em.find(Inventario.class, idInventario);
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -102,7 +107,7 @@ public class InventarioDAOImpl implements IInventarioDAO {
         try {
             invetarioTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);;
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -121,7 +126,7 @@ public class InventarioDAOImpl implements IInventarioDAO {
             query.setParameter(InventarioDAOImpl.FECHA, fecha);
             inventarioTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -140,7 +145,7 @@ public class InventarioDAOImpl implements IInventarioDAO {
             query.setParameter(InventarioDAOImpl.CANTIDAD, cantidad);
             inventarioTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();

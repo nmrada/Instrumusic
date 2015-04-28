@@ -12,12 +12,15 @@ import edu.co.sena.instrumusic.modelo.jpa.util.EntityManagerHelper;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import org.apache.log4j.Logger;
 
 /**
  *
  * @author ColsutecR
  */
-public class ProveedorDAOImpl implements IProveedorDAO {
+public class ProveedorDAOImpl extends AbstractDAO implements IProveedorDAO {
+
+    protected static final Logger logger = Logger.getLogger(InventarioDAOImpl.class);
 
     private EntityManager getEntityManager() {
         return EntityManagerHelper.getEntityManager();
@@ -30,8 +33,9 @@ public class ProveedorDAOImpl implements IProveedorDAO {
             EntityManagerHelper.beginTransaction();
             em.persist(entity);
             EntityManagerHelper.commit();
+            logger.info("Se inserto el Proveedor " + entity.getProveedorPK());
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -46,8 +50,9 @@ public class ProveedorDAOImpl implements IProveedorDAO {
             EntityManagerHelper.beginTransaction();
             em.merge(entity);
             EntityManagerHelper.commit();
+            logger.info("Se actualizo el Proveedor " + entity.getProveedorPK());
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -60,12 +65,12 @@ public class ProveedorDAOImpl implements IProveedorDAO {
         EntityManager em = getEntityManager();
         try {
             EntityManagerHelper.beginTransaction();
-            entity = em.getReference(Proveedor.class,
-                    entity.getProveedorPK());
+            entity = em.getReference(Proveedor.class, entity.getProveedorPK());
             em.remove(entity);
             EntityManagerHelper.commit();
+            logger.info("Se elimino el proveedor " + entity.getProveedorPK());
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -80,7 +85,7 @@ public class ProveedorDAOImpl implements IProveedorDAO {
         try {
             proveedorTemporal = em.find(Proveedor.class, llavePrimaria);
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -97,7 +102,7 @@ public class ProveedorDAOImpl implements IProveedorDAO {
         try {
             proveedorTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -113,7 +118,7 @@ public class ProveedorDAOImpl implements IProveedorDAO {
         try {
             proveedorTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -122,14 +127,14 @@ public class ProveedorDAOImpl implements IProveedorDAO {
 
     @Override
     public List<Proveedor> findByEmail(String email) {
-     EntityManager em = getEntityManager();
+        EntityManager em = getEntityManager();
         List<Proveedor> proveedorTemporal = null;
         Query query = em.createNamedQuery("Proveedor.findByEmail");
         query.setParameter(IProveedorDAO.EMAIL, email);
         try {
             proveedorTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }

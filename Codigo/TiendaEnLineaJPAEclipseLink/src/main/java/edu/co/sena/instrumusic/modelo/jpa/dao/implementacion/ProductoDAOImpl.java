@@ -12,13 +12,15 @@ import static edu.co.sena.instrumusic.modelo.jpa.util.EntityManagerHelper.getEnt
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import org.apache.log4j.Logger;
 
 /**
  *
  * @author BERNATE
  */
-public class ProductoDAOImpl implements IProductoDAO {
+public class ProductoDAOImpl extends AbstractDAO implements IProductoDAO {
 
+    protected static final Logger logger = Logger.getLogger(ProductoDAOImpl.class);
     public static final String NOMBRE = "nombre";
     public static final String MARCA = "marca";
     public static final String REFERENCIA = "referencia";
@@ -37,8 +39,9 @@ public class ProductoDAOImpl implements IProductoDAO {
             EntityManagerHelper.beginTransaction();
             em.persist(entity);
             EntityManagerHelper.commit();
+            logger.info("Se inserto el producto " + entity.getIdProducto());
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -53,8 +56,9 @@ public class ProductoDAOImpl implements IProductoDAO {
             EntityManagerHelper.beginTransaction();
             em.merge(entity);
             EntityManagerHelper.commit();
+            logger.info("Se actualizo el Producto " + entity.getIdProducto());
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -67,12 +71,12 @@ public class ProductoDAOImpl implements IProductoDAO {
         EntityManager em = getEntityManager();
         try {
             EntityManagerHelper.beginTransaction();
-            entity = getEntityManager().getReference(Producto.class,
-                    entity.getIdProducto());
+            entity = getEntityManager().getReference(Producto.class, entity.getIdProducto());
             em.remove(entity);
             EntityManagerHelper.commit();
+            logger.info("Se elimino el producto " + entity.getIdProducto());
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -87,7 +91,7 @@ public class ProductoDAOImpl implements IProductoDAO {
         try {
             productoTemporal = em.find(Producto.class, idproducto);
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -104,7 +108,7 @@ public class ProductoDAOImpl implements IProductoDAO {
         try {
             productoTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -121,7 +125,7 @@ public class ProductoDAOImpl implements IProductoDAO {
             query.setParameter(ProductoDAOImpl.NOMBRE, nombre);
             productoTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -138,7 +142,7 @@ public class ProductoDAOImpl implements IProductoDAO {
             query.setParameter(ProductoDAOImpl.MARCA, marca);
             productoTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -155,7 +159,7 @@ public class ProductoDAOImpl implements IProductoDAO {
             query.setParameter(ProductoDAOImpl.REFERENCIA, referencia);
             productoTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -172,7 +176,7 @@ public class ProductoDAOImpl implements IProductoDAO {
             query.setParameter(ProductoDAOImpl.DESCRIPCION, descripcion);
             productoTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -189,7 +193,7 @@ public class ProductoDAOImpl implements IProductoDAO {
             query.setParameter(ProductoDAOImpl.MATERIAL, material);
             productoTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -206,7 +210,7 @@ public class ProductoDAOImpl implements IProductoDAO {
             query.setParameter(ProductoDAOImpl.COLOR, color);
             productoTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -223,7 +227,7 @@ public class ProductoDAOImpl implements IProductoDAO {
             query.setParameter(ProductoDAOImpl.CANTIDAD, cantidad);
             productoTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -240,7 +244,7 @@ public class ProductoDAOImpl implements IProductoDAO {
             query.setParameter(ProductoDAOImpl.ACTIVO, activo);
             productoTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -258,7 +262,7 @@ public class ProductoDAOImpl implements IProductoDAO {
             query.setParameter(ProductoDAOImpl.PRECIOUNITARIO, precioUnitario);
             productoTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
@@ -275,7 +279,7 @@ public class ProductoDAOImpl implements IProductoDAO {
             query.setParameter(ProductoDAOImpl.DESCUENTO, descuento);
             productoTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             EntityManagerHelper.closeEntityManager();
         }
