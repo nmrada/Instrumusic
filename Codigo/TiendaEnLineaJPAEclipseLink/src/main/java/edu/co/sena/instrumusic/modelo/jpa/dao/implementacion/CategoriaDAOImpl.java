@@ -12,19 +12,22 @@ import static edu.co.sena.instrumusic.modelo.jpa.util.EntityManagerHelper.getEnt
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import org.apache.log4j.Logger;
 
 /**
  *
  * @author BERNATE
  */
-public class CategoriaDAOImpl implements ICategoriaDAO {
+public class CategoriaDAOImpl extends AbstractDAO implements ICategoriaDAO {
+
+    protected static final Logger logger = Logger.getLogger(CategoriaDAOImpl.class);
+    public static final String IDCATEGORIA = "idCategoria";
+    public static final String NOMBRECATEGORIA = "nombreCategoria";
+    public static final String ACTIVA = "activa";
 
     private EntityManager getEntityManager() {
         return EntityManagerHelper.getEntityManager();
     }
-    public static final String IDCATEGORIA = "idCategoria";
-    public static final String NOMBRECATEGORIA = "nombreCategoria";
-    public static final String ACTIVA = "activa";
 
     @Override
     public void insert(Categoria entity) {
@@ -33,8 +36,9 @@ public class CategoriaDAOImpl implements ICategoriaDAO {
             EntityManagerHelper.beginTransaction();
             em.persist(entity);
             EntityManagerHelper.commit();
+            logger.info("Se inserto la Categoria " + entity.getIdCategoria());
         } catch (RuntimeException re) {
-            System.out.println("erorr:------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -91,8 +95,7 @@ public class CategoriaDAOImpl implements ICategoriaDAO {
 //            }
 //        }
 //        return categoriaTemp;
- //   }
-
+    //   }
     @Override
     public List<Categoria> findAll() {
         EntityManager em = getEntityManager();
