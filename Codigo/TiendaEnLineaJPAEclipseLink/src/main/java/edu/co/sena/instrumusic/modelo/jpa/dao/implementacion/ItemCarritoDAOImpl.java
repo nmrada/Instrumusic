@@ -36,13 +36,11 @@ public class ItemCarritoDAOImpl extends AbstractDAO implements IItemCarritoDAO {
             EntityManagerHelper.beginTransaction();
             em.persist(entity);
             EntityManagerHelper.commit();
-            logger.info("Se inserto el Item Carrito "+entity.getItemCarritoPK());
+            logger.info("Se inserto el Item Carrito " + entity.getItemCarritoPK());
         } catch (RuntimeException re) {
             logger.error("Exception: " + re.getMessage(), re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
@@ -53,13 +51,11 @@ public class ItemCarritoDAOImpl extends AbstractDAO implements IItemCarritoDAO {
             EntityManagerHelper.beginTransaction();
             em.merge(entity);
             EntityManagerHelper.commit();
-            logger.info("Se actualizo el Item Carrito "+entity.getItemCarritoPK());
+            logger.info("Se actualizo el Item Carrito " + entity.getItemCarritoPK());
         } catch (RuntimeException re) {
             logger.error("Exception: " + re.getMessage(), re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
@@ -71,13 +67,11 @@ public class ItemCarritoDAOImpl extends AbstractDAO implements IItemCarritoDAO {
             entity = getEntityManager().getReference(ItemCarrito.class, entity.getItemCarritoPK());
             em.remove(entity);
             EntityManagerHelper.commit();
-            logger.info("Se elimino el Item Carrito "+entity.getItemCarritoPK());
+            logger.info("Se elimino el Item Carrito " + entity.getItemCarritoPK());
         } catch (RuntimeException re) {
             logger.error("Exception: " + re.getMessage(), re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
@@ -85,15 +79,13 @@ public class ItemCarritoDAOImpl extends AbstractDAO implements IItemCarritoDAO {
     public List<ItemCarrito> findByAll() {
         EntityManager em = getEntityManager();
         List<ItemCarrito> itemsCarritoTemporal = null;
-        Query query = em.createNamedQuery("ItemCarrito.findAll");
         try {
+            Query query = em.createNamedQuery("ItemCarrito.findAll");
             itemsCarritoTemporal = query.getResultList();
         } catch (RuntimeException re) {
             logger.error("Exception: " + re.getMessage(), re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
         return itemsCarritoTemporal;
     }
@@ -109,9 +101,7 @@ public class ItemCarritoDAOImpl extends AbstractDAO implements IItemCarritoDAO {
         } catch (RuntimeException re) {
             logger.error("Exception: " + re.getMessage(), re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
         return itemsCarritoTemporal;
     }
@@ -127,9 +117,7 @@ public class ItemCarritoDAOImpl extends AbstractDAO implements IItemCarritoDAO {
         } catch (RuntimeException re) {
             logger.error("Exception: " + re.getMessage(), re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
         return itemsCarritoTemporal;
     }
@@ -145,9 +133,7 @@ public class ItemCarritoDAOImpl extends AbstractDAO implements IItemCarritoDAO {
         } catch (RuntimeException re) {
             logger.error("Exception: " + re.getMessage(), re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
         return itemsCarritoTemporal;
     }
@@ -161,9 +147,7 @@ public class ItemCarritoDAOImpl extends AbstractDAO implements IItemCarritoDAO {
         } catch (RuntimeException re) {
             logger.error("Exception: " + re.getMessage(), re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
         return itemCarritoTemporal;
     }

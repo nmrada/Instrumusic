@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package edu.co.sena.instrumusic.modelo.jpa.dao.implementacion;
 
 import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.IPagoDAO;
@@ -18,15 +17,15 @@ import org.apache.log4j.Logger;
  *
  * @author My PC
  */
-public class PagoDAOImpl extends AbstractDAO implements IPagoDAO{
-    
+public class PagoDAOImpl extends AbstractDAO implements IPagoDAO {
+
     protected static final Logger logger = Logger.getLogger(PagoDAOImpl.class);
     public static final String NUMTARCREDITO = "numTarCredito";
     public static final String BANCO = "banco";
     public static final String TIPOCUENTATAR = "tipoCuentaTar";
     public static final String TIPOTRANSACCION = "tipoTransaccion";
     public static final String FACTURA = "facturaidFactura";
-    
+
     private EntityManager getEntityManager() {
         return EntityManagerHelper.getEntityManager();
     }
@@ -39,13 +38,11 @@ public class PagoDAOImpl extends AbstractDAO implements IPagoDAO{
             em.persist(entity);
             EntityManagerHelper.commit();
             EntityManagerHelper.closeEntityManager();
-            logger.info("Se inserto el Pago "+ entity.getFacturaidFactura());
+            logger.info("Se inserto el Pago " + entity.getFacturaidFactura());
         } catch (RuntimeException er) {
             logger.error("Exception: " + er.getMessage(), er);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
@@ -57,15 +54,12 @@ public class PagoDAOImpl extends AbstractDAO implements IPagoDAO{
             em.merge(entity);
             EntityManagerHelper.commit();
             EntityManagerHelper.closeEntityManager();
-            logger.info("Se actualizo el Pago "+ entity.getFacturaidFactura());
+            logger.info("Se actualizo el Pago " + entity.getFacturaidFactura());
         } catch (RuntimeException er) {
             logger.error("Exception: " + er.getMessage(), er);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
-        
     }
 
     @Override
@@ -76,19 +70,17 @@ public class PagoDAOImpl extends AbstractDAO implements IPagoDAO{
             entity = getEntityManager().getReference(Pago.class, entity.getFacturaidFactura());
             em.remove(entity);
             EntityManagerHelper.commit();
-            logger.info("Se actualizo el Pago "+ entity.getFacturaidFactura());
+            logger.info("Se actualizo el Pago " + entity.getFacturaidFactura());
         } catch (RuntimeException er) {
             logger.error("Exception: " + er.getMessage(), er);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
     @Override
     public Pago findByIdPago(int idFactura) {
-        
+
         EntityManager em = getEntityManager();
         Pago pagoT = null;
         try {
@@ -96,34 +88,30 @@ public class PagoDAOImpl extends AbstractDAO implements IPagoDAO{
         } catch (RuntimeException er) {
             logger.error("Exception: " + er.getMessage(), er);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
         return pagoT;
     }
 
     @Override
     public List<Pago> findByAll() {
-        
+
         EntityManager em = getEntityManager();
         List<Pago> pagoT = null;
-        Query query = em.createNamedQuery("Pago.findAll");
         try {
+            Query query = em.createNamedQuery("Pago.findAll");
             pagoT = query.getResultList();
         } catch (RuntimeException er) {
             logger.error("Exception: " + er.getMessage(), er);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
         return pagoT;
     }
 
     @Override
     public List<Pago> findByFacturaidFactura(int idFactura) {
-        
+
         EntityManager em = getEntityManager();
         List<Pago> pagoT = null;
         try {
@@ -133,17 +121,15 @@ public class PagoDAOImpl extends AbstractDAO implements IPagoDAO{
         } catch (RuntimeException er) {
             logger.error("Exception: " + er.getMessage(), er);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
         return pagoT;
-        
+
     }
 
     @Override
     public List<Pago> findByNumTarCredito(String numTarjetaCredito) {
-        
+
         EntityManager em = getEntityManager();
         List<Pago> pagoT = null;
         try {
@@ -153,17 +139,15 @@ public class PagoDAOImpl extends AbstractDAO implements IPagoDAO{
         } catch (RuntimeException er) {
             logger.error("Exception: " + er.getMessage(), er);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
         return pagoT;
-        
+
     }
 
     @Override
     public List<Pago> findByBanco(String banco) {
-        
+
         EntityManager em = getEntityManager();
         List<Pago> pagoT = null;
         try {
@@ -173,17 +157,15 @@ public class PagoDAOImpl extends AbstractDAO implements IPagoDAO{
         } catch (RuntimeException er) {
             logger.error("Exception: " + er.getMessage(), er);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
         return pagoT;
-        
+
     }
 
     @Override
     public List<Pago> findByTipoCuentaTar(String tipoCuetaTar) {
-        
+
         EntityManager em = getEntityManager();
         List<Pago> pagoT = null;
         try {
@@ -193,17 +175,15 @@ public class PagoDAOImpl extends AbstractDAO implements IPagoDAO{
         } catch (RuntimeException er) {
             logger.error("Exception: " + er.getMessage(), er);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
         return pagoT;
-        
+
     }
 
     @Override
     public List<Pago> findByTipoTransaccion(String tipoTransaccion) {
-        
+
         EntityManager em = getEntityManager();
         List<Pago> pagoT = null;
         try {
@@ -213,12 +193,8 @@ public class PagoDAOImpl extends AbstractDAO implements IPagoDAO{
         } catch (RuntimeException er) {
             logger.error("Exception: " + er.getMessage(), er);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
         return pagoT;
-        
     }
-    
 }

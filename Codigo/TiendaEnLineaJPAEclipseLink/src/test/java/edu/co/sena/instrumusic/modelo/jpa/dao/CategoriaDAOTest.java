@@ -69,10 +69,11 @@ public class CategoriaDAOTest {
     @Test
     public void testUpdate() throws Exception {
         System.out.println("update");
-        entity.setNombreCategoria("Categoria Padre");
         DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
         ICategoriaDAO instance = fabrica.createCategoriaDAO();
-        instance.update(entity);
+        Categoria cat = instance.findByIdCategoria(2);
+        cat.setNombreCategoria("Categoria Padre");
+        instance.update(cat);
 
     }
 

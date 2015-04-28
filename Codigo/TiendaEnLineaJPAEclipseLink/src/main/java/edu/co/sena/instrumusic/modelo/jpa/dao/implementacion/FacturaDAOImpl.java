@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package edu.co.sena.instrumusic.modelo.jpa.dao.implementacion;
 
 import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.IFacturaDAO;
@@ -19,12 +18,12 @@ import org.apache.log4j.Logger;
  *
  * @author My PC
  */
-public class FacturaDAOImpl extends AbstractDAO implements IFacturaDAO{
-    
+public class FacturaDAOImpl extends AbstractDAO implements IFacturaDAO {
+
     protected static final Logger logger = Logger.getLogger(FacturaDAOImpl.class);
     public static final String FECHA = "fecha";
     public static final String TOTAL = "total";
-    
+
     private EntityManager getEntityManager() {
         return EntityManagerHelper.getEntityManager();
     }
@@ -36,13 +35,11 @@ public class FacturaDAOImpl extends AbstractDAO implements IFacturaDAO{
             EntityManagerHelper.beginTransaction();
             em.persist(entity);
             EntityManagerHelper.commit();
-            logger.info("Se inserto la factura "+ entity.getIdFactura());
+            logger.info("Se inserto la factura " + entity.getIdFactura());
         } catch (RuntimeException er) {
             logger.error("Exception: " + er.getMessage(), er);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
@@ -53,13 +50,11 @@ public class FacturaDAOImpl extends AbstractDAO implements IFacturaDAO{
             EntityManagerHelper.beginTransaction();
             em.merge(entity);
             EntityManagerHelper.commit();
-            logger.info("Se actualizo la factura "+ entity.getIdFactura());
+            logger.info("Se actualizo la factura " + entity.getIdFactura());
         } catch (RuntimeException er) {
             logger.error("Exception: " + er.getMessage(), er);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
@@ -71,13 +66,11 @@ public class FacturaDAOImpl extends AbstractDAO implements IFacturaDAO{
             entity = getEntityManager().getReference(Factura.class, entity.getIdFactura());
             em.remove(entity);
             EntityManagerHelper.commit();
-            logger.info("Se elimino la factura "+ entity.getIdFactura());
+            logger.info("Se elimino la factura " + entity.getIdFactura());
         } catch (RuntimeException er) {
             logger.error("Exception: " + er.getMessage(), er);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
@@ -91,31 +84,27 @@ public class FacturaDAOImpl extends AbstractDAO implements IFacturaDAO{
         } catch (RuntimeException er) {
             logger.error("Exception: " + er.getMessage(), er);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
         return facturaT;
-        
+
     }
 
     @Override
     public List<Factura> findByAll() {
-        
+
         EntityManager em = getEntityManager();
         List<Factura> facturaT = null;
-        Query query = em.createNamedQuery("Factura.findAll");
         try {
+            Query query = em.createNamedQuery("Factura.findAll");
             facturaT = query.getResultList();
         } catch (RuntimeException er) {
             logger.error("Exception: " + er.getMessage(), er);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
         return facturaT;
-        
+
     }
 
     @Override
@@ -130,16 +119,14 @@ public class FacturaDAOImpl extends AbstractDAO implements IFacturaDAO{
         } catch (RuntimeException er) {
             logger.error("Exception: " + er.getMessage(), er);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
         return facturaT;
     }
 
     @Override
     public List<Factura> findByTotal(float total) {
-        
+
         EntityManager em = getEntityManager();
         List<Factura> facturaT = null;
         try {
@@ -149,13 +136,9 @@ public class FacturaDAOImpl extends AbstractDAO implements IFacturaDAO{
         } catch (RuntimeException er) {
             logger.error("Exception: " + er.getMessage(), er);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
         return facturaT;
     }
-    
-    
-    
+
 }

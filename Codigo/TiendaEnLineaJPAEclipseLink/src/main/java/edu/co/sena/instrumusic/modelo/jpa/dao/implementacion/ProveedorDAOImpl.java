@@ -37,9 +37,7 @@ public class ProveedorDAOImpl extends AbstractDAO implements IProveedorDAO {
         } catch (RuntimeException re) {
             logger.error("Exception: " + re.getMessage(), re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
@@ -54,9 +52,7 @@ public class ProveedorDAOImpl extends AbstractDAO implements IProveedorDAO {
         } catch (RuntimeException re) {
             logger.error("Exception: " + re.getMessage(), re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
@@ -72,9 +68,7 @@ public class ProveedorDAOImpl extends AbstractDAO implements IProveedorDAO {
         } catch (RuntimeException re) {
             logger.error("Exception: " + re.getMessage(), re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
@@ -87,9 +81,7 @@ public class ProveedorDAOImpl extends AbstractDAO implements IProveedorDAO {
         } catch (RuntimeException re) {
             logger.error("Exception: " + re.getMessage(), re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
         return proveedorTemporal;
     }
@@ -98,8 +90,8 @@ public class ProveedorDAOImpl extends AbstractDAO implements IProveedorDAO {
     public List<Proveedor> findAll() {
         EntityManager em = getEntityManager();
         List<Proveedor> proveedorTemporal = null;
-        Query query = em.createNamedQuery("Proveedor.findAll");
         try {
+            Query query = em.createNamedQuery("Proveedor.findAll");
             proveedorTemporal = query.getResultList();
         } catch (RuntimeException re) {
             logger.error("Exception: " + re.getMessage(), re);
@@ -113,9 +105,9 @@ public class ProveedorDAOImpl extends AbstractDAO implements IProveedorDAO {
     public List<Proveedor> findByNombre(String nombre) {
         EntityManager em = getEntityManager();
         List<Proveedor> proveedorTemporal = null;
-        Query query = em.createNamedQuery("Proveedor.findByNombre");
-        query.setParameter(IProveedorDAO.NOMBRE, nombre);
         try {
+            Query query = em.createNamedQuery("Proveedor.findByNombre");
+            query.setParameter(IProveedorDAO.NOMBRE, nombre);
             proveedorTemporal = query.getResultList();
         } catch (RuntimeException re) {
             logger.error("Exception: " + re.getMessage(), re);
@@ -129,9 +121,9 @@ public class ProveedorDAOImpl extends AbstractDAO implements IProveedorDAO {
     public List<Proveedor> findByEmail(String email) {
         EntityManager em = getEntityManager();
         List<Proveedor> proveedorTemporal = null;
-        Query query = em.createNamedQuery("Proveedor.findByEmail");
-        query.setParameter(IProveedorDAO.EMAIL, email);
         try {
+            Query query = em.createNamedQuery("Proveedor.findByEmail");
+            query.setParameter(IProveedorDAO.EMAIL, email);
             proveedorTemporal = query.getResultList();
         } catch (RuntimeException re) {
             logger.error("Exception: " + re.getMessage(), re);
@@ -140,5 +132,4 @@ public class ProveedorDAOImpl extends AbstractDAO implements IProveedorDAO {
         }
         return proveedorTemporal;
     }
-
 }

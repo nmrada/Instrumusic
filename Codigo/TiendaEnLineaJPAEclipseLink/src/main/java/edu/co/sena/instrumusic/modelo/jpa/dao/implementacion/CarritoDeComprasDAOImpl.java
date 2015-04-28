@@ -5,7 +5,6 @@
  */
 package edu.co.sena.instrumusic.modelo.jpa.dao.implementacion;
 
-
 import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.ICarritoDeComprasDAO;
 import edu.co.sena.instrumusic.modelo.jpa.entities.CarritoDeCompras;
 import edu.co.sena.instrumusic.modelo.jpa.util.EntityManagerHelper;
@@ -13,7 +12,6 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import org.apache.log4j.Logger;
-
 
 /**
  *
@@ -37,13 +35,11 @@ public class CarritoDeComprasDAOImpl extends AbstractDAO implements ICarritoDeCo
             EntityManagerHelper.beginTransaction();
             em.persist(entity);
             EntityManagerHelper.commit();
-            logger.info("Se inserto el Carrito de Compras "+entity.getIdCarritoDeCompras());
+            logger.info("Se inserto el Carrito de Compras " + entity.getIdCarritoDeCompras());
         } catch (RuntimeException er) {
             logger.error("Exception: " + er.getMessage(), er);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
@@ -54,13 +50,11 @@ public class CarritoDeComprasDAOImpl extends AbstractDAO implements ICarritoDeCo
             EntityManagerHelper.beginTransaction();
             em.merge(entity);
             EntityManagerHelper.commit();
-            logger.info("Se actualizo el Carrito de Compras "+entity.getIdCarritoDeCompras());
+            logger.info("Se actualizo el Carrito de Compras " + entity.getIdCarritoDeCompras());
         } catch (RuntimeException er) {
             logger.error("Exception: " + er.getMessage(), er);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
@@ -72,13 +66,11 @@ public class CarritoDeComprasDAOImpl extends AbstractDAO implements ICarritoDeCo
             entity = getEntityManager().getReference(CarritoDeCompras.class, entity.getIdCarritoDeCompras());
             em.remove(entity);
             EntityManagerHelper.commit();
-            logger.info("Se elimino el Carrito de Compras "+entity.getIdCarritoDeCompras());
+            logger.info("Se elimino el Carrito de Compras " + entity.getIdCarritoDeCompras());
         } catch (RuntimeException er) {
             logger.error("Exception: " + er.getMessage(), er);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
@@ -86,15 +78,13 @@ public class CarritoDeComprasDAOImpl extends AbstractDAO implements ICarritoDeCo
     public List<CarritoDeCompras> findByAll() {
         EntityManager em = getEntityManager();
         List<CarritoDeCompras> carritosComprasTemporal = null;
-        Query query = em.createNamedQuery("CarritoDeCompras.findAll");
         try {
+            Query query = em.createNamedQuery("CarritoDeCompras.findAll");
             carritosComprasTemporal = query.getResultList();
         } catch (RuntimeException er) {
             logger.error("Exception: " + er.getMessage(), er);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
         return carritosComprasTemporal;
     }
@@ -108,9 +98,7 @@ public class CarritoDeComprasDAOImpl extends AbstractDAO implements ICarritoDeCo
         } catch (RuntimeException er) {
             logger.error("Exception: " + er.getMessage(), er);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
         return carritoComprasTemporal;
     }
@@ -126,9 +114,7 @@ public class CarritoDeComprasDAOImpl extends AbstractDAO implements ICarritoDeCo
         } catch (RuntimeException er) {
             logger.error("Exception: " + er.getMessage(), er);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
         return carritosComprasTemporal;
     }
@@ -144,9 +130,7 @@ public class CarritoDeComprasDAOImpl extends AbstractDAO implements ICarritoDeCo
         } catch (RuntimeException er) {
             logger.error("Exception: " + er.getMessage(), er);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
         return carritosComprasTemporal;
     }
@@ -162,11 +146,8 @@ public class CarritoDeComprasDAOImpl extends AbstractDAO implements ICarritoDeCo
         } catch (RuntimeException er) {
             logger.error("Exception: " + er.getMessage(), er);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
         return carritosComprasTemporal;
     }
-
 }

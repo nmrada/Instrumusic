@@ -43,9 +43,7 @@ public class ProductoDAOImpl extends AbstractDAO implements IProductoDAO {
         } catch (RuntimeException re) {
             logger.error("Exception: " + re.getMessage(), re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
@@ -60,9 +58,7 @@ public class ProductoDAOImpl extends AbstractDAO implements IProductoDAO {
         } catch (RuntimeException re) {
             logger.error("Exception: " + re.getMessage(), re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
@@ -78,9 +74,7 @@ public class ProductoDAOImpl extends AbstractDAO implements IProductoDAO {
         } catch (RuntimeException re) {
             logger.error("Exception: " + re.getMessage(), re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
@@ -93,9 +87,7 @@ public class ProductoDAOImpl extends AbstractDAO implements IProductoDAO {
         } catch (RuntimeException re) {
             logger.error("Exception: " + re.getMessage(), re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
         return productoTemporal;
     }
@@ -104,8 +96,8 @@ public class ProductoDAOImpl extends AbstractDAO implements IProductoDAO {
     public List<Producto> findAll() {
         EntityManager em = getEntityManager();
         List<Producto> productoTemporal = null;
-        Query query = em.createNamedQuery("Producto.findAll");
         try {
+            Query query = em.createNamedQuery("Producto.findAll");
             productoTemporal = query.getResultList();
         } catch (RuntimeException re) {
             logger.error("Exception: " + re.getMessage(), re);
@@ -119,7 +111,6 @@ public class ProductoDAOImpl extends AbstractDAO implements IProductoDAO {
     public List<Producto> findByNombre(String nombre) {
         EntityManager em = getEntityManager();
         List<Producto> productoTemporal = null;
-
         try {
             Query query = em.createNamedQuery("Producto.findByNombre");
             query.setParameter(ProductoDAOImpl.NOMBRE, nombre);
@@ -136,7 +127,6 @@ public class ProductoDAOImpl extends AbstractDAO implements IProductoDAO {
     public List<Producto> findByMarca(String marca) {
         EntityManager em = getEntityManager();
         List<Producto> productoTemporal = null;
-
         try {
             Query query = em.createNamedQuery("Producto.findByMarca");
             query.setParameter(ProductoDAOImpl.MARCA, marca);
@@ -153,7 +143,6 @@ public class ProductoDAOImpl extends AbstractDAO implements IProductoDAO {
     public List<Producto> findByReferencia(String referencia) {
         EntityManager em = getEntityManager();
         List<Producto> productoTemporal = null;
-
         try {
             Query query = em.createNamedQuery("Producto.findByReferencia");
             query.setParameter(ProductoDAOImpl.REFERENCIA, referencia);
@@ -170,7 +159,6 @@ public class ProductoDAOImpl extends AbstractDAO implements IProductoDAO {
     public List<Producto> findByDescripcion(String descripcion) {
         EntityManager em = getEntityManager();
         List<Producto> productoTemporal = null;
-
         try {
             Query query = em.createNamedQuery("Producto.findByDescripcion");
             query.setParameter(ProductoDAOImpl.DESCRIPCION, descripcion);
@@ -187,7 +175,6 @@ public class ProductoDAOImpl extends AbstractDAO implements IProductoDAO {
     public List<Producto> findByMaterial(String material) {
         EntityManager em = getEntityManager();
         List<Producto> productoTemporal = null;
-
         try {
             Query query = em.createNamedQuery("Producto.findByMaterial");
             query.setParameter(ProductoDAOImpl.MATERIAL, material);
@@ -204,7 +191,6 @@ public class ProductoDAOImpl extends AbstractDAO implements IProductoDAO {
     public List<Producto> findByColor(String color) {
         EntityManager em = getEntityManager();
         List<Producto> productoTemporal = null;
-
         try {
             Query query = em.createNamedQuery("Producto.findByColor");
             query.setParameter(ProductoDAOImpl.COLOR, color);
@@ -221,7 +207,6 @@ public class ProductoDAOImpl extends AbstractDAO implements IProductoDAO {
     public List<Producto> findByCantidad(int cantidad) {
         EntityManager em = getEntityManager();
         List<Producto> productoTemporal = null;
-
         try {
             Query query = em.createNamedQuery("Producto.findByCantidad");
             query.setParameter(ProductoDAOImpl.CANTIDAD, cantidad);
@@ -238,7 +223,6 @@ public class ProductoDAOImpl extends AbstractDAO implements IProductoDAO {
     public List<Producto> findByActivo(boolean activo) {
         EntityManager em = getEntityManager();
         List<Producto> productoTemporal = null;
-
         try {
             Query query = em.createNamedQuery("Producto.findByActivo");
             query.setParameter(ProductoDAOImpl.ACTIVO, activo);
@@ -256,7 +240,6 @@ public class ProductoDAOImpl extends AbstractDAO implements IProductoDAO {
     public List<Producto> findByPrecioUnitario(float precioUnitario) {
         EntityManager em = getEntityManager();
         List<Producto> productoTemporal = null;
-
         try {
             Query query = em.createNamedQuery("Producto.findByPrecioUnitario");
             query.setParameter(ProductoDAOImpl.PRECIOUNITARIO, precioUnitario);
@@ -273,7 +256,6 @@ public class ProductoDAOImpl extends AbstractDAO implements IProductoDAO {
     public List<Producto> findByDescuento(float descuento) {
         EntityManager em = getEntityManager();
         List<Producto> productoTemporal = null;
-
         try {
             Query query = em.createNamedQuery("Producto.findByDescuento");
             query.setParameter(ProductoDAOImpl.DESCUENTO, descuento);
@@ -285,5 +267,4 @@ public class ProductoDAOImpl extends AbstractDAO implements IProductoDAO {
         }
         return productoTemporal;
     }
-
 }

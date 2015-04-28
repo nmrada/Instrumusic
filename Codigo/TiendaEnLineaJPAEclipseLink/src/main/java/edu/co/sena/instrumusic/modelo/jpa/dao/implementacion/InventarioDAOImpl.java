@@ -40,9 +40,7 @@ public class InventarioDAOImpl extends AbstractDAO implements IInventarioDAO {
         } catch (RuntimeException re) {
             logger.error("Exception: " + re.getMessage(), re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
 
     }
@@ -58,9 +56,7 @@ public class InventarioDAOImpl extends AbstractDAO implements IInventarioDAO {
         } catch (RuntimeException re) {
             logger.error("Exception: " + re.getMessage(), re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
@@ -76,9 +72,7 @@ public class InventarioDAOImpl extends AbstractDAO implements IInventarioDAO {
         } catch (RuntimeException re) {
             logger.error("Exception: " + re.getMessage(), re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
@@ -91,9 +85,7 @@ public class InventarioDAOImpl extends AbstractDAO implements IInventarioDAO {
         } catch (RuntimeException re) {
             logger.error("Exception: " + re.getMessage(), re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
         return inventarioTemporal;
 
@@ -103,15 +95,13 @@ public class InventarioDAOImpl extends AbstractDAO implements IInventarioDAO {
     public List<Inventario> findAll() {
         EntityManager em = getEntityManager();
         List<Inventario> invetarioTemporal = null;
-        Query query = em.createNamedQuery("Inventario.findAll");
         try {
+            Query query = em.createNamedQuery("Inventario.findAll");
             invetarioTemporal = query.getResultList();
         } catch (RuntimeException re) {
             logger.error("Exception: " + re.getMessage(), re);;
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
         return invetarioTemporal;
     }
@@ -128,9 +118,7 @@ public class InventarioDAOImpl extends AbstractDAO implements IInventarioDAO {
         } catch (RuntimeException re) {
             logger.error("Exception: " + re.getMessage(), re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
         return inventarioTemporal;
 
@@ -147,9 +135,7 @@ public class InventarioDAOImpl extends AbstractDAO implements IInventarioDAO {
         } catch (RuntimeException re) {
             logger.error("Exception: " + re.getMessage(), re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
         return inventarioTemporal;
     }

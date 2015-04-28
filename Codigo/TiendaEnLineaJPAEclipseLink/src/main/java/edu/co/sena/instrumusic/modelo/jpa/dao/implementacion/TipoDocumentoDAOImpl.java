@@ -34,13 +34,11 @@ public class TipoDocumentoDAOImpl extends AbstractDAO implements ITipoDocumentoD
             EntityManagerHelper.beginTransaction();
             em.persist(entity);
             EntityManagerHelper.commit();
-            logger.info("Se inserto el tipo de Documento "+entity.getTipoDocumento());
+            logger.info("Se inserto el tipo de Documento " + entity.getTipoDocumento());
         } catch (RuntimeException re) {
             logger.error("Exception: " + re.getMessage(), re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
@@ -51,13 +49,11 @@ public class TipoDocumentoDAOImpl extends AbstractDAO implements ITipoDocumentoD
             EntityManagerHelper.beginTransaction();
             em.merge(entity);
             EntityManagerHelper.commit();
-            logger.info("Se actualizo el tipo de Documento "+entity.getTipoDocumento());
+            logger.info("Se actualizo el tipo de Documento " + entity.getTipoDocumento());
         } catch (RuntimeException re) {
             logger.error("Exception: " + re.getMessage(), re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
@@ -69,13 +65,11 @@ public class TipoDocumentoDAOImpl extends AbstractDAO implements ITipoDocumentoD
             entity = getEntityManager().getReference(TipoDocumento.class, entity.getTipoDocumento());
             em.remove(entity);
             EntityManagerHelper.commit();
-            logger.info("Se elimino el tipo de Documento "+entity.getTipoDocumento());
+            logger.info("Se elimino el tipo de Documento " + entity.getTipoDocumento());
         } catch (RuntimeException re) {
             logger.error("Exception: " + re.getMessage(), re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
@@ -88,9 +82,7 @@ public class TipoDocumentoDAOImpl extends AbstractDAO implements ITipoDocumentoD
         } catch (RuntimeException re) {
             logger.error("Exception: " + re.getMessage(), re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
         return tipoDocumentoTemporal;
     }
@@ -99,15 +91,13 @@ public class TipoDocumentoDAOImpl extends AbstractDAO implements ITipoDocumentoD
     public List<TipoDocumento> findByAll() {
         EntityManager em = getEntityManager();
         List<TipoDocumento> tiposDocumentosTemporal = null;
-        Query query = em.createNamedQuery("TipoDocumento.findAll");
         try {
+            Query query = em.createNamedQuery("TipoDocumento.findAll");
             tiposDocumentosTemporal = query.getResultList();
         } catch (RuntimeException re) {
             logger.error("Exception: " + re.getMessage(), re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
         return tiposDocumentosTemporal;
     }
@@ -123,9 +113,7 @@ public class TipoDocumentoDAOImpl extends AbstractDAO implements ITipoDocumentoD
         } catch (RuntimeException re) {
             logger.error("Exception: " + re.getMessage(), re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
         return tiposDocumentosTemporal;
     }
@@ -141,11 +129,8 @@ public class TipoDocumentoDAOImpl extends AbstractDAO implements ITipoDocumentoD
         } catch (RuntimeException re) {
             logger.error("Exception: " + re.getMessage(), re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
         return tiposDocumentosTemporal;
     }
-
 }

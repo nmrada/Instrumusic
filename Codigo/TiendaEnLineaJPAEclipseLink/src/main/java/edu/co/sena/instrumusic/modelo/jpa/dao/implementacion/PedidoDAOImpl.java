@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package edu.co.sena.instrumusic.modelo.jpa.dao.implementacion;
 
 import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.IPedidoDAO;
@@ -18,15 +17,14 @@ import org.apache.log4j.Logger;
  *
  * @author My PC
  */
-public class PedidoDAOImpl extends AbstractDAO implements IPedidoDAO{
-    
+public class PedidoDAOImpl extends AbstractDAO implements IPedidoDAO {
+
     protected static final Logger logger = Logger.getLogger(PedidoDAOImpl.class);
     public static final String FACTURA = "facturaidFactura";
     public static final String TOTAL = "total";
     public static final String SUBTOTAL = "subtotal";
     public static final String IMPUESTOS = "impuestos";
-    
-    
+
     private EntityManager getEntityManager() {
         return EntityManagerHelper.getEntityManager();
     }
@@ -38,13 +36,11 @@ public class PedidoDAOImpl extends AbstractDAO implements IPedidoDAO{
             EntityManagerHelper.beginTransaction();
             em.persist(entity);
             EntityManagerHelper.commit();
-            logger.info("Se inserto el Pedido "+ entity.getFacturaidFactura());
+            logger.info("Se inserto el Pedido " + entity.getFacturaidFactura());
         } catch (RuntimeException er) {
             logger.error("Exception: " + er.getMessage(), er);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
@@ -55,13 +51,11 @@ public class PedidoDAOImpl extends AbstractDAO implements IPedidoDAO{
             EntityManagerHelper.beginTransaction();
             em.merge(entity);
             EntityManagerHelper.commit();
-            logger.info("Se actualizo el Pedido "+ entity.getFacturaidFactura());
+            logger.info("Se actualizo el Pedido " + entity.getFacturaidFactura());
         } catch (RuntimeException er) {
             logger.error("Exception: " + er.getMessage(), er);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
@@ -73,55 +67,49 @@ public class PedidoDAOImpl extends AbstractDAO implements IPedidoDAO{
             entity = getEntityManager().getReference(Pedido.class, entity.getFacturaidFactura());
             em.remove(entity);
             EntityManagerHelper.commit();
-            logger.info("Se elimino el Pedido "+ entity.getFacturaidFactura());
+            logger.info("Se elimino el Pedido " + entity.getFacturaidFactura());
         } catch (RuntimeException er) {
             logger.error("Exception: " + er.getMessage(), er);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
     @Override
     public Pedido findByIdPedido(int idFactura) {
         EntityManager em = getEntityManager();
-        Pedido pedidoT=  null;
+        Pedido pedidoT = null;
         try {
             pedidoT = em.find(Pedido.class, idFactura);
         } catch (RuntimeException er) {
             logger.error("Exception: " + er.getMessage(), er);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
         return pedidoT;
     }
 
     @Override
     public List<Pedido> findByAll() {
-        
+
         EntityManager em = getEntityManager();
         List<Pedido> pedidoT = null;
-        Query query = em.createNamedQuery("Pedido.findAll");
         try {
+            Query query = em.createNamedQuery("Pedido.findAll");
             pedidoT = query.getResultList();
         } catch (RuntimeException er) {
             logger.error("Exception: " + er.getMessage(), er);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
         return pedidoT;
     }
 
     @Override
     public List<Pedido> findByFacturaidFactura(int idFactura) {
-        
+
         EntityManager em = getEntityManager();
-        List<Pedido> pedidoT=  null;
+        List<Pedido> pedidoT = null;
         try {
             Query query = em.createNamedQuery("Pedido.findByFacturaidFactura");
             query.setParameter(PedidoDAOImpl.FACTURA, idFactura);
@@ -129,19 +117,17 @@ public class PedidoDAOImpl extends AbstractDAO implements IPedidoDAO{
         } catch (RuntimeException er) {
             logger.error("Exception: " + er.getMessage(), er);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
         return pedidoT;
-        
+
     }
 
     @Override
     public List<Pedido> findByTotal(float total) {
-        
+
         EntityManager em = getEntityManager();
-        List<Pedido> pedidoT=  null;
+        List<Pedido> pedidoT = null;
         try {
             Query query = em.createNamedQuery("Pedido.findByTotal");
             query.setParameter(PedidoDAOImpl.TOTAL, total);
@@ -149,19 +135,17 @@ public class PedidoDAOImpl extends AbstractDAO implements IPedidoDAO{
         } catch (RuntimeException er) {
             logger.error("Exception: " + er.getMessage(), er);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
         return pedidoT;
-        
+
     }
 
     @Override
     public List<Pedido> findBySubtotal(float subtotal) {
-        
+
         EntityManager em = getEntityManager();
-        List<Pedido> pedidoT=  null;
+        List<Pedido> pedidoT = null;
         try {
             Query query = em.createNamedQuery("Pedido.findBySubtotal");
             query.setParameter(PedidoDAOImpl.SUBTOTAL, subtotal);
@@ -169,19 +153,17 @@ public class PedidoDAOImpl extends AbstractDAO implements IPedidoDAO{
         } catch (RuntimeException er) {
             logger.error("Exception: " + er.getMessage(), er);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
         return pedidoT;
-        
+
     }
 
     @Override
     public List<Pedido> findByImpuestos(float impuestos) {
-        
+
         EntityManager em = getEntityManager();
-        List<Pedido> pedidoT=  null;
+        List<Pedido> pedidoT = null;
         try {
             Query query = em.createNamedQuery("Pedido.findByImpuestos");
             query.setParameter(PedidoDAOImpl.IMPUESTOS, impuestos);
@@ -189,12 +171,8 @@ public class PedidoDAOImpl extends AbstractDAO implements IPedidoDAO{
         } catch (RuntimeException er) {
             logger.error("Exception: " + er.getMessage(), er);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
         return pedidoT;
-        
     }
-    
 }

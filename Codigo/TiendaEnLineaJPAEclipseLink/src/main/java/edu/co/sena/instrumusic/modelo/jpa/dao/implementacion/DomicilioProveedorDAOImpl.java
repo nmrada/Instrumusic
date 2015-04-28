@@ -37,13 +37,11 @@ public class DomicilioProveedorDAOImpl extends AbstractDAO implements IDomicilio
             EntityManagerHelper.beginTransaction();
             em.persist(entity);
             EntityManagerHelper.commit();
-            logger.info("Se inserto el Domicilio Proveedor "+entity.getDomicilioProveedorPK());
+            logger.info("Se inserto el Domicilio Proveedor " + entity.getDomicilioProveedorPK());
         } catch (RuntimeException re) {
             logger.error("Exception: " + re.getMessage(), re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
@@ -54,13 +52,11 @@ public class DomicilioProveedorDAOImpl extends AbstractDAO implements IDomicilio
             EntityManagerHelper.beginTransaction();
             em.merge(entity);
             EntityManagerHelper.commit();
-            logger.info("Se actualizo el Domicilio Proveedor "+entity.getDomicilioProveedorPK());
+            logger.info("Se actualizo el Domicilio Proveedor " + entity.getDomicilioProveedorPK());
         } catch (RuntimeException re) {
             logger.error("Exception: " + re.getMessage(), re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
@@ -72,13 +68,11 @@ public class DomicilioProveedorDAOImpl extends AbstractDAO implements IDomicilio
             entity = getEntityManager().getReference(DomicilioProveedor.class, entity.getDomicilioProveedorPK());
             em.remove(entity);
             EntityManagerHelper.commit();
-            logger.info("Se elimino el Domicilio Proveedor "+entity.getDomicilioProveedorPK());
+            logger.info("Se elimino el Domicilio Proveedor " + entity.getDomicilioProveedorPK());
         } catch (RuntimeException re) {
             logger.error("Exception: " + re.getMessage(), re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
@@ -91,9 +85,7 @@ public class DomicilioProveedorDAOImpl extends AbstractDAO implements IDomicilio
         } catch (RuntimeException re) {
             logger.error("Exception: " + re.getMessage(), re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
         return domicilioProveedorTemporal;
     }
@@ -102,15 +94,13 @@ public class DomicilioProveedorDAOImpl extends AbstractDAO implements IDomicilio
     public List<DomicilioProveedor> findByAll() {
         EntityManager em = getEntityManager();
         List<DomicilioProveedor> domiciliosProveedorTemporal = null;
-        Query query = em.createNamedQuery("DomicilioProveedor.findAll");
         try {
+            Query query = em.createNamedQuery("DomicilioProveedor.findAll");
             domiciliosProveedorTemporal = query.getResultList();
         } catch (RuntimeException re) {
             logger.error("Exception: " + re.getMessage(), re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
         return domiciliosProveedorTemporal;
     }
@@ -126,9 +116,7 @@ public class DomicilioProveedorDAOImpl extends AbstractDAO implements IDomicilio
         } catch (RuntimeException re) {
             logger.error("Exception: " + re.getMessage(), re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
         return domiciliosProveedorTemporal;
     }
@@ -144,9 +132,7 @@ public class DomicilioProveedorDAOImpl extends AbstractDAO implements IDomicilio
         } catch (RuntimeException re) {
             logger.error("Exception: " + re.getMessage(), re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
         return domiciliosProveedorTemporal;
     }
@@ -162,9 +148,7 @@ public class DomicilioProveedorDAOImpl extends AbstractDAO implements IDomicilio
         } catch (RuntimeException re) {
             logger.error("Exception: " + re.getMessage(), re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
         return domiciliosProveedorTemporal;
     }
@@ -180,9 +164,7 @@ public class DomicilioProveedorDAOImpl extends AbstractDAO implements IDomicilio
         } catch (RuntimeException re) {
             logger.error("Exception: " + re.getMessage(), re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
         return domiciliosProveedorTemporal;
     }
