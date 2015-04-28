@@ -12,13 +12,15 @@ import edu.co.sena.instrumusic.modelo.jpa.util.EntityManagerHelper;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import org.apache.log4j.Logger;
 
 /**
  *
  * @author ColsutecR
  */
-public class DomicilioProveedorDAOImpl implements IDomicilioProveedorDAO {
+public class DomicilioProveedorDAOImpl extends AbstractDAO implements IDomicilioProveedorDAO {
 
+    protected static final Logger logger = Logger.getLogger(DomicilioProveedorDAOImpl.class);
     public static final String TELEFONO = "telefono";
     public static final String DIRECCION = "direccion";
     public static final String BARRIO = "barrio";
@@ -35,8 +37,9 @@ public class DomicilioProveedorDAOImpl implements IDomicilioProveedorDAO {
             EntityManagerHelper.beginTransaction();
             em.persist(entity);
             EntityManagerHelper.commit();
+            logger.info("Se inserto el Domicilio Proveedor "+entity.getDomicilioProveedorPK());
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -51,8 +54,9 @@ public class DomicilioProveedorDAOImpl implements IDomicilioProveedorDAO {
             EntityManagerHelper.beginTransaction();
             em.merge(entity);
             EntityManagerHelper.commit();
+            logger.info("Se actualizo el Domicilio Proveedor "+entity.getDomicilioProveedorPK());
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -68,8 +72,9 @@ public class DomicilioProveedorDAOImpl implements IDomicilioProveedorDAO {
             entity = getEntityManager().getReference(DomicilioProveedor.class, entity.getDomicilioProveedorPK());
             em.remove(entity);
             EntityManagerHelper.commit();
+            logger.info("Se elimino el Domicilio Proveedor "+entity.getDomicilioProveedorPK());
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -84,7 +89,7 @@ public class DomicilioProveedorDAOImpl implements IDomicilioProveedorDAO {
         try {
             domicilioProveedorTemporal = em.find(DomicilioProveedor.class, domicilioProveedorPk);
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -101,7 +106,7 @@ public class DomicilioProveedorDAOImpl implements IDomicilioProveedorDAO {
         try {
             domiciliosProveedorTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -119,7 +124,7 @@ public class DomicilioProveedorDAOImpl implements IDomicilioProveedorDAO {
             query.setParameter(DomicilioProveedorDAOImpl.TELEFONO, telefono);
             domiciliosProveedorTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -137,7 +142,7 @@ public class DomicilioProveedorDAOImpl implements IDomicilioProveedorDAO {
             query.setParameter(DomicilioProveedorDAOImpl.DIRECCION, direccion);
             domiciliosProveedorTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -155,7 +160,7 @@ public class DomicilioProveedorDAOImpl implements IDomicilioProveedorDAO {
             query.setParameter(DomicilioProveedorDAOImpl.BARRIO, barrio);
             domiciliosProveedorTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -173,7 +178,7 @@ public class DomicilioProveedorDAOImpl implements IDomicilioProveedorDAO {
             query.setParameter(DomicilioProveedorDAOImpl.LOCALIDAD, localidad);
             domiciliosProveedorTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();

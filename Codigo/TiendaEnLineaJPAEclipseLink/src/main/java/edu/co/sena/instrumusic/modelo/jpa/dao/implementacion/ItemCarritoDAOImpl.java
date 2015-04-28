@@ -12,13 +12,15 @@ import edu.co.sena.instrumusic.modelo.jpa.util.EntityManagerHelper;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import org.apache.log4j.Logger;
 
 /**
  *
  * @author ColsutecR
  */
-public class ItemCarritoDAOImpl implements IItemCarritoDAO {
+public class ItemCarritoDAOImpl extends AbstractDAO implements IItemCarritoDAO {
 
+    protected static final Logger logger = Logger.getLogger(ItemCarritoDAOImpl.class);
     public static final String CANTIDAD = "cantidad";
     public static final String COSTO_UNITARIO = "costoUnitario";
     public static final String COSTO_TOTAL = "costoTotal";
@@ -34,8 +36,9 @@ public class ItemCarritoDAOImpl implements IItemCarritoDAO {
             EntityManagerHelper.beginTransaction();
             em.persist(entity);
             EntityManagerHelper.commit();
+            logger.info("Se inserto el Item Carrito "+entity.getItemCarritoPK());
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -50,8 +53,9 @@ public class ItemCarritoDAOImpl implements IItemCarritoDAO {
             EntityManagerHelper.beginTransaction();
             em.merge(entity);
             EntityManagerHelper.commit();
+            logger.info("Se actualizo el Item Carrito "+entity.getItemCarritoPK());
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -67,8 +71,9 @@ public class ItemCarritoDAOImpl implements IItemCarritoDAO {
             entity = getEntityManager().getReference(ItemCarrito.class, entity.getItemCarritoPK());
             em.remove(entity);
             EntityManagerHelper.commit();
+            logger.info("Se elimino el Item Carrito "+entity.getItemCarritoPK());
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -84,7 +89,7 @@ public class ItemCarritoDAOImpl implements IItemCarritoDAO {
         try {
             itemsCarritoTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -102,7 +107,7 @@ public class ItemCarritoDAOImpl implements IItemCarritoDAO {
             query.setParameter(ItemCarritoDAOImpl.CANTIDAD, cantidad);
             itemsCarritoTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -120,7 +125,7 @@ public class ItemCarritoDAOImpl implements IItemCarritoDAO {
             query.setParameter(ItemCarritoDAOImpl.COSTO_UNITARIO, costoUnitario);
             itemsCarritoTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -138,7 +143,7 @@ public class ItemCarritoDAOImpl implements IItemCarritoDAO {
             query.setParameter(ItemCarritoDAOImpl.COSTO_TOTAL, costoTotal);
             itemsCarritoTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -154,7 +159,7 @@ public class ItemCarritoDAOImpl implements IItemCarritoDAO {
         try {
             itemCarritoTemporal = em.find(ItemCarrito.class, itemCarritoPk);
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();

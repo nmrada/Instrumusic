@@ -37,7 +37,7 @@ public class CarritoDeComprasDAOImpl extends AbstractDAO implements ICarritoDeCo
             EntityManagerHelper.beginTransaction();
             em.persist(entity);
             EntityManagerHelper.commit();
-            logger.info("Se inserto un Carrito de Compras "+entity.getIdCarritoDeCompras());
+            logger.info("Se inserto el Carrito de Compras "+entity.getIdCarritoDeCompras());
         } catch (RuntimeException er) {
             logger.error("Exception: " + er.getMessage(), er);
         } finally {

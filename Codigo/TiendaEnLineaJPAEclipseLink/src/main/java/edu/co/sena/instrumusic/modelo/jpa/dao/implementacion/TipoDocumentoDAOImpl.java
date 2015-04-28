@@ -11,13 +11,15 @@ import edu.co.sena.instrumusic.modelo.jpa.util.EntityManagerHelper;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import org.apache.log4j.Logger;
 
 /**
  *
  * @author Nicolas
  */
-public class TipoDocumentoDAOImpl implements ITipoDocumentoDAO {
+public class TipoDocumentoDAOImpl extends AbstractDAO implements ITipoDocumentoDAO {
 
+    protected static final Logger logger = Logger.getLogger(TipoDocumentoDAOImpl.class);
     public static final String DESCRIPCION = "descripcion";
     public static final String ACTIVO = "activo";
 
@@ -32,8 +34,9 @@ public class TipoDocumentoDAOImpl implements ITipoDocumentoDAO {
             EntityManagerHelper.beginTransaction();
             em.persist(entity);
             EntityManagerHelper.commit();
+            logger.info("Se inserto el tipo de Documento "+entity.getTipoDocumento());
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -48,8 +51,9 @@ public class TipoDocumentoDAOImpl implements ITipoDocumentoDAO {
             EntityManagerHelper.beginTransaction();
             em.merge(entity);
             EntityManagerHelper.commit();
+            logger.info("Se actualizo el tipo de Documento "+entity.getTipoDocumento());
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -65,8 +69,9 @@ public class TipoDocumentoDAOImpl implements ITipoDocumentoDAO {
             entity = getEntityManager().getReference(TipoDocumento.class, entity.getTipoDocumento());
             em.remove(entity);
             EntityManagerHelper.commit();
+            logger.info("Se elimino el tipo de Documento "+entity.getTipoDocumento());
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -81,7 +86,7 @@ public class TipoDocumentoDAOImpl implements ITipoDocumentoDAO {
         try {
             tipoDocumentoTemporal = em.find(TipoDocumento.class, tipoDocumento);
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -98,7 +103,7 @@ public class TipoDocumentoDAOImpl implements ITipoDocumentoDAO {
         try {
             tiposDocumentosTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -116,7 +121,7 @@ public class TipoDocumentoDAOImpl implements ITipoDocumentoDAO {
             query.setParameter(TipoDocumentoDAOImpl.DESCRIPCION, descripcion);
             tiposDocumentosTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
@@ -134,7 +139,7 @@ public class TipoDocumentoDAOImpl implements ITipoDocumentoDAO {
             query.setParameter(TipoDocumentoDAOImpl.ACTIVO, activo);
             tiposDocumentosTemporal = query.getResultList();
         } catch (RuntimeException re) {
-            System.out.println("erorrr:----------------" + re.getMessage());
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
             if (em != null) {
                 EntityManagerHelper.closeEntityManager();
