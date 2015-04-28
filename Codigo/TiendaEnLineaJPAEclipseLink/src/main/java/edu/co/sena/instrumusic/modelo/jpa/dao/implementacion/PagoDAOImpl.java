@@ -7,8 +7,10 @@
 package edu.co.sena.instrumusic.modelo.jpa.dao.implementacion;
 
 import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.IPagoDAO;
+import edu.co.sena.instrumusic.modelo.jpa.entities.DomicilioCuenta;
 import edu.co.sena.instrumusic.modelo.jpa.entities.Pago;
 import edu.co.sena.instrumusic.modelo.jpa.util.EntityManagerHelper;
+import static edu.co.sena.instrumusic.modelo.jpa.util.EntityManagerHelper.getEntityManager;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -58,14 +60,18 @@ public class PagoDAOImpl implements IPagoDAO{
 
     @Override
     public void delete(Pago entity) {
-       try {
-            EntityManager em = EntityManagerHelper.getEntityManager();
+        EntityManager em = getEntityManager();
+        try {
             EntityManagerHelper.beginTransaction();
+            entity = getEntityManager().getReference(Pago.class, entity.getFacturaidFactura());
             em.remove(entity);
             EntityManagerHelper.commit();
-            EntityManagerHelper.closeEntityManager();
-        } catch (RuntimeException er) {
-            System.err.println("error: ---"+er.getMessage());
+        } catch (RuntimeException re) {
+            System.out.println("erorrr:----------------" + re.getMessage());
+        } finally {
+            if (em != null) {
+                EntityManagerHelper.closeEntityManager();
+            }
         }
     }
 

@@ -95,7 +95,7 @@ public class ItemDAOTest {
         System.out.println("delete");
         DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
         IItemDAO instance = fabrica.createItemDAO();
-        Item item = instance.findByIdItem(new ItemPK("DA123", 4));
+        Item item = instance.findByIdItem(new ItemPK("DA123", 1));
         instance.delete(entity);
     }
 
