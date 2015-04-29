@@ -83,7 +83,7 @@ public class CategoriaDAOTest {
         System.out.println("delete");
         DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
         ICategoriaDAO instance = fabrica.createCategoriaDAO();
-        Categoria cat = instance.findByIdCategoria(1);
+        Categoria cat = instance.findByIdCategoria(2);
         instance.delete(cat);
 
     }

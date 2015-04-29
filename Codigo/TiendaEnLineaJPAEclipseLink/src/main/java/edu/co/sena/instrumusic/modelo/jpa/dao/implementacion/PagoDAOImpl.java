@@ -70,7 +70,7 @@ public class PagoDAOImpl extends AbstractDAO implements IPagoDAO {
             entity = getEntityManager().getReference(Pago.class, entity.getFacturaidFactura());
             em.remove(entity);
             EntityManagerHelper.commit();
-            logger.info("Se actualizo el Pago " + entity.getFacturaidFactura());
+            logger.info("Se elimino el Pago " + entity.getFacturaidFactura());
         } catch (RuntimeException er) {
             logger.error("Exception: " + er.getMessage(), er);
         } finally {

@@ -35,11 +35,10 @@ public class DomicilioCuentaDAOImpl extends AbstractDAO implements IDomicilioCue
             EntityManagerHelper.beginTransaction();
             em.persist(entity);
             EntityManagerHelper.commit();
-            logger.info("Se inserto el domicilio cuenta" + entity.getDomicilioCuentaPK());
+            logger.info("Se inserto el domicilio cuenta " + entity.getDomicilioCuentaPK());
         } catch (RuntimeException er) {
             logger.error("Exception: " + er.getMessage(), er);
         } finally {
-
             EntityManagerHelper.closeEntityManager();
         }
     }
@@ -51,11 +50,10 @@ public class DomicilioCuentaDAOImpl extends AbstractDAO implements IDomicilioCue
             EntityManagerHelper.beginTransaction();
             em.merge(entity);
             EntityManagerHelper.commit();
-            logger.info("Se actualizo el domicilio cuenta" + entity.getDomicilioCuentaPK());
+            logger.info("Se actualizo el domicilio cuenta " + entity.getDomicilioCuentaPK());
         } catch (RuntimeException er) {
             logger.error("Exception: " + er.getMessage(), er);
         } finally {
-
             EntityManagerHelper.closeEntityManager();
         }
     }
@@ -68,13 +66,11 @@ public class DomicilioCuentaDAOImpl extends AbstractDAO implements IDomicilioCue
             entity = getEntityManager().getReference(DomicilioCuenta.class, entity.getDomicilioCuentaPK());
             em.remove(entity);
             EntityManagerHelper.commit();
-            logger.info("Se elimino el domicilio cuenta" + entity.getDomicilioCuentaPK());
+            logger.info("Se elimino el domicilio cuenta " + entity.getDomicilioCuentaPK());
         } catch (RuntimeException er) {
             logger.error("Exception: " + er.getMessage(), er);
         } finally {
-
             EntityManagerHelper.closeEntityManager();
-
         }
     }
 
@@ -82,8 +78,8 @@ public class DomicilioCuentaDAOImpl extends AbstractDAO implements IDomicilioCue
     public List<DomicilioCuenta> findByAll() {
         EntityManager em = getEntityManager();
         List<DomicilioCuenta> domCuTemporal = null;
-        Query query = em.createNamedQuery("DomicilioCuenta.findAll");
         try {
+            Query query = em.createNamedQuery("DomicilioCuenta.findAll");
             domCuTemporal = query.getResultList();
         } catch (RuntimeException re) {
             logger.error("Exception: " + re.getMessage(), re);
@@ -95,7 +91,6 @@ public class DomicilioCuentaDAOImpl extends AbstractDAO implements IDomicilioCue
 
     @Override
     public DomicilioCuenta findByIdDomicilioCuenta(DomicilioCuentaPK domiciliocuentaPk) {
-
         EntityManager em = getEntityManager();
         DomicilioCuenta domicilioCueTemporal = null;
         try {
@@ -103,9 +98,7 @@ public class DomicilioCuentaDAOImpl extends AbstractDAO implements IDomicilioCue
         } catch (RuntimeException re) {
             logger.error("Exception: " + re.getMessage(), re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
         return domicilioCueTemporal;
     }
@@ -114,7 +107,6 @@ public class DomicilioCuentaDAOImpl extends AbstractDAO implements IDomicilioCue
     public List<DomicilioCuenta> findByTelefono(String telefono) {
         EntityManager em = getEntityManager();
         List<DomicilioCuenta> domCuTemporal = null;
-
         try {
             Query query = em.createNamedQuery("DomicilioCuenta.findByTelefono");
             query.setParameter(DomicilioCuentaDAOImpl.TELEFONO, telefono);
@@ -131,7 +123,6 @@ public class DomicilioCuentaDAOImpl extends AbstractDAO implements IDomicilioCue
     public List<DomicilioCuenta> findByDireccion(String direccion) {
         EntityManager em = getEntityManager();
         List<DomicilioCuenta> domCuTemporal = null;
-
         try {
             Query query = em.createNamedQuery("DomicilioCuenta.findByDireccion");
             query.setParameter(DomicilioCuentaDAOImpl.DIRECCION, direccion);
@@ -148,7 +139,6 @@ public class DomicilioCuentaDAOImpl extends AbstractDAO implements IDomicilioCue
     public List<DomicilioCuenta> findByBario(String barrio) {
         EntityManager em = getEntityManager();
         List<DomicilioCuenta> domCuTemporal = null;
-
         try {
             Query query = em.createNamedQuery("DomicilioCuenta.findByBarrio");
             query.setParameter(DomicilioCuentaDAOImpl.BARRIO, barrio);
@@ -165,7 +155,6 @@ public class DomicilioCuentaDAOImpl extends AbstractDAO implements IDomicilioCue
     public List<DomicilioCuenta> findByLocalidad(String localidad) {
         EntityManager em = getEntityManager();
         List<DomicilioCuenta> domCuTemporal = null;
-
         try {
             Query query = em.createNamedQuery("DomicilioCuenta.findByLocalidad");
             query.setParameter(DomicilioCuentaDAOImpl.LOCALIDAD, localidad);

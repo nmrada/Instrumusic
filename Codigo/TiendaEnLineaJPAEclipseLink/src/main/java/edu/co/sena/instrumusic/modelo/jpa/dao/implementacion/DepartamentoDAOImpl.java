@@ -34,9 +34,7 @@ public class DepartamentoDAOImpl extends AbstractDAO implements IDepartamentoDAO
         } catch (RuntimeException re) {
             logger.error("Exception: " + re.getMessage(), re);
         } finally {
-
             EntityManagerHelper.closeEntityManager();
-
         }
     }
 
@@ -47,41 +45,35 @@ public class DepartamentoDAOImpl extends AbstractDAO implements IDepartamentoDAO
             EntityManagerHelper.beginTransaction();
             em.merge(entity);
             EntityManagerHelper.commit();
-            logger.info("Se actualizo el departamento" + entity.getIdDepartamento());
+            logger.info("Se actualizo el Departamento " + entity.getIdDepartamento());
         } catch (RuntimeException re) {
             logger.error("Exception: " + re.getMessage(), re);
         } finally {
-
             EntityManagerHelper.closeEntityManager();
-
         }
     }
 
     @Override
     public void delete(Departamento entity) {
-
         try {
             EntityManager em = getEntityManager();
             EntityManagerHelper.beginTransaction();
             entity = getEntityManager().getReference(Departamento.class, entity.getIdDepartamento());
             em.remove(entity);
             EntityManagerHelper.commit();
-            logger.info("Se elimino el departamento" + entity.getIdDepartamento());
+            logger.info("Se elimino el Departamento " + entity.getIdDepartamento());
         } catch (RuntimeException re) {
             logger.error("Exception: " + re.getMessage(), re);
         } finally {
-
             EntityManagerHelper.closeEntityManager();
-
         }
     }
 
     @Override
     public Departamento findByIdDepartamento(String idDepartamento) {
-       
         Departamento deparTemporal = null;
         try {
-             EntityManager em = getEntityManager();
+            EntityManager em = getEntityManager();
             deparTemporal = em.find(Departamento.class, idDepartamento);
         } catch (RuntimeException re) {
             logger.error("Exception: " + re.getMessage(), re);
@@ -93,9 +85,7 @@ public class DepartamentoDAOImpl extends AbstractDAO implements IDepartamentoDAO
 
     @Override
     public List<Departamento> findByAll() {
-        
         List<Departamento> deparTemporal = null;
-
         try {
             EntityManager em = getEntityManager();
             Query query = em.createNamedQuery("Departamento.findAll");
@@ -110,9 +100,7 @@ public class DepartamentoDAOImpl extends AbstractDAO implements IDepartamentoDAO
 
     @Override
     public List<Departamento> findByNombre(String nombre) {
-        
         List<Departamento> deparTemporal = null;
-
         try {
             EntityManager em = getEntityManager();
             Query query = em.createNamedQuery("Departamento.findByNombre");
@@ -125,5 +113,4 @@ public class DepartamentoDAOImpl extends AbstractDAO implements IDepartamentoDAO
         }
         return deparTemporal;
     }
-
 }

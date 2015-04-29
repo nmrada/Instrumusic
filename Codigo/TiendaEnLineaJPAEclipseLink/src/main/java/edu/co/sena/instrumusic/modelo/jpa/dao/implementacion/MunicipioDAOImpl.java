@@ -5,7 +5,6 @@
  */
 package edu.co.sena.instrumusic.modelo.jpa.dao.implementacion;
 
-
 import edu.co.sena.instrumusic.modelo.jpa.util.EntityManagerHelper;
 import edu.co.sena.instrumusic.modelo.jpa.dao.interfaces.IMunicipioDAO;
 import edu.co.sena.instrumusic.modelo.jpa.entities.Municipio;
@@ -19,14 +18,14 @@ import org.apache.log4j.Logger;
  *
  * @author admin
  */
-public class MunicipioDAOImpl extends AbstractDAO implements IMunicipioDAO{
-    
+public class MunicipioDAOImpl extends AbstractDAO implements IMunicipioDAO {
+
     protected static final Logger logger = Logger.getLogger(MunicipioDAOImpl.class);
-      public static final String NOMBRE = "nombre";
-    
+    public static final String NOMBRE = "nombre";
+
     @Override
     public void insert(Municipio entity) {
-         try {
+        try {
             EntityManager em = EntityManagerHelper.getEntityManager();
             EntityManagerHelper.beginTransaction();
             em.persist(entity);
@@ -35,15 +34,13 @@ public class MunicipioDAOImpl extends AbstractDAO implements IMunicipioDAO{
         } catch (RuntimeException er) {
             logger.error("Exception: " + er.getMessage(), er);
         } finally {
-           
-                EntityManagerHelper.closeEntityManager();
-            
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
     @Override
     public void update(Municipio entity) {
-         try {
+        try {
             EntityManager em = EntityManagerHelper.getEntityManager();
             EntityManagerHelper.beginTransaction();
             em.merge(entity);
@@ -52,15 +49,13 @@ public class MunicipioDAOImpl extends AbstractDAO implements IMunicipioDAO{
         } catch (RuntimeException er) {
             logger.error("Exception: " + er.getMessage(), er);
         } finally {
-           
-                EntityManagerHelper.closeEntityManager();
-            
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
     @Override
     public void delete(Municipio entity) {
-       EntityManager em = getEntityManager();
+        EntityManager em = getEntityManager();
         try {
             EntityManagerHelper.beginTransaction();
             entity = getEntityManager().getReference(Municipio.class, entity.getIdMunicipio());
@@ -70,9 +65,7 @@ public class MunicipioDAOImpl extends AbstractDAO implements IMunicipioDAO{
         } catch (RuntimeException er) {
             logger.error("Exception: " + er.getMessage(), er);
         } finally {
-           
-                EntityManagerHelper.closeEntityManager();
-            
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
@@ -83,11 +76,9 @@ public class MunicipioDAOImpl extends AbstractDAO implements IMunicipioDAO{
         try {
             munTemporal = em.find(Municipio.class, idMunicipio);
         } catch (RuntimeException re) {
-           logger.error("Exception: " + re.getMessage(), re);
+            logger.error("Exception: " + re.getMessage(), re);
         } finally {
-            if (em != null) {
-                EntityManagerHelper.closeEntityManager();
-            }
+            EntityManagerHelper.closeEntityManager();
         }
         return munTemporal;
     }
@@ -96,8 +87,8 @@ public class MunicipioDAOImpl extends AbstractDAO implements IMunicipioDAO{
     public List<Municipio> findByAll() {
         EntityManager em = getEntityManager();
         List<Municipio> munTemporal = null;
-        Query query = em.createNamedQuery("Municipio.findAll");
         try {
+            Query query = em.createNamedQuery("Municipio.findAll");
             munTemporal = query.getResultList();
         } catch (RuntimeException re) {
             logger.error("Exception: " + re.getMessage(), re);
@@ -111,7 +102,6 @@ public class MunicipioDAOImpl extends AbstractDAO implements IMunicipioDAO{
     public List<Municipio> findByNombre(String nombre) {
         EntityManager em = getEntityManager();
         List<Municipio> munTemporal = null;
-
         try {
             Query query = em.createNamedQuery("Municipio.findByNombre");
             query.setParameter(MunicipioDAOImpl.NOMBRE, nombre);
@@ -123,6 +113,4 @@ public class MunicipioDAOImpl extends AbstractDAO implements IMunicipioDAO{
         }
         return munTemporal;
     }
-
-   
 }

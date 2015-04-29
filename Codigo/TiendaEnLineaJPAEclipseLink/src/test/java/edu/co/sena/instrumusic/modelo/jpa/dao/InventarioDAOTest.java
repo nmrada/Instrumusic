@@ -48,7 +48,7 @@ public class InventarioDAOTest {
         Calendar calendario = Calendar.getInstance(TimeZone.getTimeZone("GMT-5"));
         Date fechaActual = calendario.getTime();
         entity.setFecha(fechaActual);
-        entity.setInventarioPK(new InventarioPK("DA123","CC", "12334455"));
+        entity.setInventarioPK(new InventarioPK("DA123", "CC", "12334455"));
     }
 
     @After
@@ -92,16 +92,10 @@ public class InventarioDAOTest {
     public void testFindByIdInventario() throws Exception {
         System.out.println("findByIdInventario");
         Inventario inv;
-        int idInventario = 1;
-        
-       String idNumeroDocuemento = "CC";
-        String idTipoDocumento = "12334455";
-        String idProducto = "DA123";
         DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
         IInventarioDAO instance = fabrica.createInventarioDAO();
-        inv = instance.findByIdInventario(new InventarioPK(idInventario, idProducto, idTipoDocumento, idNumeroDocuemento));
+        inv = instance.findByIdInventario(new InventarioPK(1, "DA123", "CC", "12334455"));
         System.out.println(inv.getInventarioPK());
-
     }
 
     @Test
@@ -131,7 +125,7 @@ public class InventarioDAOTest {
     public void testFindByFecha() throws Exception {
         System.out.println("findByFecha");
         Calendar calendario = Calendar.getInstance(TimeZone.getTimeZone("GMT-5"));
-        calendario.set(2015, 3, 27);
+        calendario.set(2015, 3, 29);
         Date fechaActual = calendario.getTime();
         DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
         IInventarioDAO instance = fabrica.createInventarioDAO();

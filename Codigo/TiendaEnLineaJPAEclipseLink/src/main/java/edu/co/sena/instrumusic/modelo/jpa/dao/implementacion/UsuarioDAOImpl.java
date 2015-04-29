@@ -39,11 +39,11 @@ public class UsuarioDAOImpl extends AbstractDAO implements IUsuarioDAO {
             EntityManagerHelper.beginTransaction();
             em.persist(entity);
             EntityManagerHelper.commit();
-            logger.info("Se inserto el usuario" + entity.getIdUsuario());
+            logger.info("Se inserto el Usuario " + entity.getIdUsuario());
         } catch (RuntimeException re) {
             logger.error("Exception: " + re.getMessage(), re);
-        }finally {
-              EntityManagerHelper.closeEntityManager();
+        } finally {
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
@@ -54,28 +54,27 @@ public class UsuarioDAOImpl extends AbstractDAO implements IUsuarioDAO {
             EntityManagerHelper.beginTransaction();
             em.merge(entity);
             EntityManagerHelper.commit();
-            logger.info("Se actualizo el usuario " + entity.getIdUsuario());
+            logger.info("Se actualizo el Usuario " + entity.getIdUsuario());
         } catch (RuntimeException re) {
             logger.error("Exception: " + re.getMessage(), re);
-        }finally {
-              EntityManagerHelper.closeEntityManager();
+        } finally {
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
     @Override
     public void delete(Usuario entity) {
-       EntityManager em = getEntityManager();
+        EntityManager em = getEntityManager();
         try {
             EntityManagerHelper.beginTransaction();
             entity = getEntityManager().getReference(Usuario.class, entity.getIdUsuario());
             em.remove(entity);
             EntityManagerHelper.commit();
-            logger.info("Se elimino el usuario" + entity.getIdUsuario());
+            logger.info("Se elimino el Usuario " + entity.getIdUsuario());
         } catch (RuntimeException re) {
             logger.error("Exception: " + re.getMessage(), re);
         } finally {
-             EntityManagerHelper.closeEntityManager();
-            
+            EntityManagerHelper.closeEntityManager();
         }
     }
 
@@ -88,7 +87,7 @@ public class UsuarioDAOImpl extends AbstractDAO implements IUsuarioDAO {
         } catch (RuntimeException re) {
             logger.error("Exception: " + re.getMessage(), re);
         } finally {
-              EntityManagerHelper.closeEntityManager();
+            EntityManagerHelper.closeEntityManager();
         }
         return usuarioTemporal;
 
@@ -98,8 +97,8 @@ public class UsuarioDAOImpl extends AbstractDAO implements IUsuarioDAO {
     public List<Usuario> findByAll() {
         EntityManager em = getEntityManager();
         List<Usuario> usuarioTemporal = null;
-        Query query = em.createNamedQuery("Usuario.findAll");
         try {
+            Query query = em.createNamedQuery("Usuario.findAll");
             usuarioTemporal = query.getResultList();
         } catch (RuntimeException re) {
             logger.error("Exception: " + re.getMessage(), re);
@@ -113,7 +112,6 @@ public class UsuarioDAOImpl extends AbstractDAO implements IUsuarioDAO {
     public List<Usuario> findByContrasena(String contrasena) {
         EntityManager em = getEntityManager();
         List<Usuario> usuarioTemporal = null;
-
         try {
             Query query = em.createNamedQuery("Usuario.findByContrasena");
             query.setParameter(UsuarioDAOImpl.CONTRASENA, contrasena);
@@ -130,7 +128,6 @@ public class UsuarioDAOImpl extends AbstractDAO implements IUsuarioDAO {
     public List<Usuario> findByRol(String rol) {
         EntityManager em = getEntityManager();
         List<Usuario> usuarioTemporal = null;
-
         try {
             Query query = em.createNamedQuery("Usuario.findByRol");
             query.setParameter(UsuarioDAOImpl.ROL, rol);
@@ -147,7 +144,6 @@ public class UsuarioDAOImpl extends AbstractDAO implements IUsuarioDAO {
     public List<Usuario> findByEstado(String estado) {
         EntityManager em = getEntityManager();
         List<Usuario> usuarioTemporal = null;
-
         try {
             Query query = em.createNamedQuery("Usuario.findByEstado");
             query.setParameter(UsuarioDAOImpl.ESTADO, estado);
@@ -168,7 +164,7 @@ public class UsuarioDAOImpl extends AbstractDAO implements IUsuarioDAO {
             Query query = em.createNamedQuery("Usuario.findByEmail");
             query.setParameter(UsuarioDAOImpl.EMAIL, email);
             usuarioTemporal = query.getResultList();
-            
+
         } catch (RuntimeException re) {
             logger.error("Exception: " + re.getMessage(), re);
         } finally {
